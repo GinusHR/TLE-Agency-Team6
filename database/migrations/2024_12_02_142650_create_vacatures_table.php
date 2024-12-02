@@ -16,17 +16,17 @@ return new class extends Migration
         Schema::create('vacatures', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('company');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->string('function');
             $table->bigInteger('salary');
             $table->bigInteger('workhours');
             $table->string('location');
-            $table->bigInteger('time_id');
-            $table->foreign('time_id')->references('id')->on('times');
+            $table->boolean('time_id');
             $table->text('description');
             $table->boolean('secondary_info_needed');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->tinyInteger('status');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
