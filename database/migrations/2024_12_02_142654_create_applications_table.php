@@ -19,10 +19,10 @@ return new class extends Migration
             $table->foreign('vacature_id')->references('id')->on('vacatures');
             $table->bigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('email');
-            $table->integer('phonenumber');
-            $table->text('secondary_info');
+            $table->string('email')->nullable();
+            $table->text('secondary_info')->nullable();
             $table->boolean('accepted');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

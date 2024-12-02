@@ -13,17 +13,18 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('company', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('logo');
-            $table->string('image');
-            $table->string('homepage_url');
-            $table->bigInteger('about_us_url');
-            $table->bigInteger('contact_url');
-            $table->bigInteger('description');
+            $table->string('logo')->nullable();
+            $table->string('image')->nullable();
+            $table->string('homepage_url')->nullable();
+            $table->string('about_us_url')->nullable();
+            $table->string('contact_url')->nullable();
+            $table->text('description');
             $table->string('login_code');
             $table->string('password');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('company');
+        Schema::dropIfExists('companies');
     }
 };

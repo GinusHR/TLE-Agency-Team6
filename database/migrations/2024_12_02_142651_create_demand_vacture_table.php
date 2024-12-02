@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('demand_id')->references('id')->on('demands');
             $table->bigInteger('vacature_id');
             $table->foreign('vacature_id')->references('id')->on('vacatures');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

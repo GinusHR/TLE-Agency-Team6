@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('demand_id')->references('id')->on('demands');
             $table->bigInteger('application_id');
             $table->foreign('application_id')->references('id')->on('applications');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

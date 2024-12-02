@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('vacature_id');
             $table->foreign('vacature_id')->references('id')->on('vacatures');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
