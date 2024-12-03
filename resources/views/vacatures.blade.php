@@ -32,20 +32,21 @@
         </div>
 
         <div>
-            <select name="orderBy" id="orderBy">
-                <option value="newest" {{ $previousSearch->orderBy === 'newest' ? 'selected' : '' }}>Meest recent</option>
-                <option value="oldest" {{ $previousSearch->orderBy === 'oldest' ? 'selected' : '' }}>Minst recent</option>
-                <option value="highest" {{ $previousSearch->orderBy === 'highest' ? 'selected' : '' }}>Salaris Hoogst-Minst</option>
-                <option value="lowest" {{ $previousSearch->orderBy === 'lowest' ? 'selected' : '' }}>Salaris Minst-Hoogst</option>
+            <label for="sort">Sorteren</label>
+            <select name="sort" id="sort">
+                <option value="newest" {{ $previousSearch->sort === 'newest' ? 'selected' : '' }}>Meest recent</option>
+                <option value="oldest" {{ $previousSearch->sort === 'oldest' ? 'selected' : '' }}>Minst recent</option>
+                <option value="highest" {{ $previousSearch->sort === 'highest' ? 'selected' : '' }}>Salaris Hoogst-Minst</option>
+                <option value="lowest" {{ $previousSearch->sort === 'lowest' ? 'selected' : '' }}>Salaris Minst-Hoogst</option>
             </select>
         </div>
         <div>
+            <label for="demands">Eisen</label>
             <select name="demands[]" id="demands" multiple >
-                <option disabled selected>Eis my brother</option>
+                <option disabled selected>Mogelijke eisen</option>
                 @foreach($demands as $demand)
                 <option value="{{$demand->name}}">{{$demand->name}}</option>
                 @endforeach
-                <option> </option>
             </select>
         </div>
         <button type="submit">Zoeken</button>

@@ -65,24 +65,24 @@ class VacatureController extends Controller {
             });
         }
 
-        if ($request->input('orderBy')==='oldest') {
+        if ($request->input('sort')==='oldest') {
             $query->orderBy('id', 'ASC');
-        } elseif($request->input('orderBy')==='newest') {
+        } elseif($request->input('sort')==='newest') {
             $query->orderBy('id', 'DESC');
-        } elseif ($request->input('orderBy')==='highest') {
+        } elseif ($request->input('sort')==='highest') {
             $query->orderBy('salary', 'DESC');
-        } elseif ($request->input('orderBy')==='lowest') {
+        } elseif ($request->input('sort')==='lowest') {
             $query->orderBy('id', 'ASC');
         }
 
         if($request->filled('demands')) {
             $demands = $request->input('demands');
-            $query->whereHas('demands', function ($q) use ($demands) {
+            $query->whereHas('demand', function ($q) use ($demands) {
                 $q->whereIn('name', $demands);
             });
         }
 
-        $vacatures = $query->with('company')->get();
+        $vacatures = $query->with('company')->with('demand')->get();
         $previousSearch = $request;
         $demands = Demand::all();
         return view('vacatures', compact('vacatures', 'previousSearch', 'demands'));
