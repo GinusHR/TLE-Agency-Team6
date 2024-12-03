@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ApplicationController extends Controller
 {
@@ -37,7 +38,7 @@ class ApplicationController extends Controller
 
         $application->save();
 
-        return redirect()->route('vacatures');
+        return Redirect::route('vacatures.show', $request->input('vacature_id'));
     }
 
     /**
