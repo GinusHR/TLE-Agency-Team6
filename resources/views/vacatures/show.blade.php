@@ -88,6 +88,44 @@
             color: #333;
         }
 
+        /* Stijl voor de modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            overflow: auto;
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
         /* Responsief ontwerp voor telefoon */
         @media (max-width: 768px) {
             .vacature-container {
@@ -162,6 +200,65 @@
         </div>
 
         <!-- Solliciteer knop -->
-        <a href="#" class="apply-button">Solliciteer</a>
+        <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
+
+        <!-- Modal -->
+        <div id="solliciteerModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Solliciteer voor de Vacature</h2>
+
+                <form id="sollicitatieForm" action="{{ route('applications.store') }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
+                    @auth
+                        <div>De vacature wordt automatisch op je account opgeslagen.</div>
+                    @else
+                        <label for="email">E-mailadres:</label>
+                        <input type="email" id="email" name="email" required><br>
+                    @endauth
+                    <br>
+                    <label for="demands[]">Kies de eisen die je hebt:</label><br>
+                    @foreach ($vacature->demands as $demand)
+                        <input type="checkbox" id="demand[{{ $demand->id }}]" name="demands[]"
+                            value="{{ $demand->id }}">{{ $demand->name }}<br>
+                    @endforeach
+                    <br>
+
+                    @if ($vacature->secondary_info_needed)
+                        <label for="secondaryInfo">Vul hier jouw extra kwaliteiten in die niet bij de vereisten
+                            staan.</label>
+                        <input type="text" name="secondaryInfo" id="secondaryInfo"><br>
+                    @endif
+
+                    <input type="hidden" name="vacature_id" value="{{ $vacature->id }}">
+                    <button type="submit">Verstuur Sollicitatie</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            // Verkrijg de modal en de sollicitatieknop
+            let modal = document.getElementById("solliciteerModal");
+            let sollicitieerBtn = document.getElementById("solliciteerBtn");
+            let closeBtn = document.getElementsByClassName("close-btn")[0];
+
+            // Wanneer de gebruiker op de sollicitatieknop klikt, toon de modal
+            solliciteerBtn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // Wanneer de gebruiker op de sluitknop klikt, sluit de modal
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // Wanneer de gebruiker ergens buiten de modal klikt, sluit de modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
     </div>
 </x-app-layout>

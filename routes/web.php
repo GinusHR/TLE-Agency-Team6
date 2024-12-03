@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacatureController;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('vacatures', VacatureController::class);
+
+Route::resource('applications', ApplicationController::class);
 
 require __DIR__ . '/auth.php';

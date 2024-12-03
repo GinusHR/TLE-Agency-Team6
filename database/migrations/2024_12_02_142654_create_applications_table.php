@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('vacature_id');
             $table->foreign('vacature_id')->references('id')->on('vacatures');
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('email')->nullable();
             $table->text('secondary_info')->nullable();
-            $table->boolean('accepted');
+            $table->boolean('accepted')->default(false);
             $table->timestamps();
         });
 
