@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vacature;
-use App\Models\Day;
-use App\Models\DayVacature;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class VacatureController extends Controller
 {
@@ -27,8 +26,7 @@ class VacatureController extends Controller
     public function create()
     {
         $vacatures = Vacature::all();
-        $days = Day::all();
-        return view('vacatures.create', compact('vacatures'));
+        return view('vacatures.create', compact('vacatures')); // Pass both variables to the view
     }
 
     /**
@@ -48,20 +46,16 @@ class VacatureController extends Controller
             'description' => 'required|max:1024',
             'secondary_info_needed' => 'required|boolean',
             'status' => 'required|integer|in:0,1',
-            'days' => 'required|array', // Assuming this is an array of day IDs
+            'days' => 'required|array|min:1|max:7', // Ensure at least 1 and at most 7 days
+            'days.*' => 'in:Maandag,Dinsdag,Woensdag,Donderdag,Vrijdag,Zaterdag,Zondag', // Validate individual days
         ]);
 
-        // Create the new vacature and store it in the variable
+        // Create the new vacature
         $newVacature = Vacature::create($validated);
 
-        // Loop through each day in the 'days' array from the request
-        foreach ($validated['days'] as $dayId) {
-            // Check if the day already exists, or create it
-            $day = Day::firstOrCreate(['id' => $dayId]);
-
-            // Link the new day to the new vacature
-            DayVacature::create(['day_id' => $day->id, 'vacature_id' => $newVacature->id]);
-        }
+        // Store the days of the week as JSON
+        $newVacature->days = json_encode($validated['days']);
+        $newVacature->save();
 
         // Redirect back with a success message
         return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol aangemaakt!');
@@ -72,7 +66,17 @@ class VacatureController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $vacature = Vacature::findOrFail($id); // This will throw a ModelNotFoundException if not found
+            $days = json_decode($vacature->days, true); // Decode JSON to array
+
+            return response()->json([
+                'vacature' => $vacature,
+                'days_of_week' => $days
+            ], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Vacature not found.'], 404);
+        }
     }
 
     /**
@@ -81,10 +85,9 @@ class VacatureController extends Controller
     public function edit(Vacature $vacature)
     {
         $companies = Vacature::all();
-        $days = Day::all();
-        $selectedDays = $vacature->days->pluck('id')->toArray(); // Get selected day IDs
+        $selectedDays = json_decode($vacature->days, true); // Decode JSON to get selected days
 
-        return view('vacatures.edit', compact('vacature', 'companies', 'days', 'selectedDays'));
+        return view('vacatures.edit', compact('vacature', 'companies', 'selectedDays'));
     }
 
     /**
@@ -92,7 +95,7 @@ class VacatureController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // You can implement the update logic here
     }
 
     /**
@@ -100,6 +103,6 @@ class VacatureController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // You can implement the destroy logic here
     }
 }

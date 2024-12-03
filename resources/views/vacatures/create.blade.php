@@ -50,7 +50,7 @@
         <div class="days-selection">
             @foreach(['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'] as $day)
                 <div class="day-box">
-                    <input type="checkbox" id="{{ strtolower($day) }}" name="days[]" value="{{ strtolower($day) }}">
+                    <input type="checkbox" id="{{ strtolower($day) }}" name="days[]" value="{{ $day }}">
                     <label for="{{ strtolower($day) }}">{{ $day }}</label>
                 </div>
             @endforeach

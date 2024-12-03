@@ -14,7 +14,17 @@
                     <p>Bedrijf: {{ $vacature->company_id }}</p>
                     <p>Maand Salaris: {{ $vacature->salary }}</p>
                     <p>Locatie: {{ $vacature->location }}</p>
-                    <p>Omschrijving: {{ Str::limit($vacature->description, 100) }}</p> <!-- Display a summary of the description -->
+                    <p>Omschrijving: {{ Str::limit($vacature->description, 100) }}</p>
+                    <p>Dagen:
+                        @php
+                            $daysArray = json_decode($vacature->days, true); // Decode JSON into an associative array
+                        @endphp
+                        @if(is_null($daysArray) || empty($daysArray))
+                            Geen dagen beschikbaar
+                        @else
+                            {{ implode(', ', $daysArray) }} <!-- Join the array into a string -->
+                        @endif
+                    </p>
                 </a>
             </li>
         @endforeach
