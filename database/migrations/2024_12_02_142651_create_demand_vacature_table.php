@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('demand_vacture', function (Blueprint $table) {
+        Schema::create('demand_vacature', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('demand_id');
             $table->foreign('demand_id')->references('id')->on('demands');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('demand_vacture');
+        Schema::dropIfExists('demand_vacature');
     }
 };
