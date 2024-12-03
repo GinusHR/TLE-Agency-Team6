@@ -8,19 +8,23 @@
 }
 /* app.css */
 .nav-link {
-    @apply inline-flex items-center justify-center bg-moss-light text-lg font-semibold hover:bg-moss-medium;
-    @apply h-[6vw] w-[8vw];
+    @apply inline-flex items-center justify-center bg-moss-light font-semibold m-[1.6vw];
+    @apply text-center transition-all duration-300 tracking-normal hover:tracking-widest;
+    width: 5vw;
 }
 
 
-.header, .footer {
-    @apply bg-moss-light;
+
+
+
+.header {
+    @apply flex justify-end items-center pr-[5vw] bg-moss-light h-[5vw];
 }
 
 .footer {
-    @apply h-[15vw]
+    @apply h-[15vw] bg-moss-light
 }
 
 .nav-bar {
-    @apply flex justify-center items-center bg-moss-light;
+    @apply flex justify-end bg-moss-light ;
 }

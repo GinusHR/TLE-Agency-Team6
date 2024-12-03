@@ -11,11 +11,10 @@
 <body class="bg-cream">
 <header class="header">
     <nav class="nav-bar">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link" href="/register">Register</a>
-        <a class="nav-link" href="/login">Log in</a>
+        <a class="nav-link" href="/">Homepage</a>
         <a class="nav-link" href="/dashboard">Dashboard</a>
         <a class="nav-link" href="/welcome">Welcome</a>
+        <a class="nav-link" href="/contact">Contact</a>
     </nav>
 </header>
 
@@ -27,6 +26,8 @@
 
 <footer class="footer">
     <p>&copy; {{ date('Y') }} ik ben een footer</p>
+    <a href="/register">Register</a>
+    <a href="/login">Log in</a>
 </footer>
 </body>
 </html>
