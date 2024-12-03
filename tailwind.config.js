@@ -11,11 +11,15 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                'cream' : '#FBFCF6',
+                'moss-light': '#E2ECC8',
+                'moss-medium': '#92AA83',
+            },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Figtree', ...require('tailwindcss/defaultTheme').fontFamily.sans],
             },
         },
     },
-
-    plugins: [forms],
+    plugins: [require('@tailwindcss/forms')],
 };

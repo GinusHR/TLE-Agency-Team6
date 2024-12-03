@@ -3,6 +3,24 @@
 @tailwind utilities;
 
 /* app.css */
-.nav-link {
+.button-small {
     @apply inline-block px-6 py-3 bg-[#AA0160] text-white rounded-lg text-sm font-semibold hover:bg-[#7C1A51];
+}
+/* app.css */
+.nav-link {
+    @apply inline-flex items-center justify-center bg-moss-light text-lg font-semibold hover:bg-moss-medium;
+    @apply h-[6vw] w-[8vw];
+}
+
+
+.header, .footer {
+    @apply bg-moss-light;
+}
+
+.footer {
+    @apply h-[15vw]
+}
+
+.nav-bar {
+    @apply flex justify-center items-center bg-moss-light;
 }
