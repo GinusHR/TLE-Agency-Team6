@@ -13,8 +13,8 @@ class Vacature extends Model
     {
         return $this->belongsTo(Company::class);
     }
-    public function demands ()
+    public function demand ()
     {
-        return $this->hasMany(Demand::class);
+        return $this->belongsToMany(Demand::class, 'demand_vacature', 'vacature_id', 'demand_id');
     }
 }

@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Demand;
 use App\Models\Vacature;
 use Illuminate\Http\Request;
 
 class VacatureController extends Controller {
-    public function index() {
+    public function index(Request $request) {
         $vacatures = Vacature::where('status', 1)->get();
-        return view('vacatures',compact('vacatures') );
+        $demands = Demand::all();
+        $previousSearch = $request;
+        return view('vacatures',compact('vacatures','previousSearch', 'demands') );
     }
 
     public function filter(Request $request) {
@@ -26,18 +29,63 @@ class VacatureController extends Controller {
                     ->orWhereHas('company', function ($q) use ($search) {
                         $q->where('name', 'LIKE', "%{$search}%");
                     });
-            })->with('company')->get();
+            });
         }
-
-        if ($request->filled('filter')) {
-            $value = $request->input('filter');
-            $query->where(function ($q) use ($value) {
-
+        if ($request->filled('uren')) {
+            $hours = $request->input('uren');
+            $query->when($hours === '0', function ($q) {
+                $q->whereBetween('workhours', [0, 10]);
+            })->when($hours === '10', function ($q) {
+                $q->whereBetween('workhours', [10, 20]);
+            })->when($hours === '20', function ($q) {
+                $q->whereBetween('workhours', [20, 30]);
+            })->when($hours === '30', function ($q) {
+                $q->whereBetween('workhours', [30, 40]);
+            })->when($hours === '40', function ($q) {
+                $q->where('workhours', '>=', 40);
             });
         }
 
-        $vacatures = $query->get();
-        return view('vacatures', compact('vacatures'));
+        if ($request->filled('salaris')) {
+            $pay = $request->input('salaris');
+            $query->when($pay === '1', function ($q) {
+                $q->whereBetween('salary', [0,500]);
+            })->when($pay === '2', function ($q) {
+                $q->whereBetween('salary', [500,1000]);
+            })->when($pay === '3', function ($q) {
+                $q->whereBetween('salary', [1000,1500]);
+            })->when($pay === '4', function ($q) {
+                $q->whereBetween('salary', [1500,2000]);
+            })->when($pay === '5', function ($q) {
+                $q->whereBetween('salary', [2000,2500]);
+            })->when($pay === '6', function ($q) {
+                $q->whereBetween('salary', [2500,3000]);
+            })->when($pay === '7', function ($q) {
+                $q->where('salary', '>=', 3000);
+            });
+        }
+
+        if ($request->input('orderBy')==='oldest') {
+            $query->orderBy('id', 'ASC');
+        } elseif($request->input('orderBy')==='newest') {
+            $query->orderBy('id', 'DESC');
+        } elseif ($request->input('orderBy')==='highest') {
+            $query->orderBy('salary', 'DESC');
+        } elseif ($request->input('orderBy')==='lowest') {
+            $query->orderBy('id', 'ASC');
+        }
+
+        if($request->filled('demands')) {
+            $demands = $request->input('demands');
+            $query->whereHas('demands', function ($q) use ($demands) {
+                $q->whereIn('name', $demands);
+            });
+        }
+
+        $vacatures = $query->with('company')->get();
+        $previousSearch = $request;
+        $demands = Demand::all();
+        return view('vacatures', compact('vacatures', 'previousSearch', 'demands'));
     }
 
     public function show($id) {

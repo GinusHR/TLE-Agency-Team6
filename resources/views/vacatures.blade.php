@@ -4,21 +4,51 @@
         @method('PATCH')
         <div>
             <label for="search">Zoeken</label>
-            <input type="text" name="search" id="search" value="{{old('search')}}">
+            <input type="text" name="search" id="search" value="{{$previousSearch->search}}">
         </div>
-
         <div>
-            <label for=""></label>
-            <select name="filter">
-                <option value="" disabled selected></option>
-                <option value="0">0-10</option>
-                <option value="10">10-20</option>
-                <option value="20">20-30</option>
-                <option value="30">30-40</option>
-                <option value="40">40+</option>
+            <label for="uren">Uren</label>
+            <select name="uren" id="uren">
+                <option value="" disabled selected>Kies aantal uur</option>
+                <option value="0" >0-10</option>
+                <option value="10" >10-20</option>
+                <option value="20" >20-30</option>
+                <option value="30" >30-40</option>
+                <option value="40" >40+</option>
+            </select>
+        </div>
+        <div>
+            <label for="salaris">Salaris</label>
+            <select name="salaris" id="salaris">
+                <option value="" disabled selected>Kies een salaris</option>
+                <option value="1" >0-500 </option>
+                <option value="2" >500-1000 </option>
+                <option value="3" >1000-1500 </option>
+                <option value="4" >1500-2000 </option>
+                <option value="5" >2500-3000 </option>
+                <option value="6" >2500-3000</option>
+                <option value="7" >3000+</option>
             </select>
         </div>
 
+        <div>
+            <select name="orderBy" id="orderBy">
+                <option value="newest" {{ $previousSearch->orderBy === 'newest' ? 'selected' : '' }}>Meest recent</option>
+                <option value="oldest" {{ $previousSearch->orderBy === 'oldest' ? 'selected' : '' }}>Minst recent</option>
+                <option value="highest" {{ $previousSearch->orderBy === 'highest' ? 'selected' : '' }}>Salaris Hoogst-Minst</option>
+                <option value="lowest" {{ $previousSearch->orderBy === 'lowest' ? 'selected' : '' }}>Salaris Minst-Hoogst</option>
+            </select>
+        </div>
+        <div>
+            <select name="demands[]" id="demands" multiple >
+                <option disabled selected>Eis my brother</option>
+                @foreach($demands as $demand)
+                <option value="{{$demand->name}}">{{$demand->name}}</option>
+                @endforeach
+                <option> </option>
+            </select>
+        </div>
+        <button type="submit">Zoeken</button>
     </form>
        @foreach($vacatures as $vacature)
            <div>
