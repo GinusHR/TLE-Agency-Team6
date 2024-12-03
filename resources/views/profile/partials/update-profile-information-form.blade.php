@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Profile Information') }}
+            {{ __('Email') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update your account's profile information.") }}
+            {{ __("Verander je Email.") }}
         </p>
     </header>
 
@@ -16,25 +16,6 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
-
-        <div class="space-y-4">
-            <h3 class="text-lg font-medium text-gray-900">{{ __('Select Demands') }}</h3>
-
-            @foreach($demands as $demand)
-                <div class="flex items-center">
-                    <input
-                        id="demand_{{ $demand->id }}"
-                        name="demands[]"
-                        type="checkbox"
-                        value="{{ $demand->id }}"
-                        @if(in_array($demand->id, old('demands', $user->demands->pluck('id')->toArray()))) checked @endif
-                        class="mr-2"
-                    />
-                    <label for="demand_{{ $demand->id }}" class="text-gray-800">{{ $demand->name }}</label>
-                </div>
-            @endforeach
-        </div>
-
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -61,7 +42,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Opslaan') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p
@@ -70,7 +51,7 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Saved.') }}</p>
+                >{{ __('Opgeslagen.') }}</p>
             @endif
         </div>
     </form>

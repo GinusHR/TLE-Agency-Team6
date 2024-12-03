@@ -30,6 +30,21 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function updateDemands(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'demands' => 'array|nullable',
+            'demands.*' => 'exists:demands,id',
+        ]);
+
+        $user = auth()->user();
+
+        $user->demands()->sync($request->input('demands', []));
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+
     /**
      * Update the user's profile information.
      */
@@ -43,7 +58,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.show')->with('status', 'profile-updated');
     }
 
     /**
