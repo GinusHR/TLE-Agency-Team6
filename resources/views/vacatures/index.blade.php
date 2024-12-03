@@ -5,14 +5,18 @@
 <h2>Vacatures</h2>
 @if($vacatures->isEmpty())
     <p>Geen vacatures gevonden</p>
-    @else
+@else
     <ul>
         @foreach($vacatures as $vacature)
-        @if($vacature->is_active == 1)
             <li>
-                <a href="{{ route('vacatures.show', $vacature->id) }}"></a>
+                <a href="{{ route('vacatures.show', $vacature->id) }}">
+                    <h3>{{ $vacature->function }}</h3>
+                    <p>Company: {{ $vacature->company_id }}</p>
+                    <p>Salary: {{ $vacature->salary }}</p>
+                    <p>Location: {{ $vacature->location }}</p>
+                    <p>Description: {{ Str::limit($vacature->description, 100) }}</p> <!-- Display a summary of the description -->
+                </a>
             </li>
-        @endif
         @endforeach
     </ul>
 @endif

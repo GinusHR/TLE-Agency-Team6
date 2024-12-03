@@ -13,6 +13,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/vacatures', VacatureController::class);
+Route::post('/vacatures', [VacatureController::class, 'store'])->name('vacatures.store');
+Route::get('/vacatures', [VacatureController::class, 'index'])->name('vacatures.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
