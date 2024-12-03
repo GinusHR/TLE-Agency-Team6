@@ -100,5 +100,5 @@
         </select>
     </div><br>
 
-    <button type="submit">Create Vacature</button>
+    <button type="submit">Vacature aanmaken</button>
 </form>

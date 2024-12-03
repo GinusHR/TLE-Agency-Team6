@@ -11,10 +11,10 @@
             <li>
                 <a href="{{ route('vacatures.show', $vacature->id) }}">
                     <h3>{{ $vacature->function }}</h3>
-                    <p>Company: {{ $vacature->company_id }}</p>
-                    <p>Salary: {{ $vacature->salary }}</p>
-                    <p>Location: {{ $vacature->location }}</p>
-                    <p>Description: {{ Str::limit($vacature->description, 100) }}</p> <!-- Display a summary of the description -->
+                    <p>Bedrijf: {{ $vacature->company_id }}</p>
+                    <p>Maand Salaris: {{ $vacature->salary }}</p>
+                    <p>Locatie: {{ $vacature->location }}</p>
+                    <p>Omschrijving: {{ Str::limit($vacature->description, 100) }}</p> <!-- Display a summary of the description -->
                 </a>
             </li>
         @endforeach
