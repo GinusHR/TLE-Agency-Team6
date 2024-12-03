@@ -15,9 +15,9 @@ class DemandSeeder extends Seeder
     {
         $demands = [
             ['name' => '18 jaar of ouder'],
-            ['name' => 'Rijbewijs A'],
-            ['name' => 'Rijbewijs B'],
-            ['name' => 'Rijbewijs C'],
+            ['name' => 'Rijbewijs AM (scooter)'],
+            ['name' => 'Rijbewijs B (auto)'],
+            ['name' => 'Rijbewijs C (vrachtwagen)'],
             ['name' => 'MBO werk- en denkniveau'],
             ['name' => 'Bereidheid om in ploegendiensten te werken'],
             ['name' => 'Goede beheersing van de Nederlandse taal'],
