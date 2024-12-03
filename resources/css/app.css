@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* app.css */
+.nav-link {
+    @apply inline-block px-6 py-3 bg-[#AA0160] text-white rounded-lg text-sm font-semibold hover:bg-[#7C1A51];
+}

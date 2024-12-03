@@ -8,22 +8,24 @@
     @vite('resources/js/app.js')
 </head>
 
-<body>
+<body class="bg-[#FBFCF6]">
 <header>
 
     <nav>
-        <a href="/">Home</a>
-        <a href="/register">Register</a>
-        <a href="/login">Log in</a>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/welcome">Welcome</a>
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/register">Register</a>
+        <a class="nav-link" href="/login">Log in</a>
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+        <a class="nav-link" href="/welcome">Welcome</a>
     </nav>
+
 
 </header>
 
-<main>
+<main class="bg-[#FBFCF6]">
     {{ $slot }}
 </main>
+
 
 <footer>
     <p>&copy; {{ date('Y') }} ik ben een footer</p>
