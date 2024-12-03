@@ -1,4 +1,4 @@
-<form action="{{route('vacatures.store') }}" method="POST">
+<form action="{{ route('vacatures.store') }}" method="POST">
     @csrf
     <div>
         <label for="function">Positie Titel</label>
@@ -59,5 +59,5 @@
         <label for="description">Algemene Omschrijving</label>
         <input type="text" id="description" name="description" placeholder="Voer een omschrijving in" required>
     </div><br>
-    <button type="submit">Preview Vacature</button>
+    <button type="submit">Create Vacature</button>
 </form>
