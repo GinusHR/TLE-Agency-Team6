@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Demand;
 
 class ProfileController extends Controller
 {
@@ -25,6 +26,7 @@ class ProfileController extends Controller
     {
         return view('profile.profileEdit', [
             'user' => $request->user(),
+            'demands' => Demand::all()
         ]);
     }
 

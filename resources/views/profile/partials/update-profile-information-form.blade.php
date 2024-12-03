@@ -17,11 +17,24 @@
         @csrf
         @method('patch')
 
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        <div class="space-y-4">
+            <h3 class="text-lg font-medium text-gray-900">{{ __('Select Demands') }}</h3>
+
+            @foreach($demands as $demand)
+                <div class="flex items-center">
+                    <input
+                        id="demand_{{ $demand->id }}"
+                        name="demands[]"
+                        type="checkbox"
+                        value="{{ $demand->id }}"
+                        @if(in_array($demand->id, old('demands', $user->demands->pluck('id')->toArray()))) checked @endif
+                        class="mr-2"
+                    />
+                    <label for="demand_{{ $demand->id }}" class="text-gray-800">{{ $demand->name }}</label>
+                </div>
+            @endforeach
         </div>
+
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
