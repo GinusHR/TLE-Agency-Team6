@@ -135,8 +135,7 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit"
-                class="w-full bg-violet-light text-white font-medium rounded-lg shadow-custom-dark hover:bg-violet-dark focus:ring-2 focus:ring-violet-dark py-3">
+        <button type="submit" class="w-full bg-violet-light text-white font-medium rounded-lg shadow-custom-dark hover:bg-violet-dark focus:ring-2 focus:ring-violet-dark py-3">
             Vacature previewen
         </button>
     </div>

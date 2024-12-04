@@ -203,6 +203,13 @@ class VacatureController extends Controller
      */
     public function destroy(string $id)
     {
-        // You can implement the destroy logic here
+        // Find the vacature by ID
+        $vacature = Vacature::findOrFail($id);
+
+        // Delete the vacature and all related records will be deleted automatically
+        $vacature->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol verwijderd.');
     }
 }
