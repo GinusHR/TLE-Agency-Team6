@@ -51,10 +51,9 @@ class ApplicationController extends Controller
 
         Mail::to($email)->send(new SollicitatieMailVWerkzoekende($details));
 
-        return response()->json(['message' => 'E-mail succesvol verzonden via Gmail!']);
 
-
-        // return Redirect::route('vacatures.show', $request->input('vacature_id'));
+        return Redirect::route('vacatures.show', $request->input('vacature_id'))
+            ->with('success', 'Je ontvangt een email om te controleren of de sollicitatie is geslaagd!');
     }
 
     /**

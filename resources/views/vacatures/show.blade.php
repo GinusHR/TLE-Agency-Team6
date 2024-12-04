@@ -240,6 +240,12 @@
             </div>
         </div>
 
+        @if (session('success'))
+            <script>
+                alert("{{ session('success') }}");
+            </script>
+        @endif
+
         <script>
             // Verkrijg de modal en de sollicitatieknop
             let modal = document.getElementById("solliciteerModal");
