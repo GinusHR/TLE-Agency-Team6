@@ -16,6 +16,7 @@ Route::get('/dashboard', function () {
 Route::resource('/vacatures', VacatureController::class);
 Route::post('/vacatures', [VacatureController::class, 'store'])->name('vacatures.store');
 Route::get('/vacatures', [VacatureController::class, 'index'])->name('vacatures.index');
+Route::put('/vacatures/{id}', [VacatureController::class, 'update'])->name('vacatures.update');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
