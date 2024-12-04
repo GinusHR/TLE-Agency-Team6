@@ -186,6 +186,12 @@
             <div class="description">
                 <h2>Beschrijving</h2>
                 <p>{{ $vacature->description }}</p>
+                <p><strong>Werkdagen:</strong></p>
+                <ul>
+                    @foreach ($vacature->days as $demand)
+                        <li>{{ $demand->name }}</li>
+                    @endforeach
+                </ul>
                 <div>
                     <!-- Wachtrij & Succesrating -->
                     <p><strong>Wachtlijst:</strong> {{ $vacature->waiting_list ?? 'N/A' }}</p>
