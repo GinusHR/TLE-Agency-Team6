@@ -6,7 +6,8 @@
     <!-- De header met gecentreerde tekst -->
     <h1>Welkom bij open hiring!</h1>
 
-    <!-- De container voor de afbeelding en de tekst -->
+
+        <!-- De container voor de afbeelding en de tekst -->
     <div class="flex justify-between items-center p-[5%]">
         <!-- De afbeelding instellen op 25% breedte en vierkant houden -->
         <img src="{{ asset('images/homepage-image-1.jpg') }}" alt="homepage afbeelding" class="w-[30vw] h-auto rounded-[4vw]">
