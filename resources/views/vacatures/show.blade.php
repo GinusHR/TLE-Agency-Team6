@@ -210,7 +210,25 @@
         </div>
 
         <!-- Solliciteer knop -->
-        <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
+        @auth
+            @php
+                // Load applications relationship or directly query the database
+                $hasApplied = \App\Models\Application::where('user_id', Auth::id())
+                    ->where('vacature_id', $vacature->id)
+                    ->exists();
+            @endphp
+        @else
+            @php
+                $hasApplied = false;
+            @endphp
+        @endauth
+        @if ($hasApplied)
+            <div class="apply-button">Je hebt al gesolliciteerd</div>
+        @else
+            <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
+        @endif
+
+
 
         <!-- Modal -->
         <div id="solliciteerModal" class="modal">
