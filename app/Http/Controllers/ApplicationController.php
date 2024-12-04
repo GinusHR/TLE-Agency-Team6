@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SollicitatieMailVWerkzoekende;
+use Illuminate\Support\Facades\DB;
 
 class ApplicationController extends Controller
 {
@@ -45,7 +46,19 @@ class ApplicationController extends Controller
         $application->save();
 
         //voeg de extra eisen waar niet aan zijn voldaan toe aan de aaplication_demands_not_met table
+        $demands = $request->input('demands', []); // Ontvang demands als key-value paren
 
+        // Itereer over de demands en voeg alleen false demands toe
+        foreach ($demands as $demandId => $value) {
+            if ($value === 'false') {
+                DB::table('application_demands_not_met')->insert([
+                    'application_id' => $application->id,
+                    'demand_id' => $demandId,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
 
 
         //vraag gegevens op voor de mail

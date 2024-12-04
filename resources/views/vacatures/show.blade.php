@@ -230,8 +230,10 @@
                     <br>
                     <label for="demands[]">Kies de eisen die je hebt:</label><br>
                     @foreach ($vacature->demands as $demand)
-                        <input type="checkbox" id="demand[{{ $demand->id }}]" name="demands[]"
-                            value="{{ $demand->id }}">{{ $demand->name }}<br>
+                        <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
+                        <input type="checkbox" id="demand_{{ $demand->id }}" name="demands[{{ $demand->id }}]"
+                            value="true">
+                        <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label><br>
                     @endforeach
                     <br>
 
