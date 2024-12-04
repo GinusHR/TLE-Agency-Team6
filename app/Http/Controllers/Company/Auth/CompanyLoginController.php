@@ -31,10 +31,13 @@ class CompanyLoginController extends Controller
         ]);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::guard('company')->logout();
-        return redirect('/');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/company/login')->with('success', 'U bent succesvol uitgelogd.');
     }
 
 }

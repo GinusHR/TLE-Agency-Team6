@@ -46,6 +46,6 @@ class CompanyDashboardController extends Controller
             'logo'
         ]));
 
-        return redirect()->route('company.profile')->with('success', 'Profiel succesvol bijgewerkt!');
+        return redirect()->route('company.dashboard')->with('success', 'Profiel succesvol bijgewerkt!');
     }
 }

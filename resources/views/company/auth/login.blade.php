@@ -1,5 +1,8 @@
 <body>
 <h1>Bedrijfs Login</h1>
+@if (session('success'))
+    <p style="color: green;">{{ session('success') }}</p>
+@endif
 <form method="POST" action="{{ route('company.login') }}">
     @csrf
     <div>

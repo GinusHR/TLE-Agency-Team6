@@ -37,7 +37,7 @@ Route::post('company/logout', [CompanyLoginController::class, 'logout'])->name('
 Route::middleware('auth:company')->group(function () {
     Route::get('company.dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
     Route::get('/company/profile', [CompanyDashboardController::class, 'profile'])->name('company.profile');
-    Route::post('/company/profile', [CompanyDashboardController::class, 'updateProfile'])->name('company.updateProfile');
+    Route::patch('/company/profile', [CompanyDashboardController::class, 'updateProfile'])->name('company.updateProfile');
 });
 
 

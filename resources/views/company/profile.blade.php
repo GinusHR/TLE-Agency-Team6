@@ -2,6 +2,7 @@
 <h1>Profiel Beheren</h1>
 <form method="POST" action="{{ route('company.updateProfile') }}">
     @csrf
+    @method('PATCH')
     <div>
         <label for="name">Bedrijfsnaam:</label>
         <input type="text" name="name" value="{{ $company->name }}">
