@@ -99,10 +99,10 @@ class VacatureController extends Controller
         try {
             $vacature = Vacature::findOrFail($id); // This will throw a ModelNotFoundException if not found
             $days = json_decode($vacature->days, true); // Decode JSON to array
-            return response()->json([
-                'vacature' => $vacature,
-                'days_of_week' => $days
-            ], 200);
+            // return response()->json([
+            //     'vacature' => $vacature,
+            //     'days_of_week' => $days
+            // ], 200);
             return view('vacatures.show', ['vacature' => $vacature]);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Vacature not found.'], 404);
