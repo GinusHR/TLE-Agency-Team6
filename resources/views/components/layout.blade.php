@@ -9,14 +9,44 @@
 </head>
 
 <body class="bg-cream">
+
 <header class="header">
     <nav class="nav-bar">
-        <a class="nav-link-header" href="/">Homepage</a>
-        <a class="nav-link-header" href="/dashboard">Dashboard</a>
-        <a class="nav-link-header" href="/welcome">Welcome</a>
-        <a class="nav-link-header" href="/contact">Contact</a>
+        <!-- Dropdown Menu voor navigatie links -->
+        <div class="navbar-dropdown">
+            <button class="menu-icon">
+                <span class="block w-6 h-0.5 bg-moss-dark mb-1"></span>
+                <span class="block w-6 h-0.5 bg-moss-dark mb-1"></span>
+                <span class="block w-6 h-0.5 bg-moss-dark"></span>
+            </button>
+
+            <!-- Dropdown content -->
+            <div class="dropdown-content">
+                <!-- Navigatie links aan de linker kant -->
+                <div class="dropdown-links">
+                    <a class="nav-link-footer" href="/">Homepage</a>
+                    <a class="nav-link-footer" href="/dashboard">Dashboard</a>
+                    <a class="nav-link-footer" href="/welcome">Welcome</a>
+                    <a class="nav-link-footer" href="/contact">Contact</a>
+                </div>
+
+                <!-- Login en Register knoppen aan de rechter kant -->
+                <div class="dropdown-buttons">
+                    <a href="/login" class="button-small mt-4">Log in</a>
+                    <a href="/register" class="button-small mt-4">Register</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        </div>
     </nav>
 </header>
+
+
+
 
 
 <main class="bg-[#FBFCF6]">
@@ -24,7 +54,7 @@
 </main>
 
 
-<footer class="bg-moss-dark h-max-[15vw] rounded-t-3xl">
+<footer class="bg-moss-dark h-[20vw] rounded-t-3xl">
     <div class="footer-content ">
         <div class="footer-div">
             <h3 class="h3-footer">Voor werkzoekenden</h3>

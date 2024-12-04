@@ -1,8 +1,10 @@
 @vite(['resources/js/app.js', 'resources/css/app.css'])
 
 <x-layout title="Homepage">
+
+    <div class="bg-moss-light">
     <!-- De header met gecentreerde tekst -->
-    <h1 class="text-4xl font-bold text-[#2E342A] text-center mt-[3%]">Welkom bij open hiring!</h1>
+    <h1 class="text-4xl font-bold text-[#2E342A] text-center pt-[3%]">Welkom bij open hiring!</h1>
 
     <!-- De container voor de afbeelding en de tekst -->
     <div class="flex justify-between items-center p-[5%]">
@@ -17,8 +19,9 @@
             </p>
             <!-- Knop in het midden -->
             <a href="/vacatures" class="button-small mt-4">
-                Naar Vacatures
+                Bekijk vacatures
             </a>
+        </div>
         </div>
 
 
