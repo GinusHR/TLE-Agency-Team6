@@ -53,15 +53,15 @@ class VacatureController extends Controller {
             })->when($pay === '2', function ($q) {
                 $q->whereBetween('salary', [500,1000]);
             })->when($pay === '3', function ($q) {
-                $q->whereBetween('salary', [1000,1500]);
+                $q->whereBetween('salary', [1100,1500]);
             })->when($pay === '4', function ($q) {
-                $q->whereBetween('salary', [1500,2000]);
+                $q->whereBetween('salary', [1600,2000]);
             })->when($pay === '5', function ($q) {
-                $q->whereBetween('salary', [2000,2500]);
+                $q->whereBetween('salary', [2100,2500]);
             })->when($pay === '6', function ($q) {
-                $q->whereBetween('salary', [2500,3000]);
+                $q->whereBetween('salary', [2600,3000]);
             })->when($pay === '7', function ($q) {
-                $q->where('salary', '>=', 3000);
+                $q->where('salary', '>=', 3100);
             });
         }
 

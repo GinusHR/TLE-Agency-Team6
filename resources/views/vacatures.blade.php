@@ -23,11 +23,11 @@
                 <option value="" disabled selected>Kies een salaris</option>
                 <option value="1" >0-500 </option>
                 <option value="2" >500-1000 </option>
-                <option value="3" >1000-1500 </option>
-                <option value="4" >1500-2000 </option>
-                <option value="5" >2500-3000 </option>
-                <option value="6" >2500-3000</option>
-                <option value="7" >3000+</option>
+                <option value="3" >1100-1500 </option>
+                <option value="4" >1600-2000 </option>
+                <option value="5" >2100-2500 </option>
+                <option value="6" >2600-3000</option>
+                <option value="7" >3100+</option>
             </select>
         </div>
 
