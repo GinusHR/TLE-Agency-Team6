@@ -31,4 +31,12 @@ class Vacature extends Model
     {
         return $this->belongsToMany(Demand::class, 'demand_vacature', 'vacature_id', 'demand_id');
     }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
 }
