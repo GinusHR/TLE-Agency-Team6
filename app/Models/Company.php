@@ -10,6 +10,6 @@ class Company extends Model
 {
     public function vacatures()
     {
-        return $this->hasMany(Vacature::class);
+        return $this->hasMany(Vacature::class)->onDelete('cascade');
     }
 }

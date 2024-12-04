@@ -9,7 +9,7 @@ class Application extends Model
 {
     public function vacature()
     {
-        return $this->belongsTo(Vacature::class);
+        return $this->belongsTo(Vacature::class)->onDelete('cascade');
     }
     public function user()
     {
