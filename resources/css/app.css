@@ -24,7 +24,7 @@
 }
 
 
-*{
+body{
     @apply font-radikal
 
 }
@@ -62,7 +62,7 @@ h1 {
 
 
 .header {
-    @apply flex justify-end items-center pr-[5vw] bg-cream ;
+    @apply flex justify-between items-center pr-[5vw] pl-[5vw] bg-cream ;
 }
 
 

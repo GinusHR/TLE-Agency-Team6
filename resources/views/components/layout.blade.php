@@ -12,6 +12,10 @@
 <body class="bg-cream">
 
 <header class="header">
+    <a href="/">
+        <img src="{{ asset('images/logo.png') }}" alt="Header Afbeelding" class="w-[4vw] left-[2vw]">
+    </a>
+
     <nav class="nav-bar">
         <!-- Dropdown Menu voor navigatie links -->
         <div class="navbar-dropdown">
