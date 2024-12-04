@@ -15,4 +15,8 @@ class Demand extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    public function applications()
+    {
+        return $this->belongsToMany(Application::class);
+    }
 }
