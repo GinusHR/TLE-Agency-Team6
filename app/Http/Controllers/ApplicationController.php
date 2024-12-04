@@ -45,8 +45,8 @@ class ApplicationController extends Controller
         $function = $request->input('vacature_function');
 
         $details = [
-            // 'company' => $company,
-            // 'function' => $function
+            'company' => $company,
+            'function' => $function
         ];
 
         Mail::to($email)->send(new SollicitatieMailVWerkzoekende($details));

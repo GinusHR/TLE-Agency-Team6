@@ -29,7 +29,7 @@ class SollicitatieMailVWerkzoekende extends Mailable
      */
     public function build()
     {
-        return $this->subject('Sollicitatie Open Hiring')
-            ->view('emails.werkzoekende_sollicitatie');
+        return $this->view('emails.werkzoekende_sollicitatie')
+            ->with('details', $this->details);
     }
 }
