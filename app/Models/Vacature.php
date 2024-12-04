@@ -20,7 +20,8 @@ class Vacature extends Model
         'description',
         'secondary_info_needed',
         'image',
-        'status'
+        'status',
+        'days',
     ];
     public function company()
     {

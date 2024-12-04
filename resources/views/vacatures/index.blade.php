@@ -84,6 +84,7 @@
                 <img src="{{ $vacature->image }}" alt="Bedrijfs foto">
             </li>
             <button><a href="{{ route('vacatures.show', $vacature->id) }}">Detail</a></button>
+            <button><a href="{{ route('vacatures.edit', $vacature->id) }}">Edit</a> </button>
         @endforeach
     </ul>
 @endif
