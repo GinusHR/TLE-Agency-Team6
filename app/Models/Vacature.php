@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Vacature extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'company_id',
         'function',

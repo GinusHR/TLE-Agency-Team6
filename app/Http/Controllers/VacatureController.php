@@ -13,9 +13,8 @@ class VacatureController extends Controller {
         $vacatures = Vacature::where('status', 1)->get();
         $demands = Demand::all();
         $previousSearch = $request;
-        return view('vacatures',compact('vacatures','previousSearch', 'demands') );
         // Pass the vacatures to the view
-        return view('vacatures.index', compact('vacatures'));
+        return view('vacatures.index',compact('vacatures','previousSearch', 'demands') );
     }
     public function filter(Request $request) {
 
@@ -105,6 +104,7 @@ class VacatureController extends Controller {
             return response()->json(['error' => 'Vacature not found.'], 404);
         }
     }
+
     /**
      * Show the form for editing the specified resource.
      */
