@@ -2,23 +2,25 @@
 
 <x-layout title="Homepage">
     <!-- De header met gecentreerde tekst -->
-    <h1 class="text-4xl font-bold text-[#2E342A] text-center mt-[3%]">
-        Welkom op de nieuwe homepage!
-    </h1>
+    <h1 class="text-4xl font-bold text-[#2E342A] text-center mt-[3%]">Welkom bij open hiring!</h1>
 
     <!-- De container voor de afbeelding en de tekst -->
     <div class="flex justify-between items-center p-[5%]">
         <!-- De afbeelding instellen op 25% breedte en vierkant houden -->
-        <img src="{{ asset('images/homepageImage.jpg') }}" alt="homepage afbeelding" class="w-[30vw] h-auto">
+        <img src="{{ asset('images/homepageImage.jpg') }}" alt="homepage afbeelding" class="w-[30vw] h-auto rounded-[4vw]">
+
+
         <div class="text-xl text-[#2E342A] w-1/2 flex flex-col items-center">
-            <h2 class="text-3xl m-[2vw] font-bold">Over open Hiring</h2>
-            <p class="w-[35vw]">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi delectus dolores incidunt, laborum laudantium maxime, nihil optio perspiciatis porro quaerat quam quod rem reprehenderit ut vel vitae voluptas! Ad, voluptates? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad aliquam, aliquid autem commodi, consequuntur delectus dolorem doloremque earum error exercitationem id ipsam molestiae quisquam recusandae.
+            <h2 class="text-3xl m-[2vw] font-bold">Werk voor wie wil werken</h2>
+            <p class="w-[35vw] text-left">
+                Met Open Hiring heeft iedereen een eerlijke kans op een baan. Wie wil én kan werken, kan zó aan de slag. Zonder sollicitatiegesprek, zonder brief, zonder vragen. Met één druk op de knop. Open Hiring draait namelijk niet om diploma’s, maar om mensen. Niet om praatjes, maar om aanpakken.
             </p>
-            <a  href="/vacatures" class="button-small m-[2vw]">
+            <!-- Knop in het midden -->
+            <a href="/vacatures" class="button-small mt-4">
                 Naar Vacatures
             </a>
         </div>
+
 
 
 

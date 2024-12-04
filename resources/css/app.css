@@ -4,15 +4,24 @@
 
 /* app.css */
 .button-small {
-    @apply inline-block px-6 py-3 bg-[#AA0160] text-white rounded-lg text-sm font-semibold hover:bg-[#7C1A51];
+    @apply inline-block px-6 py-3 bg-violet-light text-white rounded-lg text-sm font-semibold hover:bg-violet-dark;
 }
 /* app.css */
-.nav-link {
+.nav-link-header {
     @apply inline-flex items-center justify-center bg-moss-light font-semibold m-[1.6vw];
     @apply text-center transition-all duration-300 tracking-normal hover:tracking-widest;
     width: 5vw;
 }
 
+.nav-link-footer {
+    @apply inline-flex items-center justify-center bg-moss-dark font-sans m-[0.2vw];
+    @apply text-center transition-all duration-300 tracking-normal hover:tracking-widest;
+    width: 12vw;
+}
+
+.h3-footer {
+    @apply font-bold text-lg text-yellow
+}
 
 
 
@@ -22,8 +31,26 @@
 }
 
 .footer {
-    @apply h-[15vw] bg-moss-light
+    @apply rounded-t-3xl
 }
+
+.footer-content {
+    @apply flex justify-center items-center gap-[5vw] p-[2svw]   ;
+}
+
+.footer-links {
+    @apply flex flex-col items-center gap-[0.5vw] text-white;
+}
+
+
+.footer-div {
+    @apply footer-links flex flex-col items-start
+}
+.footer {
+    @apply rounded-t-3xl overflow-hidden;
+}
+
+
 
 .nav-bar {
     @apply flex justify-end bg-moss-light ;
