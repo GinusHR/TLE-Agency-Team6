@@ -186,12 +186,16 @@
             <div class="description">
                 <h2>Beschrijving</h2>
                 <p>{{ $vacature->description }}</p>
-                <p><strong>Werkdagen:</strong></p>
-                <ul>
-                    @foreach ($vacature->days as $demand)
-                        <li>{{ $demand->name }}</li>
-                    @endforeach
-                </ul>
+                <p><strong>Werkdagen:</strong>
+                    @php
+                        $daysArray = json_decode($vacature->days, true); // Decode JSON into an associative array
+                    @endphp
+                    @if (is_null($daysArray) || empty($daysArray))
+                        Geen dagen beschikbaar
+                    @else
+                        {{ implode(', ', $daysArray) }} <!-- Join the array into a string -->
+                    @endif
+                </p>
                 <div>
                     <!-- Wachtrij & Succesrating -->
                     <p><strong>Wachtlijst:</strong> {{ $vacature->waiting_list ?? 'N/A' }}</p>

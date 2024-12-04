@@ -103,7 +103,9 @@ class VacatureController extends Controller
             //     'vacature' => $vacature,
             //     'days_of_week' => $days
             // ], 200);
-            return view('vacatures.show', ['vacature' => $vacature]);
+            return view('vacatures.show', [
+                'vacature' => $vacature,
+            ]);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Vacature not found.'], 404);
         }
