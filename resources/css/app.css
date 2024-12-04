@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+body p {
+    @apply font-semibold text-moss-dark
+}
+
+h1 {
+    @apply text-4xl font-bold text-[#2E342A] text-center pt-[2vw]
+}
+
 /* app.css */
 .button-small {
     @apply inline-block px-6 py-3 bg-violet-light text-white rounded-lg text-sm font-semibold hover:bg-violet-dark;

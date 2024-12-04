@@ -4,12 +4,12 @@
 
     <div class="bg-moss-light">
     <!-- De header met gecentreerde tekst -->
-    <h1 class="text-4xl font-bold text-[#2E342A] text-center pt-[3%]">Welkom bij open hiring!</h1>
+    <h1>Welkom bij open hiring!</h1>
 
     <!-- De container voor de afbeelding en de tekst -->
     <div class="flex justify-between items-center p-[5%]">
         <!-- De afbeelding instellen op 25% breedte en vierkant houden -->
-        <img src="{{ asset('images/homepageImage.jpg') }}" alt="homepage afbeelding" class="w-[30vw] h-auto rounded-[4vw]">
+        <img src="{{ asset('images/homepage-image-1.jpg') }}" alt="homepage afbeelding" class="w-[30vw] h-auto rounded-[4vw]">
 
 
         <div class="text-xl text-[#2E342A] w-1/2 flex flex-col items-center">
@@ -27,5 +27,24 @@
 
 
 
+    </div>
+
+
+    <div class="flex flex-col justify-center items-center">
+        <h1 class="mb-[2vw]">Zo werkt het</h1>
+
+        <img src="{{ asset('images/homepage-image-2.jpg') }}" alt="zo werkt het afbeelding" class="w-[45vw] h-auto mb-[2vw] rounded-[4vw]">
+
+    </div>
+    <div class="ml-[27.5vw] mb-[2vw] flex flex-col gap-[0.5vw]">
+        <p>* Direct reageren. Zonder sollicitatiegesprek, vragen of (voor)oordelen. Een eerlijke kans.</p>
+        <p>* Jij bepaalt of je het kunt.</p>
+        <p>* Snel aan de slag. Met een normaal contract, vanaf dag 1 betaald.</p>
+    </div>
+
+    <div class="flex flex-col justify-center items-center gap-[2vw] w-[45vw] ml-[27.5vw]" >
+    <h1>Iedereen kan meedoen!</h1>
+    <p>Iedereen een eerlijke kans op een baan. Daar draait het om bij Open Hiring. Het gaat er niet om of iemand een diploma, vlotte babbel of bakken ervaring heeft, maar of iemand wíl en kan werken. Bedrijven die mensen zoeken via Open Hiring houden dus geen sollicitatiegesprekken. Zo hebben vooroordelen geen kans. Werkzoekenden bepalen zelf of ze geschikt zijn voor een baan. Zo maken we de arbeidsmarkt eerlijk. En krijgen we mensen snel (weer) aan het werk.</p>
+        <img src="{{ asset('images/homepage-image-3.jpg') }}" alt="zo werkt het afbeelding" class="w-[30vw] h-auto mb-[2vw] rounded-[4vw]">
     </div>
 </x-layout>
