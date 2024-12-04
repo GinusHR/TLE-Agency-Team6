@@ -8,15 +8,18 @@ use App\Models\Vacature;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class VacatureController extends Controller {
-    public function index(Request $request) {
+class VacatureController extends Controller
+{
+    public function index(Request $request)
+    {
         $vacatures = Vacature::where('status', 1)->get();
         $demands = Demand::all();
         $previousSearch = $request;
         // Pass the vacatures to the view
-        return view('vacatures.index',compact('vacatures','previousSearch', 'demands') );
+        return view('vacatures.index', compact('vacatures', 'previousSearch', 'demands'));
     }
-    public function filter(Request $request) {
+    public function filter(Request $request)
+    {
 
         $query = Vacature::query();
         if ($request->filled('search')) {
@@ -50,33 +53,33 @@ class VacatureController extends Controller {
         if ($request->filled('salaris')) {
             $pay = $request->input('salaris');
             $query->when($pay === '1', function ($q) {
-                $q->whereBetween('salary', [0,500]);
+                $q->whereBetween('salary', [0, 500]);
             })->when($pay === '2', function ($q) {
-                $q->whereBetween('salary', [500,1000]);
+                $q->whereBetween('salary', [500, 1000]);
             })->when($pay === '3', function ($q) {
-                $q->whereBetween('salary', [1100,1500]);
+                $q->whereBetween('salary', [1100, 1500]);
             })->when($pay === '4', function ($q) {
-                $q->whereBetween('salary', [1600,2000]);
+                $q->whereBetween('salary', [1600, 2000]);
             })->when($pay === '5', function ($q) {
-                $q->whereBetween('salary', [2100,2500]);
+                $q->whereBetween('salary', [2100, 2500]);
             })->when($pay === '6', function ($q) {
-                $q->whereBetween('salary', [2600,3000]);
+                $q->whereBetween('salary', [2600, 3000]);
             })->when($pay === '7', function ($q) {
                 $q->where('salary', '>=', 3100);
             });
         }
 
-        if ($request->input('sort')==='oldest') {
+        if ($request->input('sort') === 'oldest') {
             $query->orderBy('id', 'ASC');
-        } elseif($request->input('sort')==='newest') {
+        } elseif ($request->input('sort') === 'newest') {
             $query->orderBy('id', 'DESC');
-        } elseif ($request->input('sort')==='highest') {
+        } elseif ($request->input('sort') === 'highest') {
             $query->orderBy('salary', 'DESC');
-        } elseif ($request->input('sort')==='lowest') {
+        } elseif ($request->input('sort') === 'lowest') {
             $query->orderBy('id', 'ASC');
         }
 
-        if($request->filled('demands')) {
+        if ($request->filled('demands')) {
             $demands = $request->input('demands');
             $query->whereHas('demand', function ($q) use ($demands) {
                 $q->whereIn('name', $demands);
@@ -100,6 +103,7 @@ class VacatureController extends Controller {
                 'vacature' => $vacature,
                 'days_of_week' => $days
             ], 200);
+            return view('vacatures.show', ['vacature' => $vacature]);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Vacature not found.'], 404);
         }

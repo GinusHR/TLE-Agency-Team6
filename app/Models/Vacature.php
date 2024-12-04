@@ -26,7 +26,7 @@ class Vacature extends Model
     {
         return $this->belongsTo(Company::class);
     }
-    public function demand ()
+    public function demands(): BelongsToMany
     {
         return $this->belongsToMany(Demand::class, 'demand_vacature', 'vacature_id', 'demand_id');
     }

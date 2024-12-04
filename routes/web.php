@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacatureController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,6 +26,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('vacatures', VacatureController::class);
+
+Route::resource('applications', ApplicationController::class);
+
 Route::patch('vacatures.filter', [VacatureController::class, 'filter'])->name('vacatures.filter');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
