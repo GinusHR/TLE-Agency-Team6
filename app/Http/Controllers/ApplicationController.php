@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SollicitatieMailVWerkzoekende;
 
 class ApplicationController extends Controller
 {
@@ -16,10 +18,12 @@ class ApplicationController extends Controller
     {
         if ($request->has('user_id')) {
             $user_id = Auth::user()->id;
+            $email = Auth::user()->email;
         } else {
             $request->validate([
                 'email' => 'required|string|max:255'
             ]);
+            $email = $request->input('email');
         }
         $application = new Application();
 
@@ -27,7 +31,7 @@ class ApplicationController extends Controller
         if ($request->has('user_id')) {
             $application->user_id = $user_id;
         } else {
-            $application->email = $request->input('email');
+            $application->email = $email;
         }
 
         if ($request->has('secondaryInfo')) {
@@ -35,10 +39,22 @@ class ApplicationController extends Controller
         }
         $application->vacature_id = $request->input('vacature_id');
 
-
         $application->save();
 
-        return Redirect::route('vacatures.show', $request->input('vacature_id'));
+        $company = $request->input('vacature_company');
+        $function = $request->input('vacature_function');
+
+        $details = [
+            // 'company' => $company,
+            // 'function' => $function
+        ];
+
+        Mail::to($email)->send(new SollicitatieMailVWerkzoekende($details));
+
+        return response()->json(['message' => 'E-mail succesvol verzonden via Gmail!']);
+
+
+        // return Redirect::route('vacatures.show', $request->input('vacature_id'));
     }
 
     /**

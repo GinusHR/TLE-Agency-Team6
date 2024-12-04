@@ -232,6 +232,9 @@
                     @endif
 
                     <input type="hidden" name="vacature_id" value="{{ $vacature->id }}">
+                    <input type="hidden" name="vacature_company" value="{{ $vacature->company->name }}">
+                    <input type="hidden" name="vacature_function" value="{{ $vacature->function }}">
+
                     <button type="submit">Verstuur Sollicitatie</button>
                 </form>
             </div>
