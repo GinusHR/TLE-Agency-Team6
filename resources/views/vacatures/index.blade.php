@@ -66,7 +66,7 @@
             <li>
                 <h3>{{ $vacature->function }}</h3>
                 <p>Bedrijf: {{ $vacature->company->name }}</p>
-                <p>Funtie: {{ $vacature->funciton }}</p>
+                <p>Functie: {{ $vacature->function }}</p>
                 <p>Maand Salaris: {{ $vacature->salary }}</p>
                 <p>Locatie: {{ $vacature->location }}</p>
                 <p>Tijdsduur: {{ $vacature->time_id ? 'Fulltime' : 'Parttime' }}</p>
