@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('function');
             $table->bigInteger('salary');
             $table->bigInteger('workhours');
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->boolean('time_id');
             $table->text('description');
             $table->boolean('secondary_info_needed');

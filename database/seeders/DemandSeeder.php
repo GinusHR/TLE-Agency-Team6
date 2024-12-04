@@ -21,7 +21,6 @@ class DemandSeeder extends Seeder
             ['name' => 'MBO werk- en denkniveau'],
             ['name' => 'Bereidheid om in ploegendiensten te werken'],
             ['name' => 'Goede beheersing van de Nederlandse taal'],
-            ['name' => 'Ervaring in een soortgelijke functie'],
             ['name' => 'Beschikbaar voor minimaal 32 uur per week'],
             ['name' => 'In bezit van eigen vervoer'],
             ['name' => 'Flexibele werkhouding'],
