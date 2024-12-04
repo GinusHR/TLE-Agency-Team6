@@ -29,5 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             VacatureSeeder::class
         ]);
+        $this->call([
+            DemandVacatureSeeder::class
+        ]);
     }
 }

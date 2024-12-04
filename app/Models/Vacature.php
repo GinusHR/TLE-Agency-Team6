@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Vacature extends Model
@@ -22,4 +21,12 @@ class Vacature extends Model
         'image',
         'status'
     ];
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+    public function demands()
+    {
+        return $this->hasMany(Demand::class);
+    }
 }
