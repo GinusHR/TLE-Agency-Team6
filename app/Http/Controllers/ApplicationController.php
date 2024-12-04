@@ -16,6 +16,7 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
+        //check of gebruiker een account heeft en gebruik email van account of ingevulde email
         if ($request->has('user_id')) {
             $user_id = Auth::user()->id;
             $email = Auth::user()->email;
@@ -25,32 +26,38 @@ class ApplicationController extends Controller
             ]);
             $email = $request->input('email');
         }
+        //maak een application aan
         $application = new Application();
 
-
+        //gebruik user_id of email
         if ($request->has('user_id')) {
             $application->user_id = $user_id;
         } else {
             $application->email = $email;
         }
 
+        //als de vacature secondary informatie nodig had de info opslaan
         if ($request->has('secondaryInfo')) {
             $application->secondary_info = $request->input('secondaryInfo');
         }
         $application->vacature_id = $request->input('vacature_id');
-
+        //sla application op
         $application->save();
 
+        //voeg de extra eisen waar niet aan zijn voldaan toe aan de aaplication_demands_not_met table
+
+
+
+        //vraag gegevens op voor de mail
         $company = $request->input('vacature_company');
         $function = $request->input('vacature_function');
-
         $details = [
             'company' => $company,
             'function' => $function
         ];
-
+        //stuur mail
         Mail::to($email)->send(new SollicitatieMailVWerkzoekende($details));
-
+        //stuur gebruiker terug naar de vacaturepagina
         return Redirect::route('vacatures.show', $request->input('vacature_id'))
             ->with('success', 'Je ontvangt een email om te controleren of de sollicitatie is geslaagd!');
     }
