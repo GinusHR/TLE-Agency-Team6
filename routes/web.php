@@ -13,7 +13,7 @@ use App\Http\Controllers\VacatureController;
 
 Route::get('/welcome', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
@@ -22,7 +22,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -39,6 +40,7 @@ Route::middleware('auth:company')->group(function () {
 
 
 Route::resource('vacatures', VacatureController::class);
+Route::resource('applications', ApplicationController::class);
 
 
 
