@@ -149,9 +149,6 @@ class VacatureController extends Controller
             'days.*' => 'in:Maandag,Dinsdag,Woensdag,Donderdag,Vrijdag,Zaterdag,Zondag',
         ]);
 
-        // Debugging: Log the validated data
-        \Log::info('Validated Data:', $validated);
-
         // Step 2: Find the existing Vacature record by its ID
         $vacature = Vacature::findOrFail($id);
 
@@ -159,9 +156,6 @@ class VacatureController extends Controller
         $vacature->update(array_merge($validated, [
             'days' => json_encode($validated['days']), // Encode days as JSON
         ]));
-
-        // Debugging: Log the updated Vacature
-        \Log::info('Updated Vacature:', $vacature->toArray());
 
         // Step 4: Redirect the user with a success message
         return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol bijgewerkt.');
