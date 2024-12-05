@@ -84,6 +84,12 @@
                 <img src="{{ $vacature->image }}" alt="Bedrijfs foto">
             </li>
             <button><a href="{{ route('vacatures.show', $vacature->id) }}">Detail</a></button>
+            <button><a href="{{ route('vacatures.edit', $vacature->id) }}">Edit</a></button>
+            <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">Delete</button>
+            </form>
         @endforeach
     </ul>
 @endif

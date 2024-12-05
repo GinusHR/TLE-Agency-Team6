@@ -7,6 +7,7 @@ use App\Models\Demand;
 use App\Models\Vacature;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 
 class VacatureController extends Controller
 {
@@ -18,9 +19,9 @@ class VacatureController extends Controller
         // Pass the vacatures to the view
         return view('vacatures.index', compact('vacatures', 'previousSearch', 'demands'));
     }
+
     public function filter(Request $request)
     {
-
         $query = Vacature::query();
         if ($request->filled('search')) {
             $search = $request->input('search');
@@ -91,6 +92,7 @@ class VacatureController extends Controller
         $demands = Demand::all();
         return view('vacatures', compact('vacatures', 'previousSearch', 'demands'));
     }
+
     /**
      * Display the specified resource.
      */
@@ -99,10 +101,6 @@ class VacatureController extends Controller
         try {
             $vacature = Vacature::findOrFail($id); // This will throw a ModelNotFoundException if not found
             $days = json_decode($vacature->days, true); // Decode JSON to array
-            // return response()->json([
-            //     'vacature' => $vacature,
-            //     'days_of_week' => $days
-            // ], 200);
             return view('vacatures.show', [
                 'vacature' => $vacature,
             ]);
@@ -135,8 +133,34 @@ class VacatureController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // You can implement the update logic here
+        // Step 1: Validate the incoming request data
+        $validated = $request->validate([
+            'company_id' => 'required|exists:companies,id',
+            'function' => 'required|string|max:255',
+            'salary' => 'required|numeric|min:0',
+            'workhours' => 'required|numeric|min:0|max:80',
+            'location' => 'nullable|string|max:255',
+            'place' => 'required|string|max:255',
+            'time_id' => 'required|boolean',
+            'description' => 'required|string|max:1024',
+            'secondary_info_needed' => 'required|boolean',
+            'status' => 'required|integer|in:0,1',
+            'days' => 'required|array|min:1|max:7',
+            'days.*' => 'in:Maandag,Dinsdag,Woensdag,Donderdag,Vrijdag,Zaterdag,Zondag',
+        ]);
+
+        // Step 2: Find the existing Vacature record by its ID
+        $vacature = Vacature::findOrFail($id);
+
+        // Step 3: Update the record with the validated data, including JSON-encoded days
+        $vacature->update(array_merge($validated, [
+            'days' => json_encode($validated['days']), // Encode days as JSON
+        ]));
+
+        // Step 4: Redirect the user with a success message
+        return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol bijgewerkt.');
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -158,21 +182,27 @@ class VacatureController extends Controller
             'days.*' => 'in:Maandag,Dinsdag,Woensdag,Donderdag,Vrijdag,Zaterdag,Zondag', // Validate individual days
         ]);
 
-        // Create the new vacature
-        $newVacature = Vacature::create($validated);
-
-        // Store the days of the week as JSON
-        $newVacature->days = json_encode($validated['days']);
-        $newVacature->save();
+        // Create the new vacature with days encoded as JSON
+        $newVacature = Vacature::create(array_merge($validated, [
+            'days' => json_encode($validated['days']), // Encode days as JSON
+        ]));
 
         // Redirect back with a success message
         return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol aangemaakt!');
     }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        // You can implement the destroy logic here
+        // Find the vacature by ID
+        $vacature = Vacature::findOrFail($id);
+
+        // Delete the vacature and all related records will be deleted automatically
+        $vacature->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol verwijderd.');
     }
 }

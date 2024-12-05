@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('demand_vacature', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('demand_id');
-            $table->foreign('demand_id')->references('id')->on('demands');
+            $table->foreign('demand_id')->references('id')->on('demands')->onDelete('cascade');
             $table->bigInteger('vacature_id');
-            $table->foreign('vacature_id')->references('id')->on('vacatures');
+            $table->foreign('vacature_id')->references('id')->on('vacatures')->onDelete('cascade');
             $table->timestamps();
         });
 

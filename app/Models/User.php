@@ -14,7 +14,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Demand::class);
     }
-
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;

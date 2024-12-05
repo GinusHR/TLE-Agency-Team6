@@ -79,6 +79,23 @@
             background-color: #d1006e;
         }
 
+        .applied-button.color-gray {
+            display: inline-block;
+            background-color: #b0b0b0;
+            color: #fff;
+            cursor: not-allowed;
+            font-size: 16px;
+            border-radius: 50px;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+
         /* Groene achtergrond sectie */
         .header {
             background-color: #d4e7b1;
@@ -210,7 +227,25 @@
         </div>
 
         <!-- Solliciteer knop -->
-        <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
+        @auth
+            @php
+                // Load applications relationship or directly query the database
+                $hasApplied = \App\Models\Application::where('user_id', Auth::id())
+                    ->where('vacature_id', $vacature->id)
+                    ->exists();
+            @endphp
+        @else
+            @php
+                $hasApplied = false;
+            @endphp
+        @endauth
+        @if ($hasApplied)
+            <div class="applied-button color-gray">Je hebt al gesolliciteerd</div>
+        @else
+            <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
+        @endif
+
+
 
         <!-- Modal -->
         <div id="solliciteerModal" class="modal">
@@ -223,6 +258,7 @@
                     @csrf
                     @auth
                         <div>De vacature wordt automatisch op je account opgeslagen.</div>
+                        <input type="hidden" name="user_id" value="true">
                     @else
                         <label for="email">E-mailadres:</label>
                         <input type="email" id="email" name="email" required><br>
@@ -230,8 +266,10 @@
                     <br>
                     <label for="demands[]">Kies de eisen die je hebt:</label><br>
                     @foreach ($vacature->demands as $demand)
-                        <input type="checkbox" id="demand[{{ $demand->id }}]" name="demands[]"
-                            value="{{ $demand->id }}">{{ $demand->name }}<br>
+                        <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
+                        <input type="checkbox" id="demand_{{ $demand->id }}" name="demands[{{ $demand->id }}]"
+                            value="true">
+                        <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label><br>
                     @endforeach
                     <br>
 

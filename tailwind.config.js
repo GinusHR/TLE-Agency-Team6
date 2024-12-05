@@ -22,6 +22,8 @@ export default {
             },
             fontFamily: {
                 sans: ['Figtree', ...require('tailwindcss/defaultTheme').fontFamily.sans],
+                'playfair': ['Playfair Display', 'serif'],  // Gebruik de naam van het font zoals opgegeven in de Google Fonts URL
+                radikal: ['Radikal', 'sans-serif'], // Voeg je nieuwe font toe
             },
         },
     },

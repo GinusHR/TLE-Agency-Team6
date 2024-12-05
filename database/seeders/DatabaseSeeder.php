@@ -32,5 +32,20 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DemandVacatureSeeder::class
         ]);
+        $this->call([
+            UserSeeder::class
+        ]);
+        $this->call([
+            ReviewSeeder::class
+        ]);
+        $this->call([
+            ApplicationSeeder::class
+        ]);
+        $this->call([
+            ApplicationDemandSeeder::class
+        ]);
+        $this->call([
+            DemandUserSeeder::class
+        ]);
     }
 }

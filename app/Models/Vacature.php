@@ -20,14 +20,50 @@ class Vacature extends Model
         'description',
         'secondary_info_needed',
         'image',
-        'status'
+        'status',
+        'days',
     ];
-    public function company()
+
+    /**
+     * Relationship with Company.
+     */
+    public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }
+
+    /**
+     * Relationship with Demands.
+     */
     public function demands(): BelongsToMany
     {
         return $this->belongsToMany(Demand::class, 'demand_vacature', 'vacature_id', 'demand_id');
+    }
+
+    /**
+     * Relationship with Reviews.
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    /**
+     * Relationship with Applications.
+     */
+    public function applications(): HasMany
+    {
+        return $this->hasMany(Application::class);
+    }
+
+    /**
+     * Override delete method to cascade deletes for Eloquent relationships.
+     */
+    public function delete(): bool
+    {
+        $this->reviews()->delete();
+        $this->applications()->delete();
+        $this->demands()->detach(); // Detach many-to-many relationships
+        return parent::delete();
     }
 }
