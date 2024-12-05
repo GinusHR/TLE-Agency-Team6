@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* app.css */
+.button-small {
+    @apply inline-block px-6 py-3 bg-[#AA0160] text-white rounded-lg text-sm font-semibold hover:bg-[#7C1A51];
+}
+/* app.css */
+.nav-link {
+    @apply inline-flex items-center justify-center bg-moss-light font-semibold m-[1.6vw];
+    @apply text-center transition-all duration-300 tracking-normal hover:tracking-widest;
+    width: 5vw;
+}
+
+
+
+
+
+.header {
+    @apply flex justify-end items-center pr-[5vw] bg-moss-light h-[5vw];
+}
+
+.footer {
+    @apply h-[15vw] bg-moss-light
+}
+
+.nav-bar {
+    @apply flex justify-end bg-moss-light ;
+}
