@@ -79,6 +79,23 @@
             background-color: #d1006e;
         }
 
+        .applied-button.color-gray {
+            display: inline-block;
+            background-color: #b0b0b0;
+            color: #fff;
+            cursor: not-allowed;
+            font-size: 16px;
+            border-radius: 50px;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+
         /* Groene achtergrond sectie */
         .header {
             background-color: #d4e7b1;
@@ -210,7 +227,7 @@
         </div>
 
         <!-- Solliciteer knop -->
-        {{-- @auth
+        @auth
             @php
                 // Load applications relationship or directly query the database
                 $hasApplied = \App\Models\Application::where('user_id', Auth::id())
@@ -223,10 +240,10 @@
             @endphp
         @endauth
         @if ($hasApplied)
-            <div class="apply-button">Je hebt al gesolliciteerd</div>
-        @else --}}
-        <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
-        {{-- @endif --}}
+            <div class="applied-button color-gray">Je hebt al gesolliciteerd</div>
+        @else
+            <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
+        @endif
 
 
 
@@ -241,6 +258,7 @@
                     @csrf
                     @auth
                         <div>De vacature wordt automatisch op je account opgeslagen.</div>
+                        <input type="hidden" name="user_id" value="true">
                     @else
                         <label for="email">E-mailadres:</label>
                         <input type="email" id="email" name="email" required><br>
