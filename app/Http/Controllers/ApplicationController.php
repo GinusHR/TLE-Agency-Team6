@@ -72,7 +72,7 @@ class ApplicationController extends Controller
         Mail::to($email)->send(new SollicitatieMailVWerkzoekende($details));
         //stuur gebruiker terug naar de vacaturepagina
         return Redirect::route('vacatures.show', $request->input('vacature_id'))
-            ->with('success', 'Je ontvangt een email om te controleren of de sollicitatie is geslaagd!');
+            ->with('success', 'Je ontvangt een email als de aanmelding is gelukt!');
     }
 
     /**
