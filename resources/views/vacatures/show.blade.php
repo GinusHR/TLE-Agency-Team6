@@ -210,7 +210,25 @@
         </div>
 
         <!-- Solliciteer knop -->
+        {{-- @auth
+            @php
+                // Load applications relationship or directly query the database
+                $hasApplied = \App\Models\Application::where('user_id', Auth::id())
+                    ->where('vacature_id', $vacature->id)
+                    ->exists();
+            @endphp
+        @else
+            @php
+                $hasApplied = false;
+            @endphp
+        @endauth
+        @if ($hasApplied)
+            <div class="apply-button">Je hebt al gesolliciteerd</div>
+        @else --}}
         <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
+        {{-- @endif --}}
+
+
 
         <!-- Modal -->
         <div id="solliciteerModal" class="modal">
@@ -230,8 +248,10 @@
                     <br>
                     <label for="demands[]">Kies de eisen die je hebt:</label><br>
                     @foreach ($vacature->demands as $demand)
-                        <input type="checkbox" id="demand[{{ $demand->id }}]" name="demands[]"
-                            value="{{ $demand->id }}">{{ $demand->name }}<br>
+                        <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
+                        <input type="checkbox" id="demand_{{ $demand->id }}" name="demands[{{ $demand->id }}]"
+                            value="true">
+                        <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label><br>
                     @endforeach
                     <br>
 

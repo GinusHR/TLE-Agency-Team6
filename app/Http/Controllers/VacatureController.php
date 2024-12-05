@@ -7,6 +7,7 @@ use App\Models\Demand;
 use App\Models\Vacature;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 
 class VacatureController extends Controller
 {
