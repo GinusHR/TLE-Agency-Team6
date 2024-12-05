@@ -46,6 +46,7 @@ Route::middleware('auth:company')->group(function () {
 
 
 Route::resource('vacatures', VacatureController::class);
+Route::resource('applications', ApplicationController::class);
 
 Route::resource('applications', ApplicationController::class);
 
