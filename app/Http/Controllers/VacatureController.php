@@ -182,12 +182,10 @@ class VacatureController extends Controller
             'days.*' => 'in:Maandag,Dinsdag,Woensdag,Donderdag,Vrijdag,Zaterdag,Zondag', // Validate individual days
         ]);
 
-        // Create the new vacature
-        $newVacature = Vacature::create($validated);
-
-        // Store the days of the week as JSON
-        $newVacature->days = json_encode($validated['days']);
-        $newVacature->save();
+        // Create the new vacature with days encoded as JSON
+        $newVacature = Vacature::create(array_merge($validated, [
+            'days' => json_encode($validated['days']), // Encode days as JSON
+        ]));
 
         // Redirect back with a success message
         return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol aangemaakt!');
