@@ -7,10 +7,6 @@ use App\Http\Controllers\VacatureController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\Company\CompanyDashboardController;
-use App\Http\Controllers\VacatureController;
-
-
-
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -53,4 +49,3 @@ Route::resource('applications', ApplicationController::class);
 Route::patch('vacatures.filter', [VacatureController::class, 'filter'])->name('vacatures.filter');
 
 require __DIR__ . '/auth.php';
->>>>>>>>> Temporary merge branch 2
