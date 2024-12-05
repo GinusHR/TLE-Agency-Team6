@@ -18,9 +18,9 @@ return new class extends Migration
             $table->tinyInteger('rating');
             $table->text('content');
             $table->bigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('vacature_id');
-            $table->foreign('vacature_id')->references('id')->on('vacatures');
+            $table->foreign('vacature_id')->references('id')->on('vacatures')->onDelete('cascade');
             $table->timestamps();
         });
 

@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('vacature_id');
-            $table->foreign('vacature_id')->references('id')->on('vacatures');
+            $table->foreign('vacature_id')->references('id')->on('vacatures')->onDelete('cascade');
             $table->bigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('email')->nullable();
             $table->text('secondary_info')->nullable();
             $table->boolean('accepted')->default(false);

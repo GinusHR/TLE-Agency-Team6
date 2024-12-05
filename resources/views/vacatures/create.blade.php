@@ -79,7 +79,7 @@
         <div>
             <label class="block text-moss-dark font-medium mb-1">Dagen</label>
             <div class="flex flex-wrap gap-2">
-                @foreach(['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'] as $day)
+                @foreach(['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'] as $day)
                     <div class="flex items-center">
                         <input type="checkbox" id="{{ strtolower($day) }}" name="days[]" value="{{ $day }}"
                                class="peer hidden">
@@ -135,9 +135,10 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit"
-                class="w-full bg-violet-light text-white font-medium rounded-lg shadow-custom-dark hover:bg-violet-dark focus:ring-2 focus:ring-violet-dark py-3">
-            Vacature previewen
-        </button>
+        <div>
+            <button type="submit" class="w-full bg-violet-light text-white font-medium rounded-lg shadow-custom-dark hover:bg-violet-dark focus:ring-2 focus:ring-violet-dark py-3">
+                Vacature previewen
+            </button>
+        </div>
     </div>
 </form>

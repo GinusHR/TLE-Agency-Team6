@@ -9,7 +9,7 @@ class Demand extends Model
 {
     public function vacatures(): BelongsToMany
     {
-        return $this->belongsToMany(Vacature::class, 'demand_vacature', 'demand_id', 'vacature_id');
+        return $this->belongsToMany(Vacature::class, 'demand_vacature', 'demand_id', 'vacature_id')->onDelete('cascade');
     }
     public function users()
     {

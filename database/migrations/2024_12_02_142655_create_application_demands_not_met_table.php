@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('application_demands_not_met', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('demand_id');
-            $table->foreign('demand_id')->references('id')->on('demands');
-            $table->bigInteger('application_id');
-            $table->foreign('application_id')->references('id')->on('applications');
+            $table->foreign('demand_id')->references('id')->on('demands')->onDelete('cascade');
+            $table->bigInteger('application_id')->onDelete('cascade');
+            $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
             $table->timestamps();
         });
 

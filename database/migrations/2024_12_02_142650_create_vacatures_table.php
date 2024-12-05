@@ -15,8 +15,8 @@ return new class extends Migration
 
         Schema::create('vacatures', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->unsignedBigInteger('company_id'); // Use unsignedBigInteger for foreign keys
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade'); // Add onDelete('cascade') here
             $table->string('function');
             $table->bigInteger('salary');
             $table->bigInteger('workhours');

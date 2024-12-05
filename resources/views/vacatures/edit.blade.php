@@ -1,6 +1,5 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-
 <form action="{{ route('vacatures.update', $vacature->id) }}" method="POST" class="bg-cream p-8-plus rounded-lg shadow-custom-light">
     @csrf
     @method('PUT')
@@ -77,7 +76,7 @@
                     // Decode the JSON string into an array
                     $selectedDays = is_string($vacature->days) ? json_decode($vacature->days, true) : [];
                 @endphp
-                @foreach(['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'] as $day)
+                @foreach(['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'] as $day)
                     <div class="flex items-center">
                         <input type="checkbox" id="{{ strtolower($day) }}" name="days[]" value="{{ $day }}"
                                {{ in_array($day, old('days', $selectedDays)) ? 'checked' : '' }}
@@ -128,11 +127,13 @@
                 <option value="1" {{ old('status', $vacature->status) == 1 ? 'selected' : '' }}>Actief</option>
             </select>
         </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-8">
+            <button type="submit" class="w-full bg-violet-light text-white font-medium rounded-lg shadow-custom-dark hover:bg-violet-dark focus:ring-2 focus:ring-violet-dark py-3">
+                Opslaan
+            </button>
+        </div>
     </div>
 
-    <!-- Submit Button -->
-    <div class="text-center mt-8">
-        <button type="submit" class="w-full bg-violet-light text-white font-medium rounded-lg shadow-custom-dark hover:bg-violet-dark focus:ring-2 focus:ring-violet-dark py-3">
-            Opslaan</button>
-    </div>
 </form>
