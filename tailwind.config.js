@@ -11,11 +11,21 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                'cream' : '#FBFCF6',
+                'moss-light': '#E2ECC8',
+                'moss-medium': '#92AA83',
+                'moss-dark' : '#333D2B',
+                'violet-light': '#AA0160',
+                'violet-dark': '#7C1A51',
+                'yellow' : '#FAEC02',
+            },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Figtree', ...require('tailwindcss/defaultTheme').fontFamily.sans],
+                'playfair': ['Playfair Display', 'serif'],  // Gebruik de naam van het font zoals opgegeven in de Google Fonts URL
+                radikal: ['Radikal', 'sans-serif'], // Voeg je nieuwe font toe
             },
         },
     },
-
-    plugins: [forms],
+    plugins: [require('@tailwindcss/forms')],
 };
