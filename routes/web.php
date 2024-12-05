@@ -4,10 +4,15 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacatureController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomepageController;
 
-Route::get('/', function () {
+
+
+Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
