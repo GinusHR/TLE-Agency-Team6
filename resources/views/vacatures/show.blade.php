@@ -210,7 +210,7 @@
         </div>
 
         <!-- Solliciteer knop -->
-        @auth
+        {{-- @auth
             @php
                 // Load applications relationship or directly query the database
                 $hasApplied = \App\Models\Application::where('user_id', Auth::id())
@@ -224,9 +224,9 @@
         @endauth
         @if ($hasApplied)
             <div class="apply-button">Je hebt al gesolliciteerd</div>
-        @else
-            <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
-        @endif
+        @else --}}
+        <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
+        {{-- @endif --}}
 
 
 
