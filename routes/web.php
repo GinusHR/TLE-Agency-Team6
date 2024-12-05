@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\Company\Auth\CompanyLoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\Company\CompanyDashboardController;
+use App\Http\Controllers\VacatureController;
+
 
 
 
@@ -22,7 +27,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('company/login', [CompanyLoginController::class, 'showLoginForm'])->name('company.login');
+Route::post('company/login', [CompanyLoginController::class, 'login']);
+Route::post('company/logout', [CompanyLoginController::class, 'logout'])->name('company.logout');
+Route::middleware('auth:company')->group(function () {
+    Route::get('company.dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
+    Route::get('/company/profile', [CompanyDashboardController::class, 'profile'])->name('company.profile');
+    Route::patch('/company/profile', [CompanyDashboardController::class, 'updateProfile'])->name('company.updateProfile');
+});
 
 
 
-require __DIR__.'/auth.php';
+Route::resource('vacatures', VacatureController::class);
+
+
+
+require __DIR__ . '/auth.php';
