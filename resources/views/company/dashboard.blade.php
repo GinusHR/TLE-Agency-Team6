@@ -30,6 +30,14 @@
                         <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600"
                             onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">Delete</button>
                     </form>
+                    <form action="{{ route('company.toggleVisibility', $vacature->id) }}" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300
+                            {{ $vacature->status ? 'bg-amber-500 hover:bg-amber-600 text-white' : 'bg-purple-500 hover:bg-purple-600 text-white' }}">
+                            {{ $vacature->status ? 'Close' : 'Open' }}
+                        </button>
+                    </form>
                 </div>
             </li>
         @endforeach

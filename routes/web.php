@@ -38,6 +38,7 @@ Route::middleware('auth:company')->group(function () {
     Route::get('/company/profile', [CompanyDashboardController::class, 'profile'])->name('company.profile');
     Route::patch('/company/profile', [CompanyDashboardController::class, 'updateProfile'])->name('company.updateProfile');
 });
+Route::post('/company/{id}/toggleVisibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('company.toggleVisibility');
 
 
 
