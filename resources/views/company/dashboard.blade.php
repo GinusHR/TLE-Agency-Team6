@@ -8,7 +8,13 @@
     <ul>
         @foreach ($vacatures as $vacature)
             <li>
-                <p>{{ $vacature->function }} - {{ $vacature->location }}</p>
+                <p>
+                    @if ($vacature->status)
+                        Open:
+                    @else
+                        Closed:
+                    @endif{{ $vacature->function }} - {{ $vacature->location }}
+                </p>
                 <p>Aantal applicanten: {{ $vacature->applications->where('accepted', 0)->count() }}</p>
                 <p>Aantal aangenomen via vacature: {{ $vacature->applications->where('accepted', 1)->count() }}</p>
                 <div class=" flex space-x-2 mt-4">
