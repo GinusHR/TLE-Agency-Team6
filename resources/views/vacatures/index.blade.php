@@ -48,7 +48,7 @@
         <select name="demands[]" id="demands" multiple>
             <option disabled selected>Mogelijke eisen</option>
             @foreach ($demands as $demand)
-                <option value="{{ $demand->name }}">{{ $demand->name }}</option>
+                <option value="{{ $demand->id }}">{{ $demand->name }}</option>
             @endforeach
         </select>
     </div>
@@ -88,7 +88,8 @@
             <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
-                <button type="submit" onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">Delete</button>
+                <button type="submit"
+                    onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">Delete</button>
             </form>
         @endforeach
     </ul>
