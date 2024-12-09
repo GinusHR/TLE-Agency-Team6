@@ -1,3 +1,4 @@
+@vite(['resources/js/app.js', 'resources/css/app.css'])
 
 <body class="bg-cream">
 <div class="container mx-auto py-12">
@@ -48,7 +49,7 @@
                 <select name="demands[]" id="demands" multiple class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
                     <option disabled selected>Mogelijke eisen</option>
                     @foreach ($demands as $demand)
-                        <option value="{{ $demand->id }}">{{ $demand->id }}</option>
+                        <option value="{{ $demand->id }}">{{ $demand->name }}</option>
                     @endforeach
                 </select>
             </div>
