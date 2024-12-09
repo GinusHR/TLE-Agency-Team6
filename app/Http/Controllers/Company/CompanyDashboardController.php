@@ -13,7 +13,7 @@ class CompanyDashboardController extends Controller
     public function index()
     {
         if (Auth::guard('company')->user()) {
-            $vacatures = Vacature::where( 'company_id', Auth::guard('company')->user()->id )->get();
+            $vacatures = Vacature::where('company_id', Auth::guard('company')->user()->id)->get();
             return view('company.dashboard', compact('vacatures'));
         } else {
             return redirect('/company/login');
@@ -28,7 +28,6 @@ class CompanyDashboardController extends Controller
         } else {
             return redirect('/company/login');
         }
-
     }
 
     public function updateProfile(Request $request)
@@ -61,6 +60,19 @@ class CompanyDashboardController extends Controller
 
             return redirect('/company/login');
         }
+    }
 
+    public function openCloseVacature($id)
+    {
+        $vacature = Vacature::findOrFail($id);
+
+        $vacature->status = !$vacature->status;
+
+        $company_id = Auth::guard('company')->user()->id;
+        $vacature->company_id = $company_id;
+
+        $vacature->save();
+
+        return redirect()->route('company.dashboard');
     }
 }

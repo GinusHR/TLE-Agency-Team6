@@ -36,6 +36,7 @@ Route::post('company/logout', [CompanyLoginController::class, 'logout'])->name('
 Route::get('company.dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
 Route::get('/company/profile', [CompanyDashboardController::class, 'profile'])->name('company.profile');
 Route::patch('/company/profile', [CompanyDashboardController::class, 'updateProfile'])->name('company.updateProfile');
+Route::post('/company/{id}/toggleVisibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('company.toggleVisibility');
 
 
 Route::resource('vacatures', VacatureController::class);
