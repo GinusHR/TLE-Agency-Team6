@@ -62,7 +62,6 @@
         <div class="footer-div">
             <h3 class="h3-footer">Voor werkzoekenden</h3>
             <a class="nav-link-footer" href="/vacatures">Vind een baan</a>
-            <a class="nav-link-footer" href="/login">shaboinger</a>
         </div>
 
         <div class="footer-links">
@@ -70,12 +69,6 @@
             <a class="nav-link-footer" href="/register">Werken met Open Hiring</a>
             <a class="nav-link-footer" href="{{ route('company.dashboard') }}">Bedrijf Dashboard</a>
         </div>
-
-{{--        <div class="footer-links">--}}
-{{--            <h3 class="h3-footer">Over open hiring</h3>--}}
-{{--            <a class="nav-link-footer" href="/register">Onstaan</a>--}}
-{{--            <a class="nav-link-footer" href="/login">Privacy beleid</a>--}}
-{{--        </div>--}}
 
         <div class="footer-links">
             <h3 class="h3-footer">Volg ons op</h3>
