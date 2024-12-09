@@ -137,6 +137,11 @@ h1 {
     .dropdown-content .button-small {
         @apply w-[10vw]
     }
+
+    .header a img {
+        width: 5vw;
+    }
+
 }
 
 @media (max-width: 480px) {
@@ -152,6 +157,10 @@ h1 {
 
     .dropdown-content .button-small {
         @apply w-[23vw] h-[3.5vh] p-[2vw]
+    }
+
+    .header a img {
+         width: 15vw;
     }
 
 }
