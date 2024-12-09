@@ -82,15 +82,17 @@ class VacatureController extends Controller
 
         if ($request->filled('demands')) {
             $demands = $request->input('demands');
-            $query->whereHas('demand', function ($q) use ($demands) {
-                $q->whereIn('name', $demands);
+            $demands = Demand::whereIn('id', $demands)->get();  // Herschrijf dit naar een query die de volledige objecten haalt
+            $query->whereHas('demands', function ($q) use ($demands) {
+                $q->whereIn('demands.id', $demands->pluck('id'));  // Zorg ervoor dat we de objecten gebruiken
             });
         }
 
-        $vacatures = $query->with('company')->with('demand')->get();
+
+        $vacatures = $query->with('company')->with('demands')->get();
         $previousSearch = $request;
         $demands = Demand::all();
-        return view('vacatures', compact('vacatures', 'previousSearch', 'demands'));
+        return view('vacatures.index', compact('vacatures', 'previousSearch', 'demands'));
     }
 
     /**
