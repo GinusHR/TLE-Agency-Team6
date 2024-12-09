@@ -215,8 +215,11 @@
                 </p>
                 <div>
                     <!-- Wachtrij & Succesrating -->
-                    <p><strong>Wachtlijst:</strong> {{ $vacature->waiting_list ?? 'N/A' }}</p>
-                    <p><strong>Succesrating:</strong> {{ $vacature->success_rating ?? 'N/A' }}</p>
+                    <p><strong>Wachtlijst:</strong> Er zitten nog {{ $queue }} mensen op deze
+                        vacature te wachten.</p>
+                    @if ($succesRating > 0)
+                        <p><strong>Succesrating:</strong> Er zijn tot nu toe {{ $succesRating }} mensen aangenomen.</p>
+                    @endif
                 </div>
                 <div class="ratings">
                     <h3>Beoordelingen</h3>
