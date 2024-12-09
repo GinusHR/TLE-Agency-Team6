@@ -38,12 +38,9 @@
                                 <span class="text-sm text-gray-500">
                                         Gesolliciteerd op: {{ $application->created_at ? $application->created_at->format('d-m-Y') : 'Onbekende datum' }}
                                 </span>
-                                    @if ($application->vacature_id === $user->application->vacature_id)
-                                        <span class="text-green-500">Je bent op de wachtrij positie: {{ $position }}!</span>
-                                    @endif
-                                <button class="inline-block px-6 py-3 bg-violet-light text-white rounded-lg text-sm hover:bg-violet-dark">
-                                    <a href="{{ route('vacatures.show', $application->vacature_id) }}" class="no-underline">Zie vacature</a>
-                                </button>
+                                    <button class="inline-block px-6 py-3 bg-violet-light text-white rounded-lg text-sm hover:bg-violet-dark">
+                                        <a href="{{ route('vacatures.show', $application->vacature_id) }}" class="no-underline">Zie vacature</a>
+                                    </button>
                                 </div>
                             </li>
 

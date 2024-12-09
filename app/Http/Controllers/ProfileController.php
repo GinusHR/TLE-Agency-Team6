@@ -18,21 +18,9 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
-        if (!$user) {
-            return redirect()->route('login');
-        }
-
-        $applications = Application::where('user_id', $user->id)
-        ->orderBy('created_at')
-        ->get();
-
-        $userApplication = $applications->where('vacature_id', $user->vacature_id)->first();
-
-        $position = $applications->search(function ($application) use ($userApplication) {
-                return $application->id === $userApplication->id;
-            }) + 1;
-
-        return view('profile.show', compact('position', 'user'));
+        return view('profile.profile', [
+            'user' => $user
+        ]);
     }
 
 
