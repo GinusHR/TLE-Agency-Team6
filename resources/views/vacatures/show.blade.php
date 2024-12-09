@@ -1,324 +1,131 @@
-<x-app-layout>
-    <style>
-        /* Algemeen */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
+@vite(['resources/js/app.js', 'resources/css/app.css'])
 
-        .vacature-container {
-            background-color: #fff;
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            position: relative;
-        }
-
-        /* Header sectie */
-        .header h1 {
-            font-size: 28px;
-            color: #4a4a4a;
-            margin-bottom: 10px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 22px;
-            color: #6c757d;
-            margin-bottom: 10px;
-        }
-
-        /* Algemeen info */
-        .vacature-details h3 {
-            font-size: 18px;
-            color: #4a4a4a;
-            margin-top: 20px;
-        }
-
-        .description {
-            margin-top: 20px;
-        }
-
-        .general-info p,
-        .description p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        .general-info ul {
-            list-style: disc;
-            margin-left: 20px;
-        }
-
-        /* Stijlen voor knoppen */
-        .apply-button {
-            display: inline-block;
-            background-color: #e20074;
-            /* Roze */
-            color: #fff;
-            font-size: 16px;
-            border-radius: 50px;
-            padding: 12px 25px;
-            text-align: center;
-            cursor: pointer;
-            text-decoration: none;
-            border: none;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
-
-        .apply-button:hover {
-            background-color: #d1006e;
-        }
-
-        .applied-button.color-gray {
-            display: inline-block;
-            background-color: #b0b0b0;
-            color: #fff;
-            cursor: not-allowed;
-            font-size: 16px;
-            border-radius: 50px;
-            padding: 12px 25px;
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
-
-
-        /* Groene achtergrond sectie */
-        .header {
-            background-color: #d4e7b1;
-            /* Groene achtergrond */
-            padding: 20px;
-            border-radius: 8px;
-            color: #333;
-        }
-
-        /* Stijl voor de modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            overflow: auto;
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-        }
-
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-
-        /* Responsief ontwerp voor telefoon */
-        @media (max-width: 768px) {
-            .vacature-container {
-                padding: 15px;
-            }
-
-            .header {
-                padding: 15px;
-            }
-
-            .vacature-details {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .vacature-details .general-info {
-                display: flex;
-                flex-direction: column;
-                margin-right: 0;
-            }
-
-            .vacature-details .description {
-                display: flex;
-                flex-direction: column;
-                margin-top: 20px;
-            }
-
-            .apply-button {
-                width: 80%;
-                position: fixed;
-                bottom: 20px;
-                left: 10%;
-                right: 10%;
-            }
-        }
-    </style>
-
-    <div class="vacature-container">
-        <div class="header">
-            <h1>{{ $vacature->company->name }} - {{ $vacature->function }}</h1>
-        </div>
-
-        <div class="vacature-details">
-            <div class="general-info">
-                <h2>Algemene informatie</h2>
-                <p><strong>Locatie:</strong> {{ $vacature->location }}</p>
-                <p><strong>Salaris:</strong> €{{ $vacature->salary }} per maand</p>
-                <p><strong>Werkuren:</strong> {{ $vacature->workhours }} uur per week</p>
-                <p><strong>Contract:</strong> {{ $vacature->time_id === 0 ? 'Parttime' : 'Fulltime' }}</p>
-                <p><strong>Eisen:</strong></p>
-                <ul>
-                    @foreach ($vacature->demands as $demand)
-                        <li>{{ $demand->name }}</li>
-                    @endforeach
-                </ul>
+<x-layout>
+    <div class="bg-cream min-h-screen text-moss-dark">
+        <div class="bg-white max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative">
+            <!-- Header Section -->
+            <div class="bg-moss-light p-5 rounded-md text-moss-dark">
+                <h1 class="text-center text-2xl font-bold mb-4" style="font-family: Arial, sans-serif;">
+                    {{ $vacature->company->name }} - {{ $vacature->function }}
+                </h1>
             </div>
 
-            <div class="description">
-                <h2>Beschrijving</h2>
-                <p>{{ $vacature->description }}</p>
-                <p><strong>Werkdagen:</strong>
-                    @php
-                        $daysArray = json_decode($vacature->days, true); // Decode JSON into an associative array
-                    @endphp
-                    @if (is_null($daysArray) || empty($daysArray))
-                        Geen dagen beschikbaar
-                    @else
-                        {{ implode(', ', $daysArray) }} <!-- Join the array into a string -->
-                    @endif
-                </p>
-                <div>
-                    <!-- Wachtrij & Succesrating -->
-                    <p><strong>Wachtlijst:</strong> Er wachten nog {{ $queue }} mensen op deze
-                        vacature.</p>
-                    @if ($succesRating > 0)
-                        <p><strong>Succesrating:</strong> Er zijn tot nu toe {{ $succesRating }} mensen aangenomen.</p>
-                    @endif
+            <!-- General Info Section -->
+            <div class="mt-6">
+                <div class="mb-6">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-3">Algemene informatie</h2>
+                    <p class="mb-3"><strong>Locatie:</strong> {{ $vacature->location }}</p>
+                    <p class="mb-3"><strong>Salaris:</strong> €{{ $vacature->salary }} per maand</p>
+                    <p class="mb-3"><strong>Werkuren:</strong> {{ $vacature->workhours }} uur per week</p>
+                    <p class="mb-3"><strong>Contract:</strong>
+                        {{ $vacature->time_id === 0 ? 'Parttime' : 'Fulltime' }}</p>
+                    <p class="mb-3"><strong>Eisen:</strong></p>
+                    <ul class="list-disc ml-6 mb-3">
+                        @foreach ($vacature->demands as $demand)
+                            <li>{{ $demand->name }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-                <div class="ratings">
-                    <h3>Beoordelingen</h3>
-                    <div class="placeholder"></div>
-                    <div class="placeholder"></div>
+
+                <!-- Description Section -->
+                <div class="mt-6">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-3">Beschrijving</h2>
+                    <p class="mb-3">{{ $vacature->description }}</p>
+                    <p class="mb-3"><strong>Werkdagen:</strong>
+                        @php
+                            $daysArray = json_decode($vacature->days, true);
+                        @endphp
+                        @if (is_null($daysArray) || empty($daysArray))
+                            Geen dagen beschikbaar
+                        @else
+                            {{ implode(', ', $daysArray) }}
+                        @endif
+                    </p>
+                    <div class="mb-3">
+                        <p><strong>Wachtlijst:</strong> Er wachten nog {{ $queue }} mensen op deze
+                            vacature.</p>
+                        @if ($succesRating > 0)
+                            <p><strong>Succesrating:</strong> Er zijn tot nu toe {{ $succesRating }} mensen aangenomen.
+                            </p>
+                        @endif
+                    </div>
+                    <div class="mt-6">
+                        <h3 class="text-lg font-medium text-gray-700 mb-3">Beoordelingen</h3>
+                        <!-- Beoordelingen content can be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apply Button -->
+            @auth
+                @php
+                    $hasApplied = \App\Models\Application::where('user_id', Auth::id())
+                        ->where('vacature_id', $vacature->id)
+                        ->exists();
+                @endphp
+            @else
+                @php
+                    $hasApplied = false;
+                @endphp
+            @endauth
+            @if ($hasApplied)
+                <div
+                    class="bg-gray-400 text-white text-center font-semibold rounded-full py-3 px-6 absolute bottom-5 right-5 cursor-not-allowed">
+                    Je hebt al gesolliciteerd
+                </div>
+            @else
+                <button id="solliciteerBtn"
+                    class="bg-violet-light text-white font-medium text-center rounded-full py-3 px-6 hover:bg-violet-dark absolute bottom-5 right-5">
+                    Solliciteer
+                </button>
+            @endif
+
+            <!-- Modal -->
+            <div id="solliciteerModal"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg">
+                    <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right"
+                        id="closeBtn">&times;</span>
+                    <h2 class="text-xl font-semibold mb-4">Solliciteer voor de Vacature</h2>
+                    <form id="sollicitatieForm" action="{{ route('applications.store') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @auth
+                            <div>De vacature wordt automatisch op je account opgeslagen.</div>
+                            <input type="hidden" name="user_id" value="true">
+                        @else
+                            <label for="email" class="block mb-2">E-mailadres:</label>
+                            <input type="email" id="email" name="email" required
+                                class="block w-full mb-4 border-gray-300 rounded-lg">
+                        @endauth
+                        <label for="demands[]" class="block mb-2">Kies de eisen die je hebt:</label>
+                        @foreach ($vacature->demands as $demand)
+                            <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
+                            <div class="flex items-center mb-2">
+                                <input type="checkbox" id="demand_{{ $demand->id }}"
+                                    name="demands[{{ $demand->id }}]" value="true" class="mr-2">
+                                <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label>
+                            </div>
+                        @endforeach
+                        <button type="submit"
+                            class="bg-moss-medium text-white py-2 px-4 rounded-lg hover:bg-moss-dark">
+                            Verstuur Sollicitatie
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <!-- Solliciteer knop -->
-        @auth
-            @php
-                // Load applications relationship or directly query the database
-                $hasApplied = \App\Models\Application::where('user_id', Auth::id())
-                    ->where('vacature_id', $vacature->id)
-                    ->exists();
-            @endphp
-        @else
-            @php
-                $hasApplied = false;
-            @endphp
-        @endauth
-        @if ($hasApplied)
-            <div class="applied-button color-gray">Je hebt al gesolliciteerd</div>
-        @else
-            <button class="apply-button" id="solliciteerBtn">Solliciteer</button>
-        @endif
-
-
-
-        <!-- Modal -->
-        <div id="solliciteerModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <h2>Solliciteer voor de Vacature</h2>
-
-                <form id="sollicitatieForm" action="{{ route('applications.store') }}" method="POST"
-                    enctype="multipart/form-data">
-                    @csrf
-                    @auth
-                        <div>De vacature wordt automatisch op je account opgeslagen.</div>
-                        <input type="hidden" name="user_id" value="true">
-                    @else
-                        <label for="email">E-mailadres:</label>
-                        <input type="email" id="email" name="email" required><br>
-                    @endauth
-                    <br>
-                    <label for="demands[]">Kies de eisen die je hebt:</label><br>
-                    @foreach ($vacature->demands as $demand)
-                        <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
-                        <input type="checkbox" id="demand_{{ $demand->id }}" name="demands[{{ $demand->id }}]"
-                            value="true">
-                        <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label><br>
-                    @endforeach
-                    <br>
-
-                    @if ($vacature->secondary_info_needed)
-                        <label for="secondaryInfo">Vul hier jouw extra kwaliteiten in die niet bij de vereisten
-                            staan.</label>
-                        <input type="text" name="secondaryInfo" id="secondaryInfo"><br>
-                    @endif
-
-                    <input type="hidden" name="vacature_id" value="{{ $vacature->id }}">
-                    <input type="hidden" name="vacature_company" value="{{ $vacature->company->name }}">
-                    <input type="hidden" name="vacature_function" value="{{ $vacature->function }}">
-
-                    <button type="submit">Verstuur Sollicitatie</button>
-                </form>
-            </div>
-        </div>
-
-        @if (session('success'))
-            <script>
-                alert("{{ session('success') }}");
-            </script>
-        @endif
-
-        <script>
-            // Verkrijg de modal en de sollicitatieknop
-            let modal = document.getElementById("solliciteerModal");
-            let sollicitieerBtn = document.getElementById("solliciteerBtn");
-            let closeBtn = document.getElementsByClassName("close-btn")[0];
-
-            // Wanneer de gebruiker op de sollicitatieknop klikt, toon de modal
-            solliciteerBtn.onclick = function() {
-                modal.style.display = "block";
-            }
-
-            // Wanneer de gebruiker op de sluitknop klikt, sluit de modal
-            closeBtn.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            // Wanneer de gebruiker ergens buiten de modal klikt, sluit de modal
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
     </div>
-</x-app-layout>
+
+    <script>
+        const modal = document.getElementById("solliciteerModal");
+        const sollicitieerBtn = document.getElementById("solliciteerBtn");
+        const closeBtn = document.getElementById("closeBtn");
+
+        sollicitieerBtn.onclick = () => modal.classList.remove("hidden");
+        closeBtn.onclick = () => modal.classList.add("hidden");
+        window.onclick = (event) => {
+            if (event.target === modal) modal.classList.add("hidden");
+        };
+    </script>
+</x-layout>
