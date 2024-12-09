@@ -25,20 +25,25 @@
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{{ __('Mijn sollicitaties') }}</h3>
-                @if ($user->applications && $user->applications->isEmpty())
+                @if (optional($user->applications)->isEmpty())
                     <p class="text-gray-600 dark:text-gray-400">{{ __("Je hebt nog niet gesolliciteerd") }}</p>
                 @else
                     <ul class="list-disc pl-5">
-                        @foreach (($user->applications ?? collect()) as $application)
-                            <li>
+                        @foreach ($user->applications as $application)
+                            <li class="flex justify-between items-center py-2">
                                 <p class="text-gray-800 dark:text-gray-200">
-                                    {{ $application->job_title ?? 'Onbekende functie' }} bij {{ $application->company_name ?? 'Onbekend bedrijf' }}
+                                    {{ $application->vacature->function ?? 'Onbekende functie' }} bij {{ $application->vacature->company->name ?? 'Onbekend bedrijf' }}
                                     <span class="text-sm text-gray-500">{{ $application->created_at ? $application->created_at->format('d-m-Y') : 'Onbekende datum' }}</span>
                                 </p>
+                                <button class="inline-block px-6 py-3 bg-violet-light text-white rounded-lg text-sm hover:bg-violet-dark">
+                                    <a href="{{ route('vacatures.show', $application->vacature_id) }}" class="no-underline">Zie vacature</a>
+                                </button>
                             </li>
+
                         @endforeach
                     </ul>
                 @endif
+
             </div>
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
