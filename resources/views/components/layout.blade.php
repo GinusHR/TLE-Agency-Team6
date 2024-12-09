@@ -29,14 +29,13 @@
             <div class="dropdown-content">
                 <!-- Navigatie links aan de linker kant -->
                 <div class="dropdown-links">
-                    <a class="nav-link-footer" href="/">Homepage</a>
-                    <a class="nav-link-footer" href="/vacatures">Vacatures</a>
-                    <a class="nav-link-footer" href="/contact">Contact</a>
+                    <a class="nav-link-header" href="/">Homepage</a>
+                    <a class="nav-link-header" href="/vacatures">Vacatures</a>
+                    <a class="nav-link-header" href="/contact">Contact</a>
                 </div>
 
                 <!-- Login en Register knoppen aan de rechter kant -->
                 <div class="dropdown-buttons">
-
                     @if(Auth::user())
                         <a href="/profile" class="button-small mt-4">Profiel</a>
                     @else

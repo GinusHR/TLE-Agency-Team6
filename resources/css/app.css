@@ -44,7 +44,7 @@ h1 {
 
 /* app.css */
 .nav-link-header {
-    @apply inline-flex items-center justify-center bg-cream m-[1.6vw];
+    @apply inline-flex items-center justify-center bg-moss-dark m-[1.6vw];
     @apply text-center transition-all duration-300 tracking-normal hover:tracking-widest;
     width: 5vw;
 }
@@ -89,49 +89,30 @@ h1 {
 }
 
 
-/* Dropdown container */
-/*.navbar-dropdown {*/
-/*    @apply relative;*/
-/*    !* Dit zorgt ervoor dat de dropdown zichtbaar wordt binnen de navbar *!*/
-/*}*/
-
 .dropdown-content {
-    @apply absolute bg-moss-dark left-0 w-full z-40 text-white top-[5vw] rounded-lg hidden;
+    @apply absolute bg-moss-dark left-0 w-full z-40 text-white top-[5vw] rounded-lg hidden justify-evenly;
 }
 
 /* Toon de dropdown wanneer de klasse 'active' wordt toegevoegd */
 .navbar-dropdown.active .dropdown-content {
-    @apply flex justify-between p-[1vw];
+    @apply flex p-[1vw];
 }
 
 .dropdown-content a {
-    @apply ml-[10vw] mr-[10vw] p-[0.5vw] w-[10vw]
+    @apply ml-[3vw] mr-[2vw] p-[0.5vw] w-[10vw]
 }
 
 /* Links sectie */
-
 .dropdown-links {
-    @apply flex flex-col items-center;
+    @apply flex flex-row items-center justify-start;
 }
 
 /* Knoppen sectie (rechts uitgelijnd) */
-
 .dropdown-buttons {
     @apply flex flex-col items-center justify-start text-center;
 }
 
-/*!* Dropdown verschijnt bij hover *!*/
-/*.navbar-dropdown:hover .dropdown-content  {*/
-/*    @apply flex justify-between p-[1vw];*/
-/*}*/
-
-
-/*.nav-bar:hover {*/
-/*    display: block;*/
-/*}*/
-
 /* Stijlen voor het hamburger menu (de drie strepen) */
-
 .menu-icon span {
     @apply block w-[30px] h-[4px] bg-moss-dark m-[6px]; /* Consistente breedte, hoogte en marge */
     /*@apply block w-10 h-[0.3vw] bg-moss-dark m-1.5;*/
@@ -144,6 +125,33 @@ h1 {
 }
 
 
+@media (min-width: 768px) {
+    .dropdown-links {
+        @apply flex-row;
+    }
+
+    .dropdown-content {
+        @apply flex-row z-30;
+    }
+
+    .dropdown-content .button-small {
+        @apply w-[10vw]
+    }
+}
+
+@media (max-width: 480px) {
 
 
+    .dropdown-links {
+        @apply  flex-col;
+    }
 
+    .dropdown-content {
+        @apply top-[18vw] flex-col;
+    }
+
+    .dropdown-content .button-small {
+        @apply w-[23vw] h-[3.5vh] p-[2vw]
+    }
+
+}
