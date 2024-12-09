@@ -8,14 +8,14 @@
 
 
         <!-- De container voor de afbeelding en de tekst -->
-    <div class="flex justify-between items-center p-[5%]">
+    <div class="flex justify-between items-center p-[5%] sm:flex-col">
         <!-- De afbeelding instellen op 25% breedte en vierkant houden -->
-        <img src="{{ asset('images/homepage-image-1.jpg') }}" alt="homepage afbeelding" class="w-[30vw] h-auto rounded-[4vw]">
+        <img src="{{ asset('images/homepage-image-1.jpg') }}" alt="homepage afbeelding" class="w-[30vw] w-1/2 sm:w-[60vw] h-auto rounded-[4vw]">
 
 
-        <div class="text-xl text-[#2E342A] w-1/2 flex flex-col items-center">
-            <h2 class="text-3xl m-[2vw] font-bold">Werk voor wie wil werken</h2>
-            <p class="w-[35vw] text-left">
+        <div class="text-xl text-[#2E342A] flex flex-col items-center">
+            <h2 class="text-3xl m-[2vw] sm:m-[10vw] w-1/2 sm:w-[90vw] sm:text-center font-bold">Werk voor wie wil werken</h2>
+            <p class="w-[35vw] sm:w-[90vw] text-left">
                 Met Open Hiring heeft iedereen een eerlijke kans op een baan. Wie wil én kan werken, kan zó aan de slag. Zonder sollicitatiegesprek, zonder brief, zonder vragen. Met één druk op de knop. Open Hiring draait namelijk niet om diploma’s, maar om mensen. Niet om praatjes, maar om aanpakken.
             </p>
             <!-- Knop in het midden -->

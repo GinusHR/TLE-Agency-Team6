@@ -30,7 +30,7 @@ body{
 }
 
 body p {
-    @apply  text-moss-dark
+    @apply  text-moss-dark sm:text-sm
 }
 
 h1 {
@@ -135,6 +135,20 @@ h1 {
     @apply p-[1.25vw];
 }
 
+@media (max-width: 768px) {
+    body p{
+        font-size: 0.8rem !important; /* Zorg dat dit altijd wordt toegepast */
+    }
+    h1 {
+        font-size: 1.5rem !important;
+    }
+    h2, h3 {
+        font-size: 1.2rem !important;
+    }
+
+
+
+}
 
 
 
