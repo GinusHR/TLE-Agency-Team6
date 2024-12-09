@@ -17,7 +17,8 @@
                     <p class="mb-3"><strong>Locatie:</strong> {{ $vacature->location }}</p>
                     <p class="mb-3"><strong>Salaris:</strong> €{{ $vacature->salary }} per maand</p>
                     <p class="mb-3"><strong>Werkuren:</strong> {{ $vacature->workhours }} uur per week</p>
-                    <p class="mb-3"><strong>Contract:</strong> {{ $vacature->time_id === 0 ? 'Parttime' : 'Fulltime' }}</p>
+                    <p class="mb-3"><strong>Contract:</strong>
+                        {{ $vacature->time_id === 0 ? 'Parttime' : 'Fulltime' }}</p>
                     <p class="mb-3"><strong>Eisen:</strong></p>
                     <ul class="list-disc ml-6 mb-3">
                         @foreach ($vacature->demands as $demand)
@@ -41,8 +42,12 @@
                         @endif
                     </p>
                     <div class="mb-3">
-                        <p><strong>Wachtlijst:</strong> {{ $vacature->waiting_list ?? 'N/A' }}</p>
-                        <p><strong>Succesrating:</strong> {{ $vacature->success_rating ?? 'N/A' }}</p>
+                        <p><strong>Wachtlijst:</strong> Er wachten nog {{ $queue }} mensen op deze
+                            vacature.</p>
+                        @if ($succesRating > 0)
+                            <p><strong>Succesrating:</strong> Er zijn tot nu toe {{ $succesRating }} mensen aangenomen.
+                            </p>
+                        @endif
                     </div>
                     <div class="mt-6">
                         <h3 class="text-lg font-medium text-gray-700 mb-3">Beoordelingen</h3>
@@ -64,38 +69,46 @@
                 @endphp
             @endauth
             @if ($hasApplied)
-                <div class="bg-gray-400 text-white text-center font-semibold rounded-full py-3 px-6 absolute bottom-5 right-5 cursor-not-allowed">
+                <div
+                    class="bg-gray-400 text-white text-center font-semibold rounded-full py-3 px-6 absolute bottom-5 right-5 cursor-not-allowed">
                     Je hebt al gesolliciteerd
                 </div>
             @else
-                <button id="solliciteerBtn" class="bg-violet-light text-white font-medium text-center rounded-full py-3 px-6 hover:bg-violet-dark absolute bottom-5 right-5">
+                <button id="solliciteerBtn"
+                    class="bg-violet-light text-white font-medium text-center rounded-full py-3 px-6 hover:bg-violet-dark absolute bottom-5 right-5">
                     Solliciteer
                 </button>
             @endif
 
             <!-- Modal -->
-            <div id="solliciteerModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <div id="solliciteerModal"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                 <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg">
-                    <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right" id="closeBtn">&times;</span>
+                    <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right"
+                        id="closeBtn">&times;</span>
                     <h2 class="text-xl font-semibold mb-4">Solliciteer voor de Vacature</h2>
-                    <form id="sollicitatieForm" action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="sollicitatieForm" action="{{ route('applications.store') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @auth
                             <div>De vacature wordt automatisch op je account opgeslagen.</div>
                             <input type="hidden" name="user_id" value="true">
                         @else
                             <label for="email" class="block mb-2">E-mailadres:</label>
-                            <input type="email" id="email" name="email" required class="block w-full mb-4 border-gray-300 rounded-lg">
+                            <input type="email" id="email" name="email" required
+                                class="block w-full mb-4 border-gray-300 rounded-lg">
                         @endauth
                         <label for="demands[]" class="block mb-2">Kies de eisen die je hebt:</label>
                         @foreach ($vacature->demands as $demand)
                             <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
                             <div class="flex items-center mb-2">
-                                <input type="checkbox" id="demand_{{ $demand->id }}" name="demands[{{ $demand->id }}]" value="true" class="mr-2">
+                                <input type="checkbox" id="demand_{{ $demand->id }}"
+                                    name="demands[{{ $demand->id }}]" value="true" class="mr-2">
                                 <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label>
                             </div>
                         @endforeach
-                        <button type="submit" class="bg-moss-medium text-white py-2 px-4 rounded-lg hover:bg-moss-dark">
+                        <button type="submit"
+                            class="bg-moss-medium text-white py-2 px-4 rounded-lg hover:bg-moss-dark">
                             Verstuur Sollicitatie
                         </button>
                     </form>
