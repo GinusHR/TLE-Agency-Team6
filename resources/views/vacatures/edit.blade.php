@@ -82,7 +82,7 @@
                                {{ in_array($day, old('days', $selectedDays)) ? 'checked' : '' }}
                                class="peer hidden">
                         <label for="{{ strtolower($day) }}"
-                               class="flex items-center justify-center w-28 h-14 bg-[#A5A5A4] text-white font-bold rounded-lg cursor-pointer peer-checked:bg-moss-light peer-checked:text-black">
+                               class="flex items-center justify-center w-28 h-14 bg-unchecked-gray text-white font-bold rounded-lg cursor-pointer peer-checked:bg-moss-light peer-checked:text-black">
                             {{ $day }}
                         </label>
                     </div>
