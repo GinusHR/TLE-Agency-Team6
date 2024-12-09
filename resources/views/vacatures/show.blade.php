@@ -215,8 +215,8 @@
                 </p>
                 <div>
                     <!-- Wachtrij & Succesrating -->
-                    <p><strong>Wachtlijst:</strong> Er zitten nog {{ $queue }} mensen op deze
-                        vacature te wachten.</p>
+                    <p><strong>Wachtlijst:</strong> Er wachten nog {{ $queue }} mensen op deze
+                        vacature.</p>
                     @if ($succesRating > 0)
                         <p><strong>Succesrating:</strong> Er zijn tot nu toe {{ $succesRating }} mensen aangenomen.</p>
                     @endif
