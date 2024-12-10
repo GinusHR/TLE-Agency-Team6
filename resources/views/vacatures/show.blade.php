@@ -98,6 +98,10 @@
                             <input type="email" id="email" name="email" required
                                 class="block w-full mb-4 border-gray-300 rounded-lg">
                         @endauth
+                        <input type="hidden" name="vacature_id" value="{{ $vacature->id }}">
+                        <input type="hidden" name="vacature_company" value="{{ $vacature->company->name }}">
+                        <input type="hidden" name="vacature_function" value="{{ $vacature->function }}">
+
                         <label for="demands[]" class="block mb-2">Kies de eisen die je hebt:</label>
                         @foreach ($vacature->demands as $demand)
                             <input type="hidden" name="demands[{{ $demand->id }}]" value="false">

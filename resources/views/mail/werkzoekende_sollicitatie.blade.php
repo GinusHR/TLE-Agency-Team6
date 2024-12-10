@@ -64,12 +64,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Open Hiring - Aanmelding Gelukt!</h1>
+            <h1>Open Hiring - Sollicitatie gelukt!</h1>
         </div>
         <div class="content">
             <h1>Beste gebruiker,</h1>
-            <p>Je aanmelding bij <strong>{{ $details['company'] }}</strong> voor de functie
-                <strong>{{ $details['function'] }}</strong> is succesvol verwerkt.</p>
+            <p>Je sollicitatie bij <strong>{{ $details['company'] }}</strong> voor de functie
+                <strong>{{ $details['function'] }}</strong> is succesvol verwerkt.
+            </p>
             <p>Wij sturen je een mail zodra je wordt aangenomen.</p>
         </div>
         <div class="footer">

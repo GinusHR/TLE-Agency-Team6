@@ -78,7 +78,7 @@
                                 </form>
                             </div>
                             <div class=" flex space-x-2 mt-4">
-                                <button class="bg-violet-light text-white py-1 px-3 rounded-md hover:bg-violet-dark">
+                                <button class="bg-violet-light text-white py-1 px-3 rounded-md hover:bg-yellow">
                                     <a href="{{ route('vacatures.show', $vacature->id) }}">Detail</a>
                                 </button>
                                 <button class="bg-yellow text-black py-1 px-3 rounded-md hover:bg-violet-light">
