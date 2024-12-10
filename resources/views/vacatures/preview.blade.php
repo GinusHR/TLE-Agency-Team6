@@ -84,16 +84,15 @@
                 </form>
 
                 <!-- Publish Form -->
-                <form action="{{ route('vacatures.update', $vacature->id) }}" method="POST">
+                <form action="{{ route('vacatures.publish', $vacature->id) }}" method="POST">
                     @csrf
-                    @method('PATCH')
-                    <input type="hidden" name="status" value="1">
                     <button type="submit"
                             class="bg-violet-light text-white font-medium px-6 py-2 rounded-lg shadow hover:bg-violet-dark">
                         Publiceren
                     </button>
                 </form>
             </div>
+
         </div>
     </div>
 </x-layout>

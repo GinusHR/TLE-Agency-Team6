@@ -19,11 +19,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/vacatures', VacatureController::class);
-Route::post('/vacatures', [VacatureController::class, 'store'])->name('vacatures.store');
-Route::get('/vacatures', [VacatureController::class, 'index'])->name('vacatures.index');
 Route::get('/vacatures/{vacature}/preview', [VacatureController::class, 'preview'])->name('vacatures.preview');
-Route::patch('/vacatures/{vacature}/publish', [VacatureController::class, 'publish'])->name('vacatures.publish');
-Route::patch('/vacatures/{id}', [VacatureController::class, 'update'])->name('vacatures.update');
+Route::post('/vacatures/{vacature}/publish', [VacatureController::class, 'publish'])->name('vacatures.publish');
 
 
 Route::middleware('auth')->group(function () {

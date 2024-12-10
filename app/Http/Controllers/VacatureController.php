@@ -171,7 +171,6 @@ class VacatureController extends Controller
             ->with('success', 'Vacature succesvol gepubliceerd.');
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
@@ -229,4 +228,5 @@ class VacatureController extends Controller
         $vacature->update(['status' => 1]);
         return redirect()->route('vacatures.index')->with('success', 'Vacature gepubliceerd.');
     }
+
 }
