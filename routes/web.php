@@ -40,7 +40,7 @@ Route::prefix('company')->name('company.')->group(function () {
         Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
         Route::get('/profile', [CompanyDashboardController::class, 'profile'])->name('profile');
         Route::patch('/profile/{company}', [CompanyDashboardController::class, 'update'])->name('update');
-        Route::post('/{company}/toggle-visibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('toggleVisibility');
+        Route::post('/{vacature}/toggle-visibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('toggleVisibility');
     });
 });
 

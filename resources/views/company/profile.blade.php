@@ -14,8 +14,7 @@
                 @method('PATCH')
                 <div class="flex flex-row justify-evenly">
                     <div >
-                        <input name="login_code" id="login_code" value="{{$company->login_code}}" hidden>
-                        <input name="password" id="password" value="{{$company->password}}" hidden>
+{{--                       --}}
                         <div class="mb-4">
                             <label for="name" class="text-gray-700 font-medium mb-2">Bedrijfsnaam:</label>
                             <input

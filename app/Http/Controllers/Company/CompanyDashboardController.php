@@ -45,8 +45,6 @@ class CompanyDashboardController extends Controller
                 'description' => 'nullable|string',
                 'image' => 'nullable|image',
                 'logo' => 'nullable|image',
-                'login_code' => 'nullable|string',
-                'password' => 'nullable|string',
             ]);
 
             $company->update($request->only([
@@ -55,8 +53,7 @@ class CompanyDashboardController extends Controller
                 'about_us_url',
                 'contact_url',
                 'description',
-                'login_code',
-                'password'
+
             ]));
 
             if ($request->hasFile('image')) {
