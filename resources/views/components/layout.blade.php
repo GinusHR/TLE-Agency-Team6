@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
     <title>{{ $title ?? 'Mijn Applicatie' }}</title>
     @vite('resources/js/app.js')
 </head>
 
-<body class="bg-cream">
+<body class="bg-cream sm:max-w-full">
 
 <header class="header">
     <a href="/">
         <img src="{{ asset('images/logo.png') }}" alt="Header Afbeelding" class="w-[4vw] left-[2vw]">
     </a>
 
-    <nav class="nav-bar">
+    <nav class="nav-bar max-w-full">
         <!-- Dropdown Menu voor navigatie links -->
         <div class="navbar-dropdown">
             <button class="menu-icon">
@@ -59,8 +60,8 @@
 </main>
 
 
-<footer class="bg-moss-dark h-[20vw] rounded-t-3xl">
-    <div class="footer-content ">
+<footer class="bg-moss-dark h-[20vw] rounded-t-3xl max-w-full">
+    <div class="footer-content">
         <div class="footer-div">
             <h3 class="h3-footer">Voor werkzoekenden</h3>
             <a class="nav-link-footer" href="/register">Vind een baan</a>
