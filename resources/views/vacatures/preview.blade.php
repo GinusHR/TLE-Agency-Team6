@@ -72,9 +72,8 @@
             </div>
             <div>
                 <!-- Edit Form -->
-                <form action="{{ route('vacatures.update', $vacature->id) }}" method="POST">
+                <form action="{{ route('vacatures.edit', $vacature->id) }}" method="GET">
                     @csrf
-                    @method('PATCH')
                     <input type="hidden" name="status" value="1">
                     <input type="hidden" name="redirect_to_edit" value="1"> <!-- Indicates edit action -->
                     <button type="submit"

@@ -160,7 +160,7 @@ class VacatureController extends Controller
         ]));
 
         // Step 4: Handle redirection logic
-        if ($request->has('redirect_to_edit')) {
+        if ($request->input('redirect_to_edit') == '1') { // Explicitly check for '1'
             // Redirect to the edit page with a success message
             return redirect()->route('vacatures.edit', $id)
                 ->with('success', 'Vacature succesvol bijgewerkt. Je kunt deze nu bewerken.');
@@ -170,6 +170,7 @@ class VacatureController extends Controller
         return redirect()->route('vacatures.index')
             ->with('success', 'Vacature succesvol gepubliceerd.');
     }
+
 
     /**
      * Store a newly created resource in storage.

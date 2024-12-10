@@ -108,25 +108,9 @@
                    placeholder="Voer het bedrijf ID in" required>
         </div>
 
-        <div class="mb-4">
-            <label for="secondary_info_needed" class="block text-moss-dark font-medium mb-1">Extra informatie nodig? *</label>
-            <select id="secondary_info_needed" name="secondary_info_needed"
-                    class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
-                <option value="" disabled>Kies een optie</option>
-                <option value="0" {{ old('secondary_info_needed', $vacature->secondary_info_needed) == 0 ? 'selected' : '' }}>Nee</option>
-                <option value="1" {{ old('secondary_info_needed', $vacature->secondary_info_needed) == 1 ? 'selected' : '' }}>Ja</option>
-            </select>
-        </div>
+        <input type="hidden" id="secondary_info_needed" name="secondary_info_needed" value="0"> <!-- Preset to 0 -->
 
-        <div class="mb-6">
-            <label for="status" class="block text-moss-dark font-medium mb-1">Status *</label>
-            <select id="status" name="status"
-                    class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
-                <option value="" disabled>Kies een Status</option>
-                <option value="0" {{ old('status', $vacature->status) == 0 ? 'selected' : '' }}>Inactief</option>
-                <option value="1" {{ old('status', $vacature->status) == 1 ? 'selected' : '' }}>Actief</option>
-            </select>
-        </div>
+        <input type="hidden" id="status" name="status" value="1"> <!-- Preset to 0 -->
 
         <!-- Submit Button -->
         <div class="text-center mt-8">
