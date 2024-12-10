@@ -100,9 +100,6 @@
                     <button type="submit"
                         class="w-full bg-violet-light text-white py-2 rounded-md hover:bg-violet-dark">Zoeken</button>
                 </form>
-                <a href="{{ route('vacatures.create') }}" id="create-vacature-link"
-                    class="mt-6 md:mt-0 md:ml-6 inline-block bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light">Maak
-                    een vacature aan</a>
             </div>
             <h2 class="text-2xl font-semibold mt-8">Vacatures</h2>
             @if ($vacatures->isEmpty())
