@@ -29,7 +29,7 @@
             <div class="dropdown-content">
                 <!-- Navigatie links aan de linker kant -->
                 <div class="dropdown-links">
-                    <a class="nav-link-header" href="/">Homepage</a>
+                    <a class="nav-link-header" href="/">Homepagina</a>
                     <a class="nav-link-header" href="/vacatures">Vacatures</a>
                     <a class="nav-link-header" href="/contact">Contact</a>
                 </div>
@@ -39,8 +39,8 @@
                     @if(Auth::user())
                         <a href="/profile" class="button-small mt-4">Profiel</a>
                     @else
-                        <a href="/login" class="button-small mt-4">Log in</a>
-                        <a href="/register" class="button-small mt-4">Register</a>
+                        <a href="/login" class="button-small mt-4">Inloggen</a>
+                        <a href="/register" class="button-small mt-4">Registreren</a>
                     @endif
                 </div>
             </div>
