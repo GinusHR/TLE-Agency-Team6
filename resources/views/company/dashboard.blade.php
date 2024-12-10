@@ -72,6 +72,8 @@
                                             <option value="{{ $counter }}">{{ $counter }} </option>
                                         @endforeach
                                     </select>
+                                    <label for="workday">Eerste werkdag:</label>
+                                    <input type="date" id="workday" name="workday">
                                     <button>Verzend uitnodiging</button>
                                 </form>
                             </div>

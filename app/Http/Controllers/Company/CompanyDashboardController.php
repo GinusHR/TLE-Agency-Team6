@@ -122,6 +122,13 @@ class CompanyDashboardController extends Controller
             //maak invitation
             $invitation = new Invitation();
             $invitation->application_id = $application->id;
+            if ($request->has('workday')) {
+                $workday = $request->input('workday');
+                $invitation->day = $workday;
+            } else {
+                $workday = 0;
+            }
+
             $invitation->save();
 
             //vraag gegevens op voor de mail
@@ -136,7 +143,8 @@ class CompanyDashboardController extends Controller
             $details = [
                 'company' => $company,
                 'function' => $function,
-                'location' => $location
+                'location' => $location,
+                'workday' => $workday
             ];
             //stuur mail
             Mail::to($email)->send(new acceptApplicantsMail($details));

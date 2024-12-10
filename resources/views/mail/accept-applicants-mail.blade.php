@@ -73,7 +73,13 @@
             </p>
             <p>Je bent gevraagd om naar <strong>{{ $details['location'] }}</strong> te komen om te beginnen met werken.
             </p>
-            <p><strong>{{ $details['company'] }}</strong> wil graag dat je zelf een datum en tijd nog doorgeeft.</p>
+            @if ($details['workday'] === 0)
+                <p><strong>{{ $details['company'] }}</strong> wil graag dat je zelf een datum en tijd nog doorgeeft.</p>
+            @else
+                <p><strong>{{ $details['company'] }}</strong> wil graag dat je op
+                    <strong>{{ $details['workday'] }}</strong> komt werken.
+                </p>
+            @endif
             <p>Veel succes op je nieuwe baan!</p>
         </div>
         <div class="footer">
