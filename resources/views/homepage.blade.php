@@ -15,7 +15,7 @@
 
 
         <div class="text-xl text-[#2E342A] flex flex-col items-center ">
-            <h2 class="text-3xl m-[2vw] sm:m-[5vw] w-1/2 sm:w-[90vw] w-auto sm:text-center font-bold">Werk voor wie wil werken</h2>
+            <h2 class="text-3xl m-[2vw] sm:m-[5vw]  sm:w-[90vw] w-auto sm:text-center font-bold">Werk voor wie wil werken</h2>
             <p class="w-[35vw] sm:w-[90vw] text-left">
                 Met Open Hiring heeft iedereen een eerlijke kans op een baan. Wie wil én kan werken, kan zó aan de slag. Zonder sollicitatiegesprek, zonder brief, zonder vragen. Met één druk op de knop. Open Hiring draait namelijk niet om diploma’s, maar om mensen. Niet om praatjes, maar om aanpakken.
             </p>
