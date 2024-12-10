@@ -112,27 +112,11 @@
                    placeholder="Voer het bedrijf ID in" required>
         </div>
 
-        <!-- Extra Informatie Nodig -->
-        <div class="mb-4">
-            <label for="secondary_info_needed" class="block text-moss-dark font-medium mb-1">Extra informatie nodig? *</label>
-            <select id="secondary_info_needed" name="secondary_info_needed"
-                    class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
-                <option value="" disabled selected>Kies een optie</option>
-                <option value="0">Nee</option>
-                <option value="1">Ja</option>
-            </select>
-        </div>
+        <!-- Extra Informatie Nodig (Hidden) -->
+        <input type="hidden" id="secondary_info_needed" name="secondary_info_needed" value="0"> <!-- Preset to 0 -->
 
-        <!-- Status -->
-        <div class="mb-6">
-            <label for="status" class="block text-moss-dark font-medium mb-1">Status *</label>
-            <select id="status" name="status"
-                    class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
-                <option value="" disabled selected>Kies een Status</option>
-                <option value="0">Inactief</option>
-                <option value="1">Actief</option>
-            </select>
-        </div>
+        <!-- Status (Hidden) -->
+        <input type="hidden" id="status" name="status" value="0"> <!-- Preset to 0 -->
 
         <!-- Submit Button -->
         <div>

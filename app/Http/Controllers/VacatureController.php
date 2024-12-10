@@ -159,9 +159,18 @@ class VacatureController extends Controller
             'days' => json_encode($validated['days']), // Encode days as JSON
         ]));
 
-        // Step 4: Redirect the user with a success message
-        return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol bijgewerkt.');
+        // Step 4: Handle redirection logic
+        if ($request->has('redirect_to_edit')) {
+            // Redirect to the edit page with a success message
+            return redirect()->route('vacatures.edit', $id)
+                ->with('success', 'Vacature succesvol bijgewerkt. Je kunt deze nu bewerken.');
+        }
+
+        // Default: Redirect to the index page with a success message
+        return redirect()->route('vacatures.index')
+            ->with('success', 'Vacature succesvol gepubliceerd.');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -180,18 +189,20 @@ class VacatureController extends Controller
             'description' => 'required|max:1024',
             'secondary_info_needed' => 'required|boolean',
             'status' => 'required|integer|in:0,1',
-            'days' => 'required|array|min:1|max:7', // Ensure at least 1 and at most 7 days
-            'days.*' => 'in:Maandag,Dinsdag,Woensdag,Donderdag,Vrijdag,Zaterdag,Zondag', // Validate individual days
+            'days' => 'required|array|min:1|max:7',
+            'days.*' => 'in:Maandag,Dinsdag,Woensdag,Donderdag,Vrijdag,Zaterdag,Zondag',
         ]);
 
-        // Create the new vacature with days encoded as JSON
+        // Create the new vacature
         $newVacature = Vacature::create(array_merge($validated, [
-            'days' => json_encode($validated['days']), // Encode days as JSON
+            'days' => json_encode($validated['days']),
+            'status' => 0, // Explicitly set status to 0
         ]));
 
-        // Redirect back with a success message
-        return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol aangemaakt!');
+        // Redirect to the preview page
+        return redirect()->route('vacatures.preview', $newVacature->id);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -206,5 +217,16 @@ class VacatureController extends Controller
 
         // Redirect back with a success message
         return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol verwijderd.');
+    }
+
+    public function preview(Vacature $vacature)
+    {
+        return view('vacatures.preview', compact('vacature'));
+    }
+
+    public function publish(Vacature $vacature)
+    {
+        $vacature->update(['status' => 1]);
+        return redirect()->route('vacatures.index')->with('success', 'Vacature gepubliceerd.');
     }
 }

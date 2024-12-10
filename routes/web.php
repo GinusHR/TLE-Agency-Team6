@@ -21,6 +21,10 @@ Route::get('/dashboard', function () {
 Route::resource('/vacatures', VacatureController::class);
 Route::post('/vacatures', [VacatureController::class, 'store'])->name('vacatures.store');
 Route::get('/vacatures', [VacatureController::class, 'index'])->name('vacatures.index');
+Route::get('/vacatures/{vacature}/preview', [VacatureController::class, 'preview'])->name('vacatures.preview');
+Route::patch('/vacatures/{vacature}/publish', [VacatureController::class, 'publish'])->name('vacatures.publish');
+Route::patch('/vacatures/{id}', [VacatureController::class, 'update'])->name('vacatures.update');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
