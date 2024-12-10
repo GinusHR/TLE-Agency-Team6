@@ -3,7 +3,7 @@
 <x-layout>
     <div class="flex items-center justify-center min-h-screen mt-[-10rem]">
         <div class="w-full max-w-sm p-6 bg-moss-light shadow-lg rounded-lg">
-            <h1 class="text-2xl font-bold text-center mb-6">Bedrijfs Login</h1>
+            <h1 class="text-2xl font-bold text-center mb-6">Inloggen als bedrijf</h1>
             @if (session('success'))
                 <p class="text-base font-semibold mb-4">{{ session('success') }}</p>
             @endif
