@@ -29,7 +29,7 @@ body{
 
 }
 * {
-   @apply overflow-x-hidden
+   @apply sm:overflow-x-hidden
 }
 
 body p {

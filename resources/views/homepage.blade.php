@@ -14,8 +14,8 @@
         <img src="{{ asset('images/homepage-image-1.jpg') }}" alt="homepage afbeelding" class="w-[30vw]  sm:w-[60vw] sm:mb-[5vw]paa h-auto rounded-[4vw]">
 
 
-        <div class="text-xl text-[#2E342A] flex flex-col items-center max-w-full">
-            <h2 class="text-3xl m-[2vw] sm:m-[5vw] w-1/2 sm:w-[90vw] sm:text-center font-bold">Werk voor wie wil werken</h2>
+        <div class="text-xl text-[#2E342A] flex flex-col items-center ">
+            <h2 class="text-3xl m-[2vw] sm:m-[5vw] w-1/2 sm:w-[90vw] w-auto sm:text-center font-bold">Werk voor wie wil werken</h2>
             <p class="w-[35vw] sm:w-[90vw] text-left">
                 Met Open Hiring heeft iedereen een eerlijke kans op een baan. Wie wil én kan werken, kan zó aan de slag. Zonder sollicitatiegesprek, zonder brief, zonder vragen. Met één druk op de knop. Open Hiring draait namelijk niet om diploma’s, maar om mensen. Niet om praatjes, maar om aanpakken.
             </p>
