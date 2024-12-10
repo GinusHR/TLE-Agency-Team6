@@ -28,7 +28,27 @@
 
                 <div>
                     <h2 class="font-medium">Minimaal Opleidingsniveau:</h2>
-                    <p>{{ $vacature->education }}</p>
+                    <p>
+                        @switch($vacature->education)
+                            @case(1)
+                                N.V.T.
+                                @break
+                            @case(2)
+                                Middelbare School
+                                @break
+                            @case(3)
+                                MBO
+                                @break
+                            @case(4)
+                                HBO
+                                @break
+                            @case(5)
+                                Universitair
+                                @break
+                            @default
+                                Onbekend
+                        @endswitch
+                    </p>
                 </div>
 
                 <div>

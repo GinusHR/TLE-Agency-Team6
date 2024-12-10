@@ -17,6 +17,7 @@ class Vacature extends Model
         'place',
         'location',
         'time_id',
+        'education',
         'description',
         'secondary_info_needed',
         'image',

@@ -43,11 +43,11 @@
             <select id="education" name="education"
                     class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
                 <option value="" disabled>Kies een Opleidingsniveau</option>
-                <option value="NVT" {{ old('education', $vacature->education) == 'NVT' ? 'selected' : '' }}>N.V.T.</option>
-                <option value="Highschool" {{ old('education', $vacature->education) == 'Highschool' ? 'selected' : '' }}>Middelbareschool</option>
-                <option value="MBO" {{ old('education', $vacature->education) == 'MBO' ? 'selected' : '' }}>MBO</option>
-                <option value="HBO" {{ old('education', $vacature->education) == 'HBO' ? 'selected' : '' }}>HBO</option>
-                <option value="University" {{ old('education', $vacature->education) == 'University' ? 'selected' : '' }}>Universitair</option>
+                <option value="1" {{ old('education', $vacature->education) == 1 ? 'selected' : '' }}>N.V.T.</option>
+                <option value="2" {{ old('education', $vacature->education) == 2 ? 'selected' : '' }}>Middelbareschool</option>
+                <option value="3" {{ old('education', $vacature->education) == 3 ? 'selected' : '' }}>MBO</option>
+                <option value="4" {{ old('education', $vacature->education) == 4 ? 'selected' : '' }}>HBO</option>
+                <option value="5" {{ old('education', $vacature->education) == 5 ? 'selected' : '' }}>Universitair</option>
             </select>
         </div>
 

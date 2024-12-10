@@ -47,11 +47,11 @@
             <select id="education" name="education"
                     class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
                 <option value="" disabled selected>Kies een Opleidingsniveau</option>
-                <option value="NVT">N.V.T.</option>
-                <option value="Highschool">Middelbareschool</option>
-                <option value="MBO">MBO</option>
-                <option value="HBO">HBO</option>
-                <option value="University">Universitair</option>
+                <option value="1">N.V.T.</option>
+                <option value="2">Middelbareschool</option>
+                <option value="3">MBO</option>
+                <option value="4">HBO</option>
+                <option value="5">Universitair</option>
             </select>
         </div>
 
