@@ -10,25 +10,30 @@ class CompanyLoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('company.auth.login');
+        if (Auth::guard('company')->user()) {
+            return redirect()->route('company.dashboard');
+        } else {
+            return view('company.auth.login');
+        }
+
     }
 
     public function login(Request $request)
     {
-        $request->validate([
-            'login_code' => 'required|string',
-            'password' => 'required|string',
-        ]);
+            $request->validate([
+                'login_code' => 'required|string',
+                'password' => 'required|string',
+            ]);
 
-        $credentials = $request->only('login_code', 'password');
+            $credentials = $request->only('login_code', 'password');
 
-        if (Auth::guard('company')->attempt($credentials)){
-            return redirect()->intended('company.dashboard');
-        }
+            if (Auth::guard('company')->attempt($credentials)){
+                return redirect()->intended('company.dashboard');
+            }
 
-        return back()->withErrors([
-            'login_code' => 'Login code of wachtwoord is niet correct.',
-        ]);
+            return back()->withErrors([
+                'login_code' => 'Login code of wachtwoord is niet correct.',
+            ]);
     }
 
     public function logout(Request $request)
