@@ -66,7 +66,7 @@
 
         <div class="footer-links">
             <h3 class="h3-footer">Voor werkgevers</h3>
-            <a class="nav-link-footer" href="/register">Werken met Open Hiring</a>
+            <a class="nav-link-footer" href="/contact">Werken met Open Hiring</a>
             <a class="nav-link-footer" href="{{ route('company.dashboard') }}">Dashboard Bedrijf</a>
         </div>
 
