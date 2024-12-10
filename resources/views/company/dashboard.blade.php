@@ -60,6 +60,7 @@
                                 <span>Mensen uitnodigen om te komen werken</span>
                                 <form action="{{ route('company.acceptApplicants', $vacature->id) }}" method="POST">
                                     @csrf
+                                    @method('delete')
                                     <select name="acceptApplicants" id="acceptApplicants">
                                         <option value="">Aantal mensen</option>
                                         @php
@@ -77,30 +78,39 @@
                                     <button>Verzend uitnodiging</button>
                                 </form>
                             </div>
-                            <div class=" flex space-x-2 mt-4">
-                                <button class="bg-violet-light text-white py-1 px-3 rounded-md hover:bg-yellow">
-                                    <a href="{{ route('vacatures.show', $vacature->id) }}">Detail</a>
-                                </button>
-                                <button class="bg-yellow text-black py-1 px-3 rounded-md hover:bg-violet-light">
-                                    <a href="{{ route('vacatures.edit', $vacature->id) }}">Edit</a>
-                                </button>
+                            <div class="flex space-x-2 mt-4">
+                                <div>
+                                    <button
+                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300 bg-violet-light hover:bg-violet-dark text-white">
+                                        <a href="{{ route('vacatures.show', $vacature->id) }}">Detail</a>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button
+                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300 bg-yellow hover:bg-amber-400 text-black">
+                                        <a href="{{ route('vacatures.edit', $vacature->id) }}">Edit</a>
+                                    </button>
+                                </div>
                                 <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST"
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                        class="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600"
-                                        onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">Delete</button>
+                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300 bg-red-500 hover:bg-red-600 text-white"
+                                        onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">
+                                        Delete
+                                    </button>
                                 </form>
                                 <form action="{{ route('company.toggleVisibility', $vacature->id) }}" method="POST">
                                     @csrf
                                     <button type="submit"
                                         class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300
-                                        {{ $vacature->status ? 'bg-amber-500 hover:bg-amber-600 text-white' : 'bg-purple-500 hover:bg-purple-600 text-white' }}">
+                                        {{ $vacature->status ? 'bg-yellow hover:bg-amber-400 text-black' : 'bg-violet-light hover:bg-violet-dark text-white' }}">
                                         {{ $vacature->status ? 'Close' : 'Open' }}
                                     </button>
                                 </form>
                             </div>
+
                         </div>
 
                         <div class="overflow-x-auto" id="vacature{{ $vacature->id }}Table" style="display: none;">

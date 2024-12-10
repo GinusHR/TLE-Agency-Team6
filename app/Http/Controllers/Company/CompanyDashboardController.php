@@ -126,7 +126,7 @@ class CompanyDashboardController extends Controller
                 $workday = $request->input('workday');
                 $invitation->day = $workday;
             } else {
-                $workday = 0;
+                $workday = '';
             }
 
             $invitation->save();

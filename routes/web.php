@@ -39,7 +39,7 @@ Route::patch('/company/profile', [CompanyDashboardController::class, 'updateProf
 Route::post('/company/{id}/toggleVisibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('company.toggleVisibility');
 
 Route::post('/company/{id}/rejectApplicant', [CompanyDashboardController::class, 'rejectApplicantForDemands'])->name('company.rejectApplicant');
-Route::post('/company/{id}/acceptApplicants', [CompanyDashboardController::class, 'acceptApplicants'])->name('company.acceptApplicants');
+Route::delete('/company/{id}/acceptApplicants', [CompanyDashboardController::class, 'acceptApplicants'])->name('company.acceptApplicants');
 
 
 
