@@ -38,6 +38,11 @@ Route::get('/company/profile', [CompanyDashboardController::class, 'profile'])->
 Route::patch('/company/profile', [CompanyDashboardController::class, 'updateProfile'])->name('company.updateProfile');
 Route::post('/company/{id}/toggleVisibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('company.toggleVisibility');
 
+Route::post('/company/{id}/rejectApplicant', [CompanyDashboardController::class, 'rejectApplicantForDemands'])->name('company.rejectApplicant');
+Route::post('/company/{id}/acceptApplicants', [CompanyDashboardController::class, 'acceptApplicants'])->name('company.acceptApplicants');
+
+
+
 
 Route::resource('vacatures', VacatureController::class);
 Route::resource('applications', ApplicationController::class);

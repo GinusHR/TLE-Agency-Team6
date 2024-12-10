@@ -56,6 +56,25 @@
                                     </button>
                                 </div>
                             </div>
+                            <div>
+                                <span>Mensen uitnodigen om te komen werken</span>
+                                <form action="{{ route('company.acceptApplicants', $vacature->id) }}" method="POST">
+                                    @csrf
+                                    <select name="acceptApplicants" id="acceptApplicants">
+                                        <option value="">Aantal mensen</option>
+                                        @php
+                                            $counter = 0;
+                                        @endphp
+                                        @foreach ($vacature->applications->where('accepted', 0) as $application)
+                                            @php
+                                                $counter++;
+                                            @endphp
+                                            <option value="{{ $counter }}">{{ $counter }} </option>
+                                        @endforeach
+                                    </select>
+                                    <button>Verzend uitnodiging</button>
+                                </form>
+                            </div>
                             <div class=" flex space-x-2 mt-4">
                                 <button class="bg-violet-light text-white py-1 px-3 rounded-md hover:bg-violet-dark">
                                     <a href="{{ route('vacatures.show', $vacature->id) }}">Detail</a>
@@ -105,9 +124,15 @@
                                             Acties</th>
                                     </tr>
                                 <tbody>
-                                    @foreach ($vacature->applications as $key => $application)
+                                    @php
+                                        $counter = 0;
+                                    @endphp
+                                    @foreach ($vacature->applications->where('accepted', 0) as $application)
+                                        @php
+                                            $counter++;
+                                        @endphp
                                         <tr class="border-b dark:border-gray-700">
-                                            <td class="px-4 py-2">{{ $key + 1 }}</td>
+                                            <td class="px-4 py-2">{{ $counter }}</td>
                                             <td class="px-4 py-2">{{ $application->created_at }}</td>
                                             <td class="px-4 py-2">
                                                 @foreach ($application->demands as $demand)
@@ -119,8 +144,16 @@
                                             @endif
                                             <td class="px-4 py-2 h-full">
                                                 <div class="flex items-center justify-center space-x-4 h-full">
-                                                    <a href="{{ route('vacatures.show', $vacature->id) }}"
-                                                        class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold">Afwijzen</a>
+                                                    @if (count($application->demands) > 0)
+                                                        <form
+                                                            action="{{ route('company.rejectApplicant', $application->id) }}"
+                                                            method="POST" style="display:inline;">
+                                                            @csrf
+                                                            <button type="submit"
+                                                                class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold"
+                                                                onclick="return confirm('Weet je zeker dat je deze applicant wilt afwijzen?');">Afwijzen</button>
+                                                        </form>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>

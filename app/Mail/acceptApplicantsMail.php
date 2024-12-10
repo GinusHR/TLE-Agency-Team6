@@ -3,10 +3,13 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SollicitatieMailVWerkzoekende extends Mailable
+class acceptApplicantsMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,8 +32,8 @@ class SollicitatieMailVWerkzoekende extends Mailable
      */
     public function build()
     {
-        return $this->subject('Open Hiring - Aanmelding Gelukt!')
-            ->view('mail.werkzoekende_sollicitatie')
+        return $this->subject('Open Hiring - Aangenomen!')
+            ->view('mail.accept-applicants-mail')
             ->with('details', $this->details);
     }
 }

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
+use App\Mail\acceptApplicantsMail;
+use App\Mail\AfwijzingsmailDoorEisen;
+use App\Models\Application;
+use App\Models\Invitation;
 use App\Models\Vacature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Mail;
 
 class CompanyDashboardController extends Controller
 {
@@ -73,6 +77,72 @@ class CompanyDashboardController extends Controller
 
         $vacature->save();
 
+        return redirect()->route('company.dashboard');
+    }
+
+    public function rejectApplicantForDemands(string $id)
+    {
+        $application = Application::findOrFail($id);
+
+        $application->delete();
+
+        //vraag gegevens op voor de mail
+        if (empty($application->user_id)) {
+            $email = $application->email;
+        } else {
+            $email = $application->user->email;
+        }
+        $company = $application->vacature->company->name;
+        $function = $application->vacature->function;
+        $details = [
+            'company' => $company,
+            'function' => $function
+        ];
+        //stuur mail
+        Mail::to($email)->send(new AfwijzingsmailDoorEisen($details));
+
+        return redirect()->route('company.dashboard');
+    }
+
+    public function acceptApplicants($id, Request $request)
+    {
+        $applicantsAmount = $request->input('acceptApplicants');
+
+        $vacature = Vacature::findOrFail($id);
+
+        $counter = 0;
+        foreach ($vacature->applications->where('accepted', 0) as $key => $application) {
+            if ($counter >= $applicantsAmount) {
+                break; //hiermee stopt de foreach loop als het aantal doorgegeven is applicanten is bereikt
+            }
+
+            $application->accepted = 1;
+            $application->save();
+
+            //maak invitation
+            $invitation = new Invitation();
+            $invitation->application_id = $application->id;
+            $invitation->save();
+
+            //vraag gegevens op voor de mail
+            if (empty($application->user_id)) {
+                $email = $application->email;
+            } else {
+                $email = $application->user->email;
+            }
+            $company = $application->vacature->company->name;
+            $function = $application->vacature->function;
+            $location = $application->vacature->location;
+            $details = [
+                'company' => $company,
+                'function' => $function,
+                'location' => $location
+            ];
+            //stuur mail
+            Mail::to($email)->send(new acceptApplicantsMail($details));
+
+            $counter++;
+        }
         return redirect()->route('company.dashboard');
     }
 }
