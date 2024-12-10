@@ -86,8 +86,8 @@
                 </div>
 
                 <div>
-                    <h2 class="font-medium">Bedrijf ID:</h2>
-                    <p>{{ $vacature->company_id }}</p>
+                    <h2 class="font-medium">Bedrijf:</h2>
+                    <p>{{ $vacature->company->name }}</p>
                 </div>
             </div>
             <div>

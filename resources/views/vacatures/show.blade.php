@@ -18,7 +18,27 @@
                     <p class="mb-3"><strong>Salaris:</strong> €{{ $vacature->salary }} per maand</p>
                     <p class="mb-3"><strong>Werkuren:</strong> {{ $vacature->workhours }} uur per week</p>
                     <p class="mb-3"><strong>Contract:</strong> {{ $vacature->time_id === 0 ? 'Parttime' : 'Fulltime' }}</p>
-                    <p class="mb-3"><strong>Opleidings Niveau:</strong> {{ $vacature->education }}</p>
+                    <p class="mb-3"><strong>Opleidings Niveau:</strong>
+                        @switch($vacature->education)
+                            @case(1)
+                                N.V.T.
+                                @break
+                            @case(2)
+                                Middelbare School
+                                @break
+                            @case(3)
+                                MBO
+                                @break
+                            @case(4)
+                                HBO
+                                @break
+                            @case(5)
+                                Universitair
+                                @break
+                            @default
+                                Onbekend
+                        @endswitch
+                    </p>
                     <p class="mb-3"><strong>Eisen:</strong></p>
                     <ul class="list-disc ml-6 mb-3">
                         @foreach ($vacature->demands as $demand)
