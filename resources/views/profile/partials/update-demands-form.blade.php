@@ -1,10 +1,10 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <h2 class="text-lg font-medium text-gray-900">
             {{ __('Kwalificaties') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-1 text-sm text-gray-600">
             {{ __("Verander je kwalificaties.") }}
         </p>
     </header>
@@ -18,7 +18,7 @@
         @method('patch')
 
         <div class="space-y-4">
-            <h3 class="text-lg font-medium text-white">{{ __('Selecteer je kwalificaties') }}</h3>
+            <h3 class="text-lg font-medium text-gray-900">{{ __('Selecteer je kwalificaties') }}</h3>
 
             @foreach($demands as $demand)
                 <div class="flex items-center">
@@ -30,7 +30,7 @@
                         @if($user->demands->contains($demand->id)) checked @endif
                         class="mr-2"
                     />
-                    <label for="demand_{{ $demand->id }}" class="text-white">{{ $demand->name }}</label>
+                    <label for="demand_{{ $demand->id }}" class="text-gray-900">{{ $demand->name }}</label>
                 </div>
             @endforeach
         </div>
@@ -44,7 +44,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600 dark:text-gray-400"
+                    class="text-sm text-gray-600"
                 >{{ __('Opgeslagen.') }}</p>
             @endif
         </div>

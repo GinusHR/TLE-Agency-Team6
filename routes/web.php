@@ -12,6 +12,10 @@ Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::get('/dashboard', function () {
@@ -31,22 +35,23 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('company/login', [CompanyLoginController::class, 'showLoginForm'])->name('company.login');
-Route::post('company/login', [CompanyLoginController::class, 'login']);
-Route::post('company/logout', [CompanyLoginController::class, 'logout'])->name('company.logout');
-Route::middleware('auth:company')->group(function () {
-    Route::get('company.dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
-    Route::get('/company/profile', [CompanyDashboardController::class, 'profile'])->name('company.profile');
-    Route::patch('/company/profile', [CompanyDashboardController::class, 'updateProfile'])->name('company.updateProfile');
-});
 
+Route::prefix('company')->name('company.')->group(function () {
+    Route::get('login', [CompanyLoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [CompanyLoginController::class, 'login']);
+    Route::post('logout', [CompanyLoginController::class, 'logout'])->name('logout');
+
+    Route::middleware(['auth:company'])->group(function () {
+        Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/profile', [CompanyDashboardController::class, 'profile'])->name('profile');
+        Route::patch('/profile/{company}', [CompanyDashboardController::class, 'update'])->name('update');
+        Route::post('/{vacature}/toggle-visibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('toggleVisibility');
+    });
+});
 
 
 Route::resource('vacatures', VacatureController::class);
 Route::resource('applications', ApplicationController::class);
-
-Route::resource('applications', ApplicationController::class);
-
 Route::patch('vacatures.filter', [VacatureController::class, 'filter'])->name('vacatures.filter');
 
 require __DIR__ . '/auth.php';
