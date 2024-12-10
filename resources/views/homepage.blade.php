@@ -5,13 +5,13 @@
 
     <div class="bg-moss-light">
     <!-- De header met gecentreerde tekst -->
-    <h1>Welkom bij open hiring!</h1>
+    <h1 class="sm:mt-[5vw]">Welkom bij open hiring!</h1>
 
 
         <!-- De container voor de afbeelding en de tekst -->
     <div class="flex justify-between items-center p-[5%] sm:flex-col max-w-full">
         <!-- De afbeelding instellen op 25% breedte en vierkant houden -->
-        <img src="{{ asset('images/homepage-image-1.jpg') }}" alt="homepage afbeelding" class="w-[30vw]  sm:w-[60vw] h-auto rounded-[4vw]">
+        <img src="{{ asset('images/homepage-image-1.jpg') }}" alt="homepage afbeelding" class="w-[30vw]  sm:w-[60vw] sm:mb-[5vw]paa h-auto rounded-[4vw]">
 
 
         <div class="text-xl text-[#2E342A] flex flex-col items-center max-w-full">
