@@ -60,35 +60,38 @@
 </main>
 
 
-<footer class="bg-moss-dark h-[20vw] rounded-t-3xl max-w-full">
-    <div class="footer-content">
-        <div class="footer-div">
+<footer class="bg-moss-dark h-auto rounded-t-3xl max-w-full flex justify-center">
+    <div class="footer-content flex flex-wrap  sm:grid sm:grid-cols-2 sm:grid-rows-2 ">
+        <!-- Voor Werkzoekenden -->
+        <div class="footer-links">
             <h3 class="h3-footer">Voor werkzoekenden</h3>
             <a class="nav-link-footer" href="/register">Vind een baan</a>
             <a class="nav-link-footer" href="/login">Veelgestelde vragen</a>
         </div>
 
+        <!-- Voor Werkgevers -->
         <div class="footer-links">
             <h3 class="h3-footer">Voor werkgevers</h3>
             <a class="nav-link-footer" href="/register">Spelregels</a>
             <a class="nav-link-footer" href="/login">Veelgestelde vragen</a>
         </div>
 
+        <!-- Over Open Hiring -->
         <div class="footer-links">
             <h3 class="h3-footer">Over open hiring</h3>
             <a class="nav-link-footer" href="/register">Onstaan</a>
             <a class="nav-link-footer" href="/login">Privacy beleid</a>
         </div>
 
+        <!-- Volg ons op -->
         <div class="footer-links">
             <h3 class="h3-footer">Volg ons op</h3>
-            <a class="nav-link-footer" href="/register">Linkedin</a>
+            <a class="nav-link-footer" href="/register">LinkedIn</a>
             <a class="nav-link-footer" href="/login">Instagram</a>
             <a class="nav-link-footer" href="/contact">Facebook</a>
         </div>
-
     </div>
-
 </footer>
+
 </body>
 </html>

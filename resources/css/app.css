@@ -52,13 +52,15 @@ h1 {
 }
 
 .nav-link-footer {
-    @apply inline-flex items-center justify-center bg-moss-dark  m-[0.2vw];
-    @apply text-center transition-all duration-300 tracking-normal hover:tracking-widest;
     width: 12vw;
+    @apply inline-flex items-center justify-center bg-moss-dark  m-[0.2vw] sm:w-[30vw];
+    @apply text-center transition-all duration-300 tracking-normal hover:tracking-widest;
+
 }
 
 .h3-footer {
-    @apply font-bold text-lg text-yellow
+    @apply font-bold text-lg text-yellow sm:text-[0.85rem]  ;
+
 }
 
 
@@ -70,14 +72,15 @@ h1 {
 
 
 .footer-content {
-    @apply flex justify-center items-center gap-[5vw] p-[2vw] h-full   ;
+    @apply flex justify-between sm:justify-center items-start gap-[10vw] sm:gap-[4vw]  p-[4vw] h-auto  sm:w-[90vw]  ;
 }
 
 
 
 .footer-links {
-    @apply flex flex-col items-center gap-[0.5vw] text-white;
+    @apply flex flex-col items-center justify-center text-white sm:text-[0.7rem] ;
 }
+
 
 
 .footer-div {
@@ -140,13 +143,13 @@ h1 {
 
 @media (max-width: 768px) {
     body p{
-        font-size: 0.8rem !important; /* Zorg dat dit altijd wordt toegepast */
+        font-size: 0.9rem !important; /* Zorg dat dit altijd wordt toegepast */
     }
     h1 {
-        font-size: 1.5rem !important;
+        font-size: 1.6rem !important;
     }
-    h2, h3 {
-        font-size: 1.2rem !important;
+    main h2, main h3 {
+        font-size: 1.3rem !important;
     }
 
 

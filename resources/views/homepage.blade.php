@@ -26,11 +26,7 @@
         </div>
         </div>
 
-
-
-
     </div>
-
 
     <div class="flex flex-col justify-center items-center max-w-full">
         <h1 class="mb-[2vw] sm:m-[5vw]">Zo werkt het</h1>
