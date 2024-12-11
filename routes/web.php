@@ -16,6 +16,10 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/info', function () {
+   return view('info');
+});
+
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::get('/dashboard', function () {

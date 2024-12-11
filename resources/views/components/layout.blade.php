@@ -33,12 +33,12 @@
                         <div class="dropdown-links">
                             <a class="nav-link-header" href="/">Homepage</a>
                             <a class="nav-link-header" href="/vacatures">Vacatures</a>
-                            <a class="nav-link-header" href="/contact">Contact</a>
+                            <a class="nav-link-header" href="/info">Informatie</a>
                         </div>
 
                         <!-- Login en Register knoppen aan de rechter kant -->
                         <div class="dropdown-buttons">
-                            @if (Auth::user())
+                            @if(Auth::user())
                                 <a href="/profile" class="button-small mt-4">Profiel</a>
                             @else
                                 <a href="/login" class="button-small mt-4">Log in</a>
@@ -69,7 +69,7 @@
 
             <div class="footer-links">
                 <h3 class="h3-footer">Voor werkgevers</h3>
-                <a class="nav-link-footer" href="/register">Werken met Open Hiring</a>
+                <a class="nav-link-footer" href="/contact">Werken met Open Hiring</a>
                 <a class="nav-link-footer" href="{{ route('company.dashboard') }}">Dashboard Bedrijf</a>
             </div>
 
