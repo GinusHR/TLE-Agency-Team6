@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Company;
 use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\Types\Nullable;
+use Illuminate\Support\Str;
 
 
 class CompanyDashboardController extends Controller
@@ -138,6 +139,9 @@ class CompanyDashboardController extends Controller
             //maak invitation
             $invitation = new Invitation();
             $invitation->application_id = $application->id;
+
+            $invitation->url_hashed = Str::random(32);
+
             if ($request->has('workday')) {
                 $workday = $request->input('workday');
                 $invitation->day = $workday;
@@ -156,11 +160,13 @@ class CompanyDashboardController extends Controller
             $company = $application->vacature->company->name;
             $function = $application->vacature->function;
             $location = $application->vacature->location;
+            $link = url('invitations/' . $invitation->url_hashed . '/' . $invitation->id);
             $details = [
                 'company' => $company,
                 'function' => $function,
                 'location' => $location,
-                'workday' => $workday
+                'workday' => $workday,
+                'link' => $link
             ];
             //stuur mail
             Mail::to($email)->send(new acceptApplicantsMail($details));
