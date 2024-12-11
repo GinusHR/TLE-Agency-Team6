@@ -39,7 +39,7 @@
                         <!-- Login en Register knoppen aan de rechter kant -->
                         <div class="dropdown-buttons">
                             @if (Auth::user())
-                                <a href="/profile" class="button-small mt-4">Profiel</a>
+                                <a href="/profile" class="button-small md:mt-6">Profiel</a>
                             @else
                                 <a href="/login" class="button-small mt-4">Log in</a>
                                 <a href="/register" class="button-small mt-4">Register</a>
