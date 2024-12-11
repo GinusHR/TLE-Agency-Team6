@@ -1,12 +1,11 @@
 @vite(['resources/js/app.js', 'resources/css/app.css'])
 
 <x-layout>
-    <h1>Welkom op het Dashboard, {{ Auth::guard('company')->user()->name }}</h1>
+    <h1 class="mb-5">Welkom op het Dashboard, {{ Auth::guard('company')->user()->name }}</h1>
     @if (session('success'))
         <p style="color: green;">{{ session('success') }}</p>
     @endif
-    <div
-        class="flex flex-col justify-center items-center mx-auto max-w-md text-center p-6 bg-moss-light shadow-lg rounded-lg">
+    <div class="flex flex-col justify-center items-center mx-auto max-w-md text-center p-6 bg-moss-light rounded-lg">
         <p class="mb-4 text-gray-700">Hier kun je je bedrijfsinformatie beheren en andere acties uitvoeren.</p>
         <a href="{{ route('vacatures.create') }}" id="create-vacature-link"
             class="bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light hover:text-white">Maak een vacature
@@ -213,4 +212,7 @@
             </script>
         @endforeach
     </ul>
+    <div class="mb-20">
+
+    </div>
 </x-layout>
