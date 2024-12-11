@@ -70,6 +70,7 @@ h1 {
 
 .h3-footer {
     @apply font-bold text-lg text-yellow sm:text-[0.85rem]  ;
+}
 
 
 .header {

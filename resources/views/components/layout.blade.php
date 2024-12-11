@@ -71,12 +71,6 @@
             <a class="nav-link-footer" href="/login">Veelgestelde vragen</a>
         </div>
 
-        <div class="footer-content ">
-            <div class="footer-div">
-                <h3 class="h3-footer">Voor werkzoekenden</h3>
-                <a class="nav-link-footer" href="/vacatures">Vind een baan</a>
-            </div>
-
         <!-- Voor Werkgevers -->
         <div class="footer-links">
             <h3 class="h3-footer">Voor werkgevers</h3>
