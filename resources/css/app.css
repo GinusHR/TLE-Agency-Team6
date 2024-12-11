@@ -90,7 +90,7 @@ h1 {
 
 
 .dropdown-content {
-    @apply absolute bg-moss-dark left-0 w-full z-40 text-white top-[5vw] rounded-lg hidden justify-evenly;
+    @apply absolute bg-moss-dark left-0 w-full z-40 text-white top-[7vw] rounded-b-lg hidden justify-evenly;
 }
 
 /* Toon de dropdown wanneer de klasse 'active' wordt toegevoegd */
