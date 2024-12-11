@@ -10,7 +10,7 @@
     @vite('resources/js/app.js')
 </head>
 
-<body class="bg-cream">
+<body class="bg-cream sm:max-w-full">
 
     <header class="header">
         <a href="/">
@@ -18,7 +18,7 @@
         </a>
         @if (request()->is('company*'))
         @else
-            <nav class="nav-bar">
+            <nav class="nav-bar max-w-full">
                 <!-- Dropdown Menu voor navigatie links -->
                 <div class="navbar-dropdown">
                     <button class="menu-icon">
@@ -33,7 +33,7 @@
                         <div class="dropdown-links">
                             <a class="nav-link-header" href="/">Homepage</a>
                             <a class="nav-link-header" href="/vacatures">Vacatures</a>
-                            <a class="nav-link-header" href="/contact">Contact</a>
+                            <a class="nav-link-header" href="/info">Informatie</a>
                         </div>
 
                         <!-- Login en Register knoppen aan de rechter kant -->
@@ -51,28 +51,34 @@
         @endif
     </header>
 
-
-
-
-
     <main class="bg-[#FBFCF6]">
         {{ $slot }}
     </main>
 
 
-    <footer class="bg-moss-dark h-[20vw] rounded-t-3xl">
-        <div class="footer-content ">
-            <div class="footer-div">
+    <footer class="bg-moss-dark h-auto rounded-t-3xl max-w-full flex justify-center">
+        <div class="footer-content flex flex-wrap grid grid-cols-2 grid-rows-2 ">
+            <!-- Voor Werkzoekenden -->
+            <div class="footer-links">
                 <h3 class="h3-footer">Voor werkzoekenden</h3>
-                <a class="nav-link-footer" href="/vacatures">Vind een baan</a>
+                <a class="nav-link-footer" href="/register">Vind een baan</a>
+                <a class="nav-link-footer" href="/login">Veelgestelde vragen</a>
             </div>
 
             <div class="footer-links">
                 <h3 class="h3-footer">Voor werkgevers</h3>
-                <a class="nav-link-footer" href="/register">Werken met Open Hiring</a>
+                <a class="nav-link-footer" href="/contact">Werken met Open Hiring</a>
                 <a class="nav-link-footer" href="{{ route('company.dashboard') }}">Dashboard Bedrijf</a>
             </div>
 
+            <!-- Over Open Hiring -->
+            <div class="footer-links">
+                <h3 class="h3-footer">Over open hiring</h3>
+                <a class="nav-link-footer" href="/register">Onstaan</a>
+                <a class="nav-link-footer" href="/login">Privacy beleid</a>
+            </div>
+
+            <!-- Volg ons op -->
             <div class="footer-links">
                 <h3 class="h3-footer">Volg ons op</h3>
                 <a class="nav-link-footer" href="https://www.linkedin.com/company/open-hiring-nl/"
@@ -80,10 +86,9 @@
                 <a class="nav-link-footer" href="https://www.instagram.com/openhiring_nl" target="_blank">Instagram</a>
                 <a class="nav-link-footer" href="https://www.facebook.com/Openhiringnl" target="_blank">Facebook</a>
             </div>
-
         </div>
-
     </footer>
+
 </body>
 
 </html>
