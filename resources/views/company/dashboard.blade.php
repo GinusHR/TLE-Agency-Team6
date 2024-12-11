@@ -6,7 +6,7 @@
         <p style="color: green;">{{ session('success') }}</p>
     @endif
     <div
-        class="flex flex-col justify-center items-center mx-auto max-w-md text-center p-6 bg-white shadow-lg rounded-lg">
+        class="flex flex-col justify-center items-center mx-auto max-w-md text-center p-6 bg-moss-light shadow-lg rounded-lg">
         <p class="mb-4 text-gray-700">Hier kun je je bedrijfsinformatie beheren en andere acties uitvoeren.</p>
         <a href="{{ route('vacatures.create') }}" id="create-vacature-link"
             class="bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light hover:text-white">Maak een vacature
@@ -30,7 +30,7 @@
         @foreach ($vacatures as $vacature)
             <div class="pt-6">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="bg-moss-light dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between content-center">
                             <div>
                                 <h2 class="text-gray-600 text-2xl font-bold dark:text-white mr-4">
@@ -56,26 +56,37 @@
                                     </button>
                                 </div>
                             </div>
-                            <div>
-                                <span>Mensen uitnodigen om te komen werken</span>
-                                <form action="{{ route('company.acceptApplicants', $vacature->id) }}" method="POST">
+                            <div class="max-w-sm p-3 border border-gray-300 rounded-md bg-gray-50 shadow-sm">
+                                <span class="block text-sm font-semibold text-center mb-3">Mensen uitnodigen om te komen
+                                    werken</span>
+                                <form action="{{ route('company.acceptApplicants', $vacature->id) }}" method="POST"
+                                    class="space-y-3">
                                     @csrf
-                                    @method('delete')
-                                    <select name="acceptApplicants" id="acceptApplicants">
-                                        <option value="">Aantal mensen</option>
-                                        @php
-                                            $counter = 0;
-                                        @endphp
-                                        @foreach ($vacature->applications->where('accepted', 0) as $application)
+                                    <div class="flex items-center space-x-2">
+                                        <select name="acceptApplicants" id="acceptApplicants"
+                                            class="flex-1 border border-gray-300 rounded-md text-sm">
+                                            <option value="">Aantal mensen</option>
                                             @php
-                                                $counter++;
+                                                $counter = 0;
                                             @endphp
-                                            <option value="{{ $counter }}">{{ $counter }} </option>
-                                        @endforeach
-                                    </select>
-                                    <label for="workday">Eerste werkdag:</label>
-                                    <input type="date" id="workday" name="workday">
-                                    <button>Verzend uitnodiging</button>
+                                            @foreach ($vacature->applications->where('accepted', 0) as $application)
+                                                @php
+                                                    $counter++;
+                                                @endphp
+                                                <option value="{{ $counter }}">{{ $counter }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="flex items-center space-x-1">
+                                            <label for="workday" class="text-xs font-medium whitespace-nowrap">
+                                                Dag:</label>
+                                            <input type="date" id="workday" name="workday"
+                                                class="p-1.5 border border-gray-300 rounded-md text-sm">
+                                        </div>
+                                    </div>
+                                    <button type="submit"
+                                        class="w-full bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light hover:text-white">
+                                        Verzend uitnodiging
+                                    </button>
                                 </form>
                             </div>
                             <div class="flex space-x-2 mt-4">
@@ -114,65 +125,67 @@
                         </div>
 
                         <div class="overflow-x-auto" id="vacature{{ $vacature->id }}Table" style="display: none;">
-                            <table class="min-w-full bg-white dark:bg-gray-800">
-                                <thead>
-                                    <tr class="border-b dark:border-gray-700">
-                                        <th
-                                            class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                                            #</th>
-                                        <th
-                                            class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                                            Gesolliciteerd op</th>
-                                        <th
-                                            class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                                            Eisen waar niet aan voldaan zijn</th>
-                                        @if ($vacature->secondary_info_needed)
+                            <div class="bg-moss-light p-4">
+                                <table class="min-w-full bg-white dark:bg-gray-800 w-auto mx-auto sm:rounded-lg">
+                                    <thead>
+                                        <tr class="border-b dark:border-gray-700">
                                             <th
                                                 class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                                                Extra informatie</th>
-                                        @endif
-                                        <th
-                                            class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
-                                            Acties</th>
-                                    </tr>
-                                <tbody>
-                                    @php
-                                        $counter = 0;
-                                    @endphp
-                                    @foreach ($vacature->applications->where('accepted', 0) as $application)
-                                        @php
-                                            $counter++;
-                                        @endphp
-                                        <tr class="border-b dark:border-gray-700">
-                                            <td class="px-4 py-2">{{ $counter }}</td>
-                                            <td class="px-4 py-2">{{ $application->created_at }}</td>
-                                            <td class="px-4 py-2">
-                                                @foreach ($application->demands as $demand)
-                                                    {{ $demand->name }}
-                                                @endforeach
-                                            </td>
+                                                #</th>
+                                            <th
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                Gesolliciteerd op</th>
+                                            <th
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                Eisen waar niet aan voldaan zijn</th>
                                             @if ($vacature->secondary_info_needed)
-                                                <td class="px-4 py-2">{{ $application->secondary_info }}</td>
+                                                <th
+                                                    class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                    Extra informatie</th>
                                             @endif
-                                            <td class="px-4 py-2 h-full">
-                                                <div class="flex items-center justify-center space-x-4 h-full">
-                                                    @if (count($application->demands) > 0)
-                                                        <form
-                                                            action="{{ route('company.rejectApplicant', $application->id) }}"
-                                                            method="POST" style="display:inline;">
-                                                            @csrf
-                                                            <button type="submit"
-                                                                class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold"
-                                                                onclick="return confirm('Weet je zeker dat je deze applicant wilt afwijzen?');">Afwijzen</button>
-                                                        </form>
-                                                    @endif
-                                                </div>
-                                            </td>
+                                            <th
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                Acties</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                                </thead>
-                            </table>
+                                    <tbody>
+                                        @php
+                                            $counter = 0;
+                                        @endphp
+                                        @foreach ($vacature->applications->where('accepted', 0) as $application)
+                                            @php
+                                                $counter++;
+                                            @endphp
+                                            <tr class="border-b dark:border-gray-700">
+                                                <td class="px-4 py-2">{{ $counter }}</td>
+                                                <td class="px-4 py-2">{{ $application->created_at }}</td>
+                                                <td class="px-4 py-2">
+                                                    @foreach ($application->demands as $demand)
+                                                        {{ $demand->name }}
+                                                    @endforeach
+                                                </td>
+                                                @if ($vacature->secondary_info_needed)
+                                                    <td class="px-4 py-2">{{ $application->secondary_info }}</td>
+                                                @endif
+                                                <td class="px-4 py-2 h-full">
+                                                    <div class="flex items-center justify-center space-x-4 h-full">
+                                                        @if (count($application->demands) > 0)
+                                                            <form
+                                                                action="{{ route('company.rejectApplicant', $application->id) }}"
+                                                                method="POST" style="display:inline;">
+                                                                @csrf
+                                                                <button type="submit"
+                                                                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold"
+                                                                    onclick="return confirm('Weet je zeker dat je deze applicant wilt afwijzen?');">Afwijzen</button>
+                                                            </form>
+                                                        @endif
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
