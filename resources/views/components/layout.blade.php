@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-
-    <title>{{ $title ?? 'Mijn Applicatie' }}</title>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <title>Open Hiring</title>
     @vite('resources/js/app.js')
@@ -36,7 +33,7 @@
                         <div class="dropdown-links">
                             <a class="nav-link-header" href="/">Homepage</a>
                             <a class="nav-link-header" href="/vacatures">Vacatures</a>
-                            <a class="nav-link-header" href="/contact">Contact</a>
+                            <a class="nav-link-header" href="/info">Informatie</a>
                         </div>
 
                         <!-- Login en Register knoppen aan de rechter kant -->
@@ -44,7 +41,7 @@
                             @if (Auth::user())
                                 <a href="/profile" class="button-small md:mt-6">Profiel</a>
                             @else
-                                <a href="/login" class="button-small mt-">Log in</a>
+                                <a href="/login" class="button-small mt-4">Log in</a>
                                 <a href="/register" class="button-small mt-4">Register</a>
                             @endif
                         </div>
@@ -68,10 +65,9 @@
                 <a class="nav-link-footer" href="/login">Veelgestelde vragen</a>
             </div>
 
-            <!-- Voor Werkgevers -->
             <div class="footer-links">
                 <h3 class="h3-footer">Voor werkgevers</h3>
-                <a class="nav-link-footer" href="/register">Werken met Open Hiring</a>
+                <a class="nav-link-footer" href="/contact">Werken met Open Hiring</a>
                 <a class="nav-link-footer" href="{{ route('company.dashboard') }}">Dashboard Bedrijf</a>
             </div>
 
