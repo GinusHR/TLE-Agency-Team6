@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Invitation extends Model
 {
-    public function applications(): HasMany
+    public function application(): BelongsTo
     {
-        return $this->hasMany(Application::class);
+        return $this->belongsTo(Application::class);
     }
 }

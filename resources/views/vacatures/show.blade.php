@@ -17,24 +17,30 @@
                     <p class="mb-3"><strong>Locatie:</strong> {{ $vacature->location }}</p>
                     <p class="mb-3"><strong>Salaris:</strong> €{{ $vacature->salary }} per maand</p>
                     <p class="mb-3"><strong>Werkuren:</strong> {{ $vacature->workhours }} uur per week</p>
-                    <p class="mb-3"><strong>Contract:</strong> {{ $vacature->time_id === 0 ? 'Parttime' : 'Fulltime' }}</p>
+                    <p class="mb-3"><strong>Contract:</strong>
+                        {{ $vacature->time_id === 0 ? 'Parttime' : 'Fulltime' }}</p>
                     <p class="mb-3"><strong>Opleidings Niveau:</strong>
                         @switch($vacature->education)
                             @case(1)
                                 N.V.T.
-                                @break
+                            @break
+
                             @case(2)
                                 Middelbare School
-                                @break
+                            @break
+
                             @case(3)
                                 MBO
-                                @break
+                            @break
+
                             @case(4)
                                 HBO
-                                @break
+                            @break
+
                             @case(5)
                                 Universitair
-                                @break
+                            @break
+
                             @default
                                 Onbekend
                         @endswitch
@@ -118,7 +124,12 @@
                             <input type="email" id="email" name="email" required
                                 class="block w-full mb-4 border-gray-300 rounded-lg">
                         @endauth
-                        <label for="demands[]" class="block mb-2">Selecteer de criteria die op jou van toepassing zijn:</label>
+                        <input type="hidden" name="vacature_id" value="{{ $vacature->id }}">
+                        <input type="hidden" name="vacature_company" value="{{ $vacature->company->name }}">
+                        <input type="hidden" name="vacature_function" value="{{ $vacature->function }}">
+
+                        <label for="demands[]" class="block mb-2">Selecteer de criteria die op jou van toepassing
+                            zijn:</label>
                         @foreach ($vacature->demands as $demand)
                             <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
                             <div class="flex items-center mb-2">
