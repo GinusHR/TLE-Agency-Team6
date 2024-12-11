@@ -23,26 +23,23 @@
     font-style: normal;
 }
 
-
-body {
-    @apply font-radikal
+body{
+    @apply font-radikal sm:max-w-full
 
 }
 
 body p {
-    @apply text-moss-dark
+    @apply  text-moss-dark sm:text-sm
 }
 
 h1 {
     @apply text-4xl font-bold  text-[#2E342A] text-center pt-[2vw]
 }
 
-/* app.css */
 .button-small {
     @apply inline-block px-6 py-3 bg-violet-light text-white rounded-lg text-sm hover:bg-violet-dark;
 }
 
-/* app.css */
 .nav-link-header {
     @apply inline-flex items-center justify-center bg-moss-dark m-[1.6vw];
     @apply text-center transition-all duration-300 tracking-normal hover:tracking-widest;
@@ -56,44 +53,33 @@ h1 {
 }
 
 .h3-footer {
-    @apply font-bold text-lg text-yellow
+    @apply font-bold text-lg text-yellow sm:text-[0.85rem]  ;
 }
-
 
 .header {
     @apply flex justify-between items-center pr-[5vw] pl-[5vw] bg-cream ;
 }
 
-
 .footer-content {
-    @apply flex justify-center items-center gap-[5vw] p-[2vw] h-full   ;
+    @apply flex justify-between sm:justify-center items-start gap-[10vw] sm:gap-[4vw]  p-[4vw] h-auto  sm:w-[90vw]  ;
 }
-
 
 .footer-links {
-    @apply flex flex-col items-center gap-[0.5vw] text-white;
-}
-
-
-.footer-div {
-    @apply footer-links flex flex-col items-center
+    @apply flex flex-col items-center justify-center text-white sm:text-[0.7rem] ;
 }
 
 .footer {
     @apply rounded-t-3xl ;
 }
 
-
 .nav-bar {
     @apply flex justify-end bg-cream z-50;
 }
 
-
 .dropdown-content {
-    @apply absolute bg-moss-dark left-0 w-full z-40 text-white top-[5vw] rounded-lg hidden justify-evenly;
+    @apply absolute bg-moss-dark left-0 w-full z-40 text-white top-[7vw] rounded-b-lg hidden justify-evenly;
 }
 
-/* Toon de dropdown wanneer de klasse 'active' wordt toegevoegd */
 .navbar-dropdown.active .dropdown-content {
     @apply flex p-[1vw];
 }
@@ -102,26 +88,21 @@ h1 {
     @apply ml-[3vw] mr-[2vw] p-[0.5vw] w-[10vw]
 }
 
-/* Links sectie */
 .dropdown-links {
     @apply flex flex-row items-center justify-start;
 }
 
-/* Knoppen sectie (rechts uitgelijnd) */
 .dropdown-buttons {
     @apply flex flex-col items-center justify-start text-center;
 }
 
-/* Stijlen voor het hamburger menu (de drie strepen) */
 .menu-icon span {
-    @apply block w-[30px] h-[4px] bg-moss-dark m-[6px]; /* Consistente breedte, hoogte en marge */
-    /*@apply block w-10 h-[0.3vw] bg-moss-dark m-1.5;*/
+    @apply block w-[30px] h-[4px] bg-moss-dark m-[6px];
 }
 
 .menu-icon {
-    @apply p-[20px]; /* Consistente padding */
+    @apply p-[20px];
     display: inline-block;
-    /*@apply p-[1.25vw];*/
 }
 
 
@@ -160,7 +141,7 @@ h1 {
     }
 
     .header a img {
-         width: 15vw;
+        width: 15vw;
     }
 
 }
