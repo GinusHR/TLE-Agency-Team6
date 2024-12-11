@@ -8,10 +8,11 @@ Alpine.start();
 
 document.addEventListener('DOMContentLoaded', function () {
     const dropdown = document.querySelector('.navbar-dropdown');
-    const menuIcon = dropdown.querySelector('.menu-icon');
+    const menuIcon = document.querySelector('.menu-icon');
 
     menuIcon.addEventListener('click', function () {
         // Toggle de 'active' klasse op de .navbar-dropdown
         dropdown.classList.toggle('active');
+        menuIcon.classList.toggle('open');
     });
 });
