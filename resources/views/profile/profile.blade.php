@@ -1,25 +1,26 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Mijn profiel') }}
-            </h2>
-            <div class="flex gap-4">
-                <form method="POST" action="{{ route('logout') }}" class="inline">
-                    @csrf
-                    <button type="submit"
-                            class="inline-flex items-center px-6 py-3 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                        {{ __('Uitloggen') }}
-                    </button>
-                </form>
-                <a href="{{ route('profile.edit') }}"
+@vite(['resources/js/app.js', 'resources/css/app.css'])
+<x-layout>
+    {{--    <x-slot name="header">--}}
+    <div class="flex justify-between items-center px-4 sm:px-6 lg:px-8 mt-2 mb-0">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Mijn profiel') }}
+        </h2>
+        <div class="flex gap-4 flex-nowrap">
+            <form method="POST" action="{{ route('logout') }}" class="inline">
+                @csrf
+                <button type="submit"
+                        class="inline-flex items-center px-4 py-4 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                    {{ __('Uitloggen') }}
+                </button>
 
-                   class="inline-flex items-center px-6 py-3 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                <a href="{{ route('profile.edit') }}"
+                   class="inline-flex items-center px-4 py-4 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                     {{ __('Wijzig profiel') }}
                 </a>
-            </div>
+            </form>
         </div>
-    </x-slot>
+    </div>
+    {{--    </x-slot>--}}
 
     <div class="py-12 bg-cream">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -39,6 +40,7 @@
                                 <div class="flex items-center space-x-4 mt-2 sm:mt-0">
                                     <span class="text-gray-800">
                                         Plek in de wachtrij:
+                                        <br class="block sm:hidden">
                                         @php
                                             $applications = $application->vacature->applications->where('accepted', 0);
                                             $position = $applications
@@ -55,7 +57,8 @@
                                     </span>
                                     <button
                                         class="inline-flex items-center px-6 py-3 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                        <a href="{{ route('vacatures.show', $application->vacature_id) }}" class="no-underline">Zie vacature</a>
+                                        <a href="{{ route('vacatures.show', $application->vacature_id) }}"
+                                           class="no-underline">Zie vacature</a>
                                     </button>
                                 </div>
                             </li>
@@ -86,4 +89,4 @@
 
         </div>
     </div>
-</x-app-layout>
+</x-layout>

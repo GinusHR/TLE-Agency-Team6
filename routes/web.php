@@ -12,6 +12,10 @@ Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::get('/dashboard', function () {
@@ -19,8 +23,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/vacatures', VacatureController::class);
-Route::post('/vacatures', [VacatureController::class, 'store'])->name('vacatures.store');
-Route::get('/vacatures', [VacatureController::class, 'index'])->name('vacatures.index');
+Route::get('/vacatures/{vacature}/preview', [VacatureController::class, 'preview'])->name('vacatures.preview');
+Route::post('/vacatures/{vacature}/publish', [VacatureController::class, 'publish'])->name('vacatures.publish');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
@@ -30,13 +35,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('company/login', [CompanyLoginController::class, 'showLoginForm'])->name('company.login');
-Route::post('company/login', [CompanyLoginController::class, 'login']);
-Route::post('company/logout', [CompanyLoginController::class, 'logout'])->name('company.logout');
-Route::get('company.dashboard', [CompanyDashboardController::class, 'index'])->name('company.dashboard');
-Route::get('/company/profile', [CompanyDashboardController::class, 'profile'])->name('company.profile');
-Route::patch('/company/profile', [CompanyDashboardController::class, 'updateProfile'])->name('company.updateProfile');
-Route::post('/company/{id}/toggleVisibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('company.toggleVisibility');
+
+Route::prefix('company')->name('company.')->group(function () {
+    Route::get('login', [CompanyLoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [CompanyLoginController::class, 'login']);
+    Route::post('logout', [CompanyLoginController::class, 'logout'])->name('logout');
+
+    Route::middleware(['auth:company'])->group(function () {
+        Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/profile', [CompanyDashboardController::class, 'profile'])->name('profile');
+        Route::patch('/profile/{company}', [CompanyDashboardController::class, 'update'])->name('update');
+        Route::post('/{vacature}/toggle-visibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('toggleVisibility');
+    });
+});
 
 Route::post('/company/{id}/rejectApplicant', [CompanyDashboardController::class, 'rejectApplicantForDemands'])->name('company.rejectApplicant');
 Route::delete('/company/{id}/acceptApplicants', [CompanyDashboardController::class, 'acceptApplicants'])->name('company.acceptApplicants');

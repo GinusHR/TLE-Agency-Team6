@@ -11,6 +11,10 @@ use App\Models\Vacature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Company;
+use Illuminate\Support\Facades\Storage;
+use phpDocumentor\Reflection\Types\Nullable;
+
 
 class CompanyDashboardController extends Controller
 {
@@ -34,13 +38,12 @@ class CompanyDashboardController extends Controller
         }
     }
 
-    public function updateProfile(Request $request)
+    public function update(Request $request, Company $company)
     {
         if (Auth::guard('company')->user()) {
-            $company = Auth::guard('company')->user();
 
             $request->validate([
-                'name' => 'required|string|max:255',
+                'name' => 'nullable|string|max:255',
                 'homepage_url' => 'nullable|url',
                 'about_us_url' => 'nullable|url',
                 'contact_url' => 'nullable|url',
@@ -55,13 +58,26 @@ class CompanyDashboardController extends Controller
                 'about_us_url',
                 'contact_url',
                 'description',
-                'image',
-                'logo'
+
             ]));
 
+            if ($request->hasFile('image')) {
+                if ($company->image) {
+                    Storage::disk('public')->delete($company->image);
+                }
+                $company->image = $request->file('image')->store('images', 'public');
+            }
+
+            if ($request->hasFile('logo')) {
+                if ($company->logo) {
+                    Storage::disk('public')->delete($company->logo);
+                }
+                $company->logo = $request->file('logo')->store('logos', 'public');
+            }
+
+            $company->save();
             return redirect()->route('company.dashboard')->with('success', 'Profiel succesvol bijgewerkt!');
         } else {
-
             return redirect('/company/login');
         }
     }

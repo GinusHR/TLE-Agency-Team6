@@ -43,11 +43,11 @@
             <select id="education" name="education"
                     class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
                 <option value="" disabled>Kies een Opleidingsniveau</option>
-                <option value="NVT" {{ old('education', $vacature->education) == 'NVT' ? 'selected' : '' }}>N.V.T.</option>
-                <option value="Highschool" {{ old('education', $vacature->education) == 'Highschool' ? 'selected' : '' }}>Middelbareschool</option>
-                <option value="MBO" {{ old('education', $vacature->education) == 'MBO' ? 'selected' : '' }}>MBO</option>
-                <option value="HBO" {{ old('education', $vacature->education) == 'HBO' ? 'selected' : '' }}>HBO</option>
-                <option value="University" {{ old('education', $vacature->education) == 'University' ? 'selected' : '' }}>Universitair</option>
+                <option value="1" {{ old('education', $vacature->education) == 1 ? 'selected' : '' }}>N.V.T.</option>
+                <option value="2" {{ old('education', $vacature->education) == 2 ? 'selected' : '' }}>Middelbareschool</option>
+                <option value="3" {{ old('education', $vacature->education) == 3 ? 'selected' : '' }}>MBO</option>
+                <option value="4" {{ old('education', $vacature->education) == 4 ? 'selected' : '' }}>HBO</option>
+                <option value="5" {{ old('education', $vacature->education) == 5 ? 'selected' : '' }}>Universitair</option>
             </select>
         </div>
 
@@ -82,7 +82,7 @@
                                {{ in_array($day, old('days', $selectedDays)) ? 'checked' : '' }}
                                class="peer hidden">
                         <label for="{{ strtolower($day) }}"
-                               class="flex items-center justify-center w-28 h-14 bg-[#A5A5A4] text-white font-bold rounded-lg cursor-pointer peer-checked:bg-moss-light peer-checked:text-black">
+                               class="flex items-center justify-center w-28 h-14 bg-unchecked-gray text-white font-bold rounded-lg cursor-pointer peer-checked:bg-moss-light peer-checked:text-black">
                             {{ $day }}
                         </label>
                     </div>
@@ -108,25 +108,9 @@
                    placeholder="Voer het bedrijf ID in" required>
         </div>
 
-        <div class="mb-4">
-            <label for="secondary_info_needed" class="block text-moss-dark font-medium mb-1">Extra informatie nodig? *</label>
-            <select id="secondary_info_needed" name="secondary_info_needed"
-                    class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
-                <option value="" disabled>Kies een optie</option>
-                <option value="0" {{ old('secondary_info_needed', $vacature->secondary_info_needed) == 0 ? 'selected' : '' }}>Nee</option>
-                <option value="1" {{ old('secondary_info_needed', $vacature->secondary_info_needed) == 1 ? 'selected' : '' }}>Ja</option>
-            </select>
-        </div>
+        <input type="hidden" id="secondary_info_needed" name="secondary_info_needed" value="0"> <!-- Preset to 0 -->
 
-        <div class="mb-6">
-            <label for="status" class="block text-moss-dark font-medium mb-1">Status *</label>
-            <select id="status" name="status"
-                    class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
-                <option value="" disabled>Kies een Status</option>
-                <option value="0" {{ old('status', $vacature->status) == 0 ? 'selected' : '' }}>Inactief</option>
-                <option value="1" {{ old('status', $vacature->status) == 1 ? 'selected' : '' }}>Actief</option>
-            </select>
-        </div>
+        <input type="hidden" id="status" name="status" value="1"> <!-- Preset to 0 -->
 
         <!-- Submit Button -->
         <div class="text-center mt-8">

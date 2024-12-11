@@ -1,6 +1,7 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between items-center">
+@vite(['resources/js/app.js', 'resources/css/app.css'])
+<x-layout>
+{{--    <x-slot name="header">--}}
+        <div class="flex justify-between items-center px-4 sm:px-6 lg:px-8 mt-2 mb-0">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Profiel wijzigen') }}
             </h2>
@@ -8,7 +9,7 @@
                 {{ __('Terug naar mijn profiel') }}
             </a>
         </div>
-    </x-slot>
+{{--    </x-slot>--}}
 
     <div class="py-12 bg-cream">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -37,4 +38,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-layout>

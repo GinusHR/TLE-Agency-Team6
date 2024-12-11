@@ -107,14 +107,35 @@
             @else
                 <ul class="mt-4 space-y-4">
                     @foreach ($vacatures as $vacature)
+                    @if($vacature->status == 1)
                         <li class="border p-4 rounded-md shadow-md bg-moss-light">
                             <h3 class="text-xl font-bold">{{ $vacature->function }}</h3>
                             <p>Bedrijf: {{ $vacature->company->name }}</p>
                             <p>Functie: {{ $vacature->function }}</p>
-                            <p>Maand Salaris: {{ $vacature->salary }}</p>
+                            <p>Maand Salaris: &euro; {{ number_format($vacature->salary, 2, ',', '.') }}</p>
                             <p>Locatie: {{ $vacature->location }}</p>
-                            <p>Tijdsduur: {{ $vacature->time_id ? 'Fulltime' : 'Parttime' }}</p>
-                            <p>Omschrijving: {{ Str::limit($vacature->description, 100) }}</p>
+                            <p>Contract: {{ $vacature->time_id ? 'Fulltime' : 'Parttime' }}</p>
+                            <p>Opleidings Niveau:
+                                @switch($vacature->education)
+                                    @case(1)
+                                        N.V.T.
+                                        @break
+                                    @case(2)
+                                        Middelbare School
+                                        @break
+                                    @case(3)
+                                        MBO
+                                        @break
+                                    @case(4)
+                                        HBO
+                                        @break
+                                    @case(5)
+                                        Universitair
+                                        @break
+                                    @default
+                                        Onbekend
+                                @endswitch
+                            </p>                            <p>Omschrijving: {{ Str::limit($vacature->description, 100) }}</p>
                             <p>Dagen:
                                 @php
                                     $daysArray = json_decode($vacature->days, true);
@@ -143,6 +164,7 @@
                                 </form>
                             </div>
                         </li>
+                    @endif
                     @endforeach
                 </ul>
             @endif
