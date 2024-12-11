@@ -15,25 +15,24 @@ class CompanyLoginController extends Controller
         } else {
             return view('company.auth.login');
         }
-
     }
 
     public function login(Request $request)
     {
-            $request->validate([
-                'login_code' => 'required|string',
-                'password' => 'required|string',
-            ]);
+        $request->validate([
+            'login_code' => 'required|string',
+            'password' => 'required|string',
+        ]);
 
-            $credentials = $request->only('login_code', 'password');
+        $credentials = $request->only('login_code', 'password');
 
-            if (Auth::guard('company')->attempt($credentials)){
-                return redirect()->intended('company.dashboard');
-            }
+        if (Auth::guard('company')->attempt($credentials)) {
+            return redirect()->intended('/company/dashboard');
+        }
 
-            return back()->withErrors([
-                'login_code' => 'Login code of wachtwoord is niet correct.',
-            ]);
+        return back()->withErrors([
+            'login_code' => 'Login code of wachtwoord is niet correct.',
+        ]);
     }
 
     public function logout(Request $request)
@@ -44,5 +43,4 @@ class CompanyLoginController extends Controller
 
         return redirect('/company/login')->with('success', 'U bent succesvol uitgelogd.');
     }
-
 }

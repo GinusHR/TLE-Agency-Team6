@@ -57,7 +57,7 @@ Route::prefix('company')->name('company.')->group(function () {
 
 Route::get('/invitations/{hash}/{invitation}', [InvitationController::class, 'show'])->name('invitations.show');
 Route::post('/invitations/{hash}/{invitation}/acceptInvitation', [InvitationController::class, 'acceptInvitation'])->name('invitations.acceptInvitation');
-
+Route::post('/invitations/{hash}/{invitation}/declineInvitation', [InvitationController::class, 'declineInvitation'])->name('invitations.declineInvitation');
 
 
 Route::resource('vacatures', VacatureController::class);

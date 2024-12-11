@@ -25,10 +25,12 @@
                         Accepteren
                     </button>
                 </form>
-                <form method="POST" action="">
+                <form method="POST"
+                    action="{{ route('invitations.declineInvitation', [$invitation->url_hashed, $invitation->id]) }}">
                     @csrf
                     <button type="submit"
-                        class="w-full px-4 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2">
+                        class="w-full px-4 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
+                        onclick="return confirm('Weet je zeker dat je deze baan niet wilt accepteren?');">
                         Weigeren
                     </button>
                 </form>
