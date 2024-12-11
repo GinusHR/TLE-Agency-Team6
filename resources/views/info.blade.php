@@ -68,22 +68,22 @@
                     <div id="toggle-employees" class="hidden mt-4">
                         <div class="flex flex-col justify-evenly h-3/4">
                             <div class="flex flex-row justify-start gap-1 align-center">
-                                <p class="text-white bg-green-600 rounded-3xl w-[27px] h-[27px] align-center flex justify-center">&#10004;</p>
+                                <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
                                 <p class="w-full"> Meld je aan via onze website of op locatie.</p>
                             </div>
 
                             <div class="flex flex-row justify-start gap-1 align-center">
-                                <p class="text-white bg-green-600 rounded-3xl w-[27px] h-[27px] align-center flex justify-center">&#10004;</p>
+                                <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
                                 <p> Account is niet nodig. Alleen een email.</p>
                             </div>
 
                             <div class="flex flex-row justify-start gap-1 align-center">
-                                <p class="text-white bg-green-600 rounded-3xl w-[27px] h-[27px] align-center flex justify-center">&#10004;</p>
+                                <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
                                 <p> Eenmaal op een lijst hoef je alleen maar te wachten.</p>
                             </div>
 
                             <div class="flex flex-row justify-start gap-1 align-center">
-                                <p class="text-white bg-green-600 rounded-3xl w-[27px] h-[27px] align-center flex justify-center">&#10004;</p>
+                                <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
                                 <p> Maak je geen zorgen meer over vooroordelen.</p>
                             </div>
                         </div>
@@ -99,22 +99,22 @@
                     <div id="toggle-companies" class="hidden mt-4">
                        <div class="flex flex-col justify-evenly h-3/4">
                            <div class="flex flex-row justify-start gap-1 align-center">
-                               <p class="text-white bg-green-600 rounded-3xl w-[27px] h-[27px] align-center flex justify-center">&#10004;</p>
+                               <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
                                <p> Neem eenvoudig nieuwe werknemers aan.</p>
                            </div>
 
                            <div class="flex flex-row justify-start gap-1 align-center">
-                               <p class="text-white bg-green-600 rounded-3xl w-[27px] h-[27px] align-center flex justify-center">&#10004;</p>
+                               <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
                                <p> Vergroot je sociale footprint.</p>
                            </div>
 
                            <div class="flex flex-row justify-start gap-1 align-center">
-                               <p class="text-white bg-green-600 rounded-3xl w-[27px] h-[27px] align-center flex justify-center">&#10004;</p>
+                               <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
                                <p> Goed alternatief voor dure sollicitatieprocedures.</p>
                            </div>
 
                            <div class="flex flex-row justify-start gap-1 align-center">
-                               <p class="text-white bg-green-600 rounded-3xl w-[27px] h-[27px] align-center flex justify-center">&#10004;</p>
+                               <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
                                <p> Maak een inclusieve, open bedrijfscultuur.</p>
                            </div>
                        </div>
@@ -218,7 +218,7 @@
                 </div>
                 <div id="toggle-rule-7"  class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <div>
-                        <p class="text-lg">
+                        <p class="text-lg p-">
                             De focus ligt op werk. Maar er is ook aandacht voor persoonlijke omstandigheden die het goed presteren op de werkvloer in de weg staan. Iedereen loopt wel eens ergens tegenaan. Ook dan ben je er voor elkaar en zoek je samen naar een oplossing.
                         </p>
                     </div>
