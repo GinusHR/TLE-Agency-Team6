@@ -72,7 +72,8 @@
                 <strong>{{ $details['function'] }}</strong>.
             </p>
             <p>Je bent afgewezen omdat je niet de juiste vaardigheden hebt voor deze functie.</p>
-            <p>Wij van Open Hiring hopen dat je wel een andere baan zou kunnen krijgen, dus zoek gerust verder.</p>
+            <p>We hopen dat je snel een andere passende baan vindt. Voel je vrij om verder te zoeken bij Open Hiring.
+            </p>
         </div>
         <div class="footer">
             <p>Bedankt voor het gebruiken van Open Hiring!</p>
