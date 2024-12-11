@@ -17,6 +17,7 @@ class Vacature extends Model
         'place',
         'location',
         'time_id',
+        'education',
         'description',
         'secondary_info_needed',
         'image',
@@ -29,7 +30,7 @@ class Vacature extends Model
      */
     public function company(): BelongsTo
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class, 'company_id');
     }
 
     /**

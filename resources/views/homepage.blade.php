@@ -5,7 +5,13 @@
 
     <div class="bg-moss-light">
     <!-- De header met gecentreerde tekst -->
-    <h1 class="sm:mt-[5vw]">Welkom bij open hiring!</h1>
+    <h1 class="sm:mt-[5vw]">Welkom bij Open Hiring!</h1>
+
+        @if (session('success'))
+            <script>
+                alert("{{ session('success') }}");
+            </script>
+        @endif
 
 
         <!-- De container voor de afbeelding en de tekst -->

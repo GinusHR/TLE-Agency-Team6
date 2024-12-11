@@ -64,13 +64,16 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Open Hiring - Aanmelding Gelukt!</h1>
+            <h1>Open Hiring</h1>
         </div>
         <div class="content">
             <h1>Beste gebruiker,</h1>
-            <p>Je aanmelding bij <strong>{{ $details['company'] }}</strong> voor de functie
-                <strong>{{ $details['function'] }}</strong> is succesvol verwerkt.</p>
-            <p>Wij sturen je een mail zodra je wordt aangenomen.</p>
+            <p>Je bent helaas afgewezen door <strong>{{ $details['company'] }}</strong> voor de functie
+                <strong>{{ $details['function'] }}</strong>.
+            </p>
+            <p>Je bent afgewezen omdat je niet de juiste vaardigheden hebt voor deze functie.</p>
+            <p>We hopen dat je snel een andere passende baan vindt. Voel je vrij om verder te zoeken bij Open Hiring.
+            </p>
         </div>
         <div class="footer">
             <p>Bedankt voor het gebruiken van Open Hiring!</p>
