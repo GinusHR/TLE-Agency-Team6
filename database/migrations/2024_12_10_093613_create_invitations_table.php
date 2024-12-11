@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
+            $table->string('url_hashed');
             $table->bigInteger('application_id')->onDelete('cascade');
             $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
             $table->bigInteger('time')->nullable();

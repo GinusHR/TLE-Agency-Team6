@@ -76,10 +76,13 @@
             @if (empty($details['workday']))
                 <p><strong>{{ $details['company'] }}</strong> wil graag dat je zelf een datum en tijd doorgeeft via Open
                     Hiring.</p>
+                <p><a href="{{ $details['link'] }}">Ga aub naar deze pagina om een datum en tijd te kiezen</a></p>
             @else
                 <p><strong>{{ $details['company'] }}</strong> wil graag dat je op
                     <strong>{{ $details['workday'] }}</strong> komt werken.
                 </p>
+                <p><a href="{{ $details['link'] }}">Ga aub naar deze pagina om deze dag te accepteren of een wijziging
+                        aan te vragen</a></p>
             @endif
             <p>Veel succes op je nieuwe baan!</p>
         </div>

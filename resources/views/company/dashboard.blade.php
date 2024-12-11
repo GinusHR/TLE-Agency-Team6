@@ -172,6 +172,7 @@
                                                                 action="{{ route('company.rejectApplicant', $application->id) }}"
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
+                                                                @method('DELETE')
                                                                 <button type="submit"
                                                                     class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold"
                                                                     onclick="return confirm('Weet je zeker dat je deze applicant wilt afwijzen?');">Afwijzen</button>
