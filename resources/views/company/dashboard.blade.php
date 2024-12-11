@@ -31,16 +31,16 @@
             <div class="pt-6">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-moss-light dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                        <h2 class="text-gray-600 text-2xl font-bold dark:text-white mr-4 p-4 pb-0">
+                            @if ($vacature->status)
+                                Open:
+                            @else
+                                Closed:
+                            @endif{{ $vacature->function }} -
+                            {{ $vacature->location }}
+                        </h2>
                         <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between content-center">
                             <div>
-                                <h2 class="text-gray-600 text-2xl font-bold dark:text-white mr-4">
-                                    @if ($vacature->status)
-                                        Open:
-                                    @else
-                                        Closed:
-                                    @endif{{ $vacature->function }} -
-                                    {{ $vacature->location }}
-                                </h2>
                                 <p>Aantal aangenomen via vacature:
                                     {{ $vacature->applications->where('accepted', 1)->count() }}</p>
                                 <div class="flex items-start"> <!-- New wrapper to align button properly -->
