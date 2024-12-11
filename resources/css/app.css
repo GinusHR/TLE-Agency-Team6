@@ -51,6 +51,15 @@ h1 {
     width: 5vw;
 }
 
+
+
+
+
+
+.header {
+    @apply flex justify-between items-center pr-[5vw] pl-[5vw] bg-cream ;
+}
+
 .nav-link-footer {
     width: 12vw;
     @apply inline-flex items-center justify-center bg-moss-dark  m-[0.2vw] sm:w-[30vw];
@@ -63,14 +72,6 @@ h1 {
 
 }
 
-
-
-
-.header {
-    @apply flex justify-between items-center pr-[5vw] pl-[5vw] bg-cream ;
-}
-
-
 .footer-content {
     @apply flex justify-between sm:justify-center items-start gap-[10vw] sm:gap-[4vw]  p-[4vw] h-auto  sm:w-[90vw]  ;
 }
@@ -82,10 +83,6 @@ h1 {
 }
 
 
-
-.footer-div {
-    @apply footer-links flex flex-col items-center
-}
 .footer {
     @apply rounded-t-3xl ;
 }
