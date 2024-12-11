@@ -1,117 +1,134 @@
 @vite(['resources/js/app.js', 'resources/css/app.css'])
 
 <x-layout>
-    <div class="bg-cream min-h-screen text-moss-dark">
-        <div class="bg-white max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300">
-            <h1 class="text-2.5xl font-bold text-center mb-6">Voorbeeld van Vacature</h1>
+    <div class="bg-cream min-h-screen flex items-center justify-center text-moss-dark">
+        <div class="bg-white max-w-4xl w-full rounded-lg shadow-lg p-8 border border-gray-300">
+            <!-- Header -->
+            <h1 class="text-3xl font-bold text-moss-dark text-center mb-8">
+                {{ $vacature->company->name }}
+            </h1>
 
-            <div class="space-y-4">
-                <div>
-                    <h2 class="font-medium">Positie Titel:</h2>
-                    <p>{{ $vacature->function }}</p>
+            <!-- Two Column Layout -->
+            <div class="grid grid-cols-2 gap-8 items-start">
+                <!-- Left Column -->
+                <div class="space-y-4">
+                    <div>
+                        <h2 class="text-xl font-bold">Positie</h2> <!-- Removed * -->
+                        <p class="bg-moss-light text-moss-dark rounded-md p-2 h-10 flex items-center">{{ $vacature->function }}</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-bold">Part of Fulltime</h2> <!-- Removed * -->
+                        <p class="bg-moss-light text-moss-dark rounded-md p-2 h-10 flex items-center">
+                            {{ $vacature->time_id == 0 ? 'Parttime' : 'Fulltime' }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-bold">Uren per week</h2> <!-- Removed * -->
+                        <p class="bg-moss-light text-moss-dark rounded-md p-2 h-10 flex items-center">{{ $vacature->workhours }}</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-bold">Maand Salaris</h2> <!-- Removed * -->
+                        <p class="bg-moss-light text-moss-dark rounded-md p-2 h-10 flex items-center">&euro; {{ number_format($vacature->salary, 2, ',', '.') }}</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-bold">Minimaal Opleidingsniveau</h2> <!-- Removed * -->
+                        <p class="bg-moss-light text-moss-dark rounded-md p-2 h-10 flex items-center">
+                            @switch($vacature->education)
+                                @case(1)
+                                    N.V.T.
+                                    @break
+                                @case(2)
+                                    Middelbare School
+                                    @break
+                                @case(3)
+                                    MBO
+                                    @break
+                                @case(4)
+                                    HBO
+                                    @break
+                                @case(5)
+                                    Universitair
+                                    @break
+                                @default
+                                    Onbekend
+                            @endswitch
+                        </p>
+                    </div>
                 </div>
 
-                <div>
-                    <h2 class="font-medium">Full- of Parttime:</h2>
-                    <p>{{ $vacature->time_id == 0 ? 'Parttime' : 'Fulltime' }}</p>
-                </div>
+                <!-- Right Column -->
+                <div class="space-y-4">
+                    <div>
+                        <h2 class="text-xl font-bold">Dagen</h2>
+                        <div class="grid grid-cols-7 gap-2">
+                            @php
+                                $days = json_decode($vacature->days, true);
+                                // Mapping of full day names to their abbreviations
+                                $dayAbbreviations = [
+                                    'Maandag' => 'Ma',
+                                    'Dinsdag' => 'Di',
+                                    'Woensdag' => 'Wo',
+                                    'Donderdag' => 'Do',
+                                    'Vrijdag' => 'Vr',
+                                    'Zaterdag' => 'Za',
+                                    'Zondag' => 'Zo',
+                                ];
+                            @endphp
+                            @foreach($dayAbbreviations as $fullDay => $abbreviation)
+                                <span class="h-10 px-3 py-2 rounded-md font-bold text-sm flex items-center justify-center
+                {{ is_array($days) && in_array($fullDay, $days) ? 'bg-moss-light text-moss-dark' : 'bg-unchecked-gray text-white' }}">
+                {{ $abbreviation }} <!-- Display the abbreviation -->
+            </span>
+                            @endforeach
+                        </div>
+                    </div>
 
-                <div>
-                    <h2 class="font-medium">Uren per Week:</h2>
-                    <p>{{ $vacature->workhours }}</p>
-                </div>
+                    <div>
+                        <h2 class="text-xl font-bold">Op Locatie of Op Afstand</h2> <!-- Removed * -->
+                        <p class="bg-moss-light text-moss-dark rounded-md p-2 h-10 flex items-center">
+                            @if($vacature->place == 1)
+                                Op Locatie
+                            @elseif($vacature->place == 2)
+                                Hybride
+                            @else
+                                Op Afstand
+                            @endif
+                        </p>
+                    </div>
 
-                <div>
-                    <h2 class="font-medium">Maandloon:</h2>
-                    <p>&euro; {{ number_format($vacature->salary, 2, ',', '.') }}</p>
-                </div>
-
-                <div>
-                    <h2 class="font-medium">Minimaal Opleidingsniveau:</h2>
-                    <p>
-                        @switch($vacature->education)
-                            @case(1)
-                                N.V.T.
-                                @break
-                            @case(2)
-                                Middelbare School
-                                @break
-                            @case(3)
-                                MBO
-                                @break
-                            @case(4)
-                                HBO
-                                @break
-                            @case(5)
-                                Universitair
-                                @break
-                            @default
-                                Onbekend
-                        @endswitch
-                    </p>
-                </div>
-
-                <div>
-                    <h2 class="font-medium">Locatie Type:</h2>
-                    <p>
-                        @if($vacature->place == 1)
-                            Op Locatie
-                        @elseif($vacature->place == 2)
-                            Hybride
-                        @else
-                            Op Afstand
-                        @endif
-                    </p>
-                </div>
-
-                <div>
-                    <h2 class="font-medium">Locatie:</h2>
-                    <p>{{ $vacature->location }}</p>
-                </div>
-
-                <div>
-                    <h2 class="font-medium">Beschikbare Dagen:</h2>
-                    <p>
-                        @php
-                            $days = json_decode($vacature->days, true);
-                        @endphp
-                        {{ is_array($days) ? implode(', ', $days) : 'Niet beschikbaar' }}
-                    </p>
-                </div>
-
-
-                <div>
-                    <h2 class="font-medium">Algemene Omschrijving:</h2>
-                    <p>{{ $vacature->description }}</p>
-                </div>
-
-                <div>
-                    <h2 class="font-medium">Bedrijf:</h2>
-                    <p>{{ $vacature->company->name }}</p>
+                    <div>
+                        <h2 class="text-xl font-bold">Algemene omschrijving</h2> <!-- Removed * -->
+                        <p class="bg-moss-light text-moss-dark rounded-md p-4 min-h-[13rem] max-h-[13rem] overflow-auto flex items-start">
+                            {{ $vacature->description }}
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div>
-                <!-- Edit Form -->
+
+            <!-- Buttons -->
+            <div class="flex justify-end gap-8 mt-8">
+                <!-- Edit Button -->
                 <form action="{{ route('vacatures.edit', $vacature->id) }}" method="GET">
                     @csrf
-                    <input type="hidden" name="status" value="1">
-                    <input type="hidden" name="redirect_to_edit" value="1"> <!-- Indicates edit action -->
                     <button type="submit"
-                            class="bg-moss-light text-white font-medium px-6 py-2 rounded-lg shadow hover:bg-moss-medium">
-                        Bewerken
+                            class="bg-violet-light text-white font-medium px-8 py-3 rounded-lg shadow hover:bg-violet-dark">
+                        Wijzigen
                     </button>
                 </form>
 
-                <!-- Publish Form -->
+                <!-- Publish Button -->
                 <form action="{{ route('vacatures.publish', $vacature->id) }}" method="POST">
                     @csrf
                     <button type="submit"
-                            class="bg-violet-light text-white font-medium px-6 py-2 rounded-lg shadow hover:bg-violet-dark">
-                        Publiceren
+                            class="bg-violet-light text-white font-medium px-8 py-3 rounded-lg shadow hover:bg-violet-dark">
+                        Vacature publiceren
                     </button>
                 </form>
             </div>
-
         </div>
     </div>
 </x-layout>
