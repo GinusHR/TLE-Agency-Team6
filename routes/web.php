@@ -46,11 +46,11 @@ Route::prefix('company')->name('company.')->group(function () {
         Route::get('/profile', [CompanyDashboardController::class, 'profile'])->name('profile');
         Route::patch('/profile/{company}', [CompanyDashboardController::class, 'update'])->name('update');
         Route::post('/{vacature}/toggle-visibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('toggleVisibility');
+        Route::post('/{application}/rejectApplicant', [CompanyDashboardController::class, 'rejectApplicantForDemands'])->name('rejectApplicant');
+        Route::delete('/{vacature}/acceptApplicants', [CompanyDashboardController::class, 'acceptApplicants'])->name('acceptApplicants');
     });
 });
 
-Route::post('/company/{id}/rejectApplicant', [CompanyDashboardController::class, 'rejectApplicantForDemands'])->name('company.rejectApplicant');
-Route::delete('/company/{id}/acceptApplicants', [CompanyDashboardController::class, 'acceptApplicants'])->name('company.acceptApplicants');
 
 
 
