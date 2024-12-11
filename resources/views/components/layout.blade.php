@@ -24,8 +24,8 @@
         <!-- Dropdown Menu voor navigatie links -->
         <div class="navbar-dropdown">
             <button class="menu-icon">
-                <span class="block w-6 h-0.5 bg-moss-dark mb-1"></span>
-                <span class="block w-6 h-0.5 bg-moss-dark mb-1"></span>
+                <span class="block w-6 h-0.5 bg-moss-dark"></span>
+                <span class="block w-6 h-0.5 bg-moss-dark"></span>
                 <span class="block w-6 h-0.5 bg-moss-dark"></span>
             </button>
 
@@ -43,7 +43,7 @@
                             @if (Auth::user())
                                 <a href="/profile" class="button-small md:mt-6">Profiel</a>
                             @else
-                                <a href="/login" class="button-small mt-4">Log in</a>
+                                <a href="/login" class="button-small mt-">Log in</a>
                                 <a href="/register" class="button-small mt-4">Register</a>
                             @endif
                         </div>
@@ -52,10 +52,6 @@
             </nav>
         @endif
     </header>
-
-
-
-
 
     <main class="bg-[#FBFCF6]">
         {{ $slot }}
