@@ -7,90 +7,96 @@
 
         <!-- Grid Layout for Two-Column Fields -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Positie Titel -->
-            <div>
-                <label for="function" class="block text-moss-dark font-bold text-xl mb-1">Positie Titel <span class="text-red-500">*</span></label>
-                <input type="text" id="function" name="function"
-                       class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none placeholder-black"
-                       placeholder="Voer de Titel van de positie in" required>
+            <!-- First Column -->
+            <div class="flex flex-col">
+                <!-- Positie Titel -->
+                <div class="mb-4">
+                    <label for="function" class="block text-moss-dark font-bold text-xl mb-1">Positie Titel <span class="text-red-500">*</span></label>
+                    <input type="text" id="function" name="function"
+                           class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none placeholder-black"
+                           placeholder="Voer de Titel van de positie in" required>
+                </div>
+
+                <!-- Uren -->
+                <div class="mb-4">
+                    <label for="workhours" class="block text-moss-dark font-bold text-xl mb-1">Uren <span class="text-red-500">*</span></label>
+                    <input type="number" id="workhours" name="workhours"
+                           class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none placeholder-black"
+                           placeholder="Voer de uren per week in" required>
+                </div>
+
+                <!-- Minimaal Opleidingsniveau -->
+                <div class="mb-4">
+                    <label for="education" class="block text-moss-dark font-bold text-xl mb-1">Minimaal Opleidingsniveau <span class="text-red-500">*</span></label>
+                    <select id="education" name="education"
+                            class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
+                        <option value="" disabled selected>Kies een Opleidingsniveau</option>
+                        <option value="1">N.V.T.</option>
+                        <option value="2">Middelbareschool</option>
+                        <option value="3">MBO</option>
+                        <option value="4">HBO</option>
+                        <option value="5">Universitair</option>
+                    </select>
+                </div>
+
+                <!-- Locatie van het Werk -->
+                <div class="mb-4">
+                    <label for="location" class="block text-moss-dark font-bold text-xl mb-1">Locatie van het Werk</label>
+                    <input type="text" id="location" name="location"
+                           class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none placeholder-black"
+                           placeholder="Rotterdam, Utrecht...">
+                </div>
             </div>
 
-            <!-- Full- of Parttime -->
-            <div>
-                <label for="time_id" class="block text-moss-dark font-bold text-xl mb-1">Full- of Parttime <span class="text-red-500">*</span></label>
-                <select id="time_id" name="time_id"
-                        class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
-                    <option value="" disabled selected>Kies een Tijdsduur</option>
-                    <option value="0">Parttime</option>
-                    <option value="1">Fulltime</option>
-                </select>
-            </div>
+            <!-- Second Column -->
+            <div class="flex flex-col">
+                <!-- Full- of Parttime -->
+                <div class="mb-4">
+                    <label for="time_id" class="block text-moss-dark font-bold text-xl mb-1">Full- of Parttime <span class="text-red-500">*</span></label>
+                    <select id="time_id" name="time_id"
+                            class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
+                        <option value="" disabled selected>Kies een Tijdsduur</option>
+                        <option value="0">Parttime</option>
+                        <option value="1 ">Fulltime</option>
+                    </select>
+                </div>
 
-            <!-- Uren -->
-            <div>
-                <label for="workhours" class="block text-moss-dark font-bold text-xl mb-1">Uren <span class="text-red-500">*</span></label>
-                <input type="number" id="workhours" name="workhours"
-                       class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none placeholder-black"
-                       placeholder="Voer de uren per week in" required>
-            </div>
+                <!-- Maandloon -->
+                <div class="mb-4">
+                    <label for="salary" class="block text-moss-dark font-bold text-xl mb-1">Maandloon <span class="text-red-500">*</span></label>
+                    <input type="number" id="salary" name="salary"
+                           class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none placeholder-black"
+                           placeholder="Voer maandloon in" required>
+                </div>
 
-            <!-- Maandloon -->
-            <div>
-                <label for="salary" class="block text-moss-dark font-bold text-xl mb-1">Maandloon <span class="text-red-500">*</span></label>
-                <input type="number" id="salary" name="salary"
-                       class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none placeholder-black"
-                       placeholder="Voer maandloon in" required>
-            </div>
+                <!-- Op Locatie of Op Afstand -->
+                <div class="mb-4">
+                    <label for="place" class="block text-moss-dark font-bold text-xl mb-1">Op Locatie of Op Afstand <span class="text-red-500">*</span></label>
+                    <select id="place" name="place"
+                            class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
+                        <option value="" disabled selected>Kies een Locatie</option>
+                        <option value="1">Op Locatie</option>
+                        <option value="2">Hybride</option>
+                        <option value="3">Op Afstand</option>
+                    </select>
+                </div>
 
-            <!-- Minimaal Opleidingsniveau -->
-            <div>
-                <label for="education" class="block text-moss-dark font-bold text-xl mb-1">Minimaal Opleidingsniveau <span class="text-red-500">*</span></label>
-                <select id="education" name="education"
-                        class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
-                    <option value="" disabled selected>Kies een Opleidingsniveau</option>
-                    <option value="1">N.V.T.</option>
-                    <option value="2">Middelbareschool</option>
-                    <option value="3">MBO</option>
-                    <option value="4">HBO</option>
-                    <option value="5">Universitair</option>
-                </select>
-            </div>
-
-            <!-- Op Locatie of Op Afstand -->
-            <div>
-                <label for="place" class="block text-moss-dark font-bold text-xl mb-1">Op Locatie of Op Afstand <span class="text-red-500">*</span></label>
-                <select id="place" name="place"
-                        class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none" required>
-                    <option value="" disabled selected>Kies een Locatie</option>
-                    <option value="1">Op Locatie</option>
-                    <option value="2">Hybride</option>
-                    <option value="3">Op Afstand</option>
-                </select>
-            </div>
-
-            <!-- Locatie van het Werk -->
-            <div>
-                <label for="location" class="block text-moss-dark font-bold text-xl mb-1">Locatie van het Werk</label>
-                <input type="text" id="location" name="location"
-                       class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none placeholder-black"
-                       placeholder="Rotterdam, Utrecht...">
-            </div>
-
-            <!-- Dagen -->
-            <div>
-                <label class="block text-moss-dark font-bold text-xl mb-1">Dagen</label>
-                <div class="grid grid-cols-7 gap-2 w-full"> <!-- Use grid for responsive behavior -->
-                    @foreach(['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'] as $day)
-                        <div class="flex items-center justify-center"> <!-- Center the buttons -->
-                            <input type="checkbox" id="{{ strtolower($day) }}" name="days[]" value="{{ $day }}"
-                                   class="peer hidden">
-                            <label for="{{ strtolower($day) }}"
-                                   class="h-14 w-20 bg-moss-light text-moss-dark font-bold rounded-lg cursor-pointer flex items-center justify-center
-                       peer-checked:bg-violet-light peer-checked:text-white">
-                                {{ substr($day, 0, 2) }} <!-- Display only the first two letters -->
-                            </label>
-                        </div>
-                    @endforeach
+                <!-- Dagen -->
+                <div class="mb-4">
+                    <label class="block text-moss-dark font-bold text-xl mb-1">Dagen</label>
+                    <div class="grid grid-cols-7 gap-2 w-full"> <!-- Use grid for responsive behavior -->
+                        @foreach(['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'] as $day)
+                            <div class="flex items-center justify-center"> <!-- Center the buttons -->
+                                <input type="checkbox" id="{{ strtolower($day) }}" name="days[]" value="{{ $day }}"
+                                       class="peer hidden">
+                                <label for="{{ strtolower($day) }}"
+                                       class="h-14 w-20 bg-moss-light text-moss-dark font-bold rounded-lg cursor-pointer flex items-center justify-center
+                                       peer-checked:bg-violet-light peer-checked:text-white">
+                                    {{ substr($day, 0, 2) }} <!-- Display only the first two letters -->
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,4 +133,4 @@
             </div>
         </div>
     </form>
-</div>
+</div

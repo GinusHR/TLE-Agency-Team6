@@ -80,7 +80,7 @@
                             @endphp
                             @foreach($dayAbbreviations as $fullDay => $abbreviation)
                                 <span class="h-10 px-3 py-2 rounded-md font-bold text-sm flex items-center justify-center
-                {{ is_array($days) && in_array($fullDay, $days) ? 'bg-moss-light text-moss-dark' : 'bg-unchecked-gray text-white' }}">
+                {{ is_array($days) && in_array($fullDay, $days) ? 'bg-violet-light text-white' : 'bg-moss-light text-moss-dark' }}">
                 {{ $abbreviation }} <!-- Display the abbreviation -->
             </span>
                             @endforeach
