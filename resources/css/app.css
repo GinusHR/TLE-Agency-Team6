@@ -115,13 +115,32 @@ h1 {
 /* Stijlen voor het hamburger menu (de drie strepen) */
 .menu-icon span {
     @apply block w-[30px] h-[4px] bg-moss-dark m-[6px]; /* Consistente breedte, hoogte en marge */
+    transition: all 0.3s ease;
     /*@apply block w-10 h-[0.3vw] bg-moss-dark m-1.5;*/
 }
 
 .menu-icon {
+    position: relative;
     @apply p-[20px]; /* Consistente padding */
     display: inline-block;
+    transition: all 0.3s ease;
     /*@apply p-[1.25vw];*/
+}
+
+.menu-icon.open span:nth-child(1) {
+    transform: rotate(45deg) translateY(3px);
+    position: relative;
+    top: 8px;
+}
+
+.menu-icon.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon.open span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-3px);
+    position: relative;
+    top: -8px;
 }
 
 
