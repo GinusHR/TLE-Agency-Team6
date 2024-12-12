@@ -1,4 +1,3 @@
-@vite(['resources/js/app.js', 'resources/css/app.css'])
 <x-layout>
     {{--    <x-slot name="header">--}}
     <div class="flex justify-between items-center px-4 sm:px-6 lg:px-8 mt-2 mb-0">

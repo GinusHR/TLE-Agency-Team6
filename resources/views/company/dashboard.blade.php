@@ -1,5 +1,3 @@
-@vite(['resources/js/app.js', 'resources/css/app.css'])
-
 <x-layout>
     <h1 class="mb-5">Welkom op het Dashboard, {{ Auth::guard('company')->user()->name }}</h1>
     @if (session('success'))
