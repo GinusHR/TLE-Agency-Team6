@@ -27,9 +27,6 @@ export default {
                 'playfair': ['Playfair Display', 'serif'],  // Gebruik de naam van het font zoals opgegeven in de Google Fonts URL
                 radikal: ['Radikal', 'sans-serif'], // Voeg je nieuwe font toe
             },
-            screens: {
-                sm: { max: '748px' }
-            },
         },
     },
     plugins: [require('@tailwindcss/forms')],

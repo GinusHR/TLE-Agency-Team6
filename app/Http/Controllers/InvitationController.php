@@ -32,7 +32,21 @@ class InvitationController extends Controller
             return redirect()->route('homepage');
         }
     }
+
     public function declineInvitation($hash, $id)
+    {
+        $invitation = Invitation::findOrFail($id);
+        if ($hash === $invitation->url_hashed) {
+            $invitation->declined = true;
+            $invitation->save();
+
+            return redirect()->route('homepage')->with('success', 'De aanvraag is succesvol geweigerd!');
+        } else {
+            return redirect()->route('homepage');
+        }
+    }
+
+    public function changeInvitation($hash, $id)
     {
         $invitation = Invitation::findOrFail($id);
         if ($hash === $invitation->url_hashed) {
