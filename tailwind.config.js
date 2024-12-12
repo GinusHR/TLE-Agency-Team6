@@ -20,6 +20,7 @@ export default {
                 'violet-dark': '#7C1A51',
                 'yellow' : '#FAEC02',
                 'unchecked-gray' : '#A5A5A4',
+                'info-gray' : '#E1E2DB',
             },
             fontFamily: {
                 sans: ['Figtree', ...require('tailwindcss/defaultTheme').fontFamily.sans],

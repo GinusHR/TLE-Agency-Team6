@@ -87,8 +87,8 @@
                                                value="{{ $demand->id }}" name="demands[]"
                                                class="w-4 h-4 text-violet-light bg-gray-900 border-gray-600 rounded focus:ring-violet-light">
                                         <span>
-                                                {{ $demand->name }}
-                                            </span>
+                                {{ $demand->name }}
+                            </span>
                                     </label>
                                 </li>
                             @endforeach
@@ -96,9 +96,10 @@
                     </div>
                 </div>
 
-
                 <button type="submit"
-                        class="w-full bg-violet-light text-white py-2 rounded-md hover:bg-violet-dark">Zoeken</button>
+                        class="w-full bg-violet-light text-white py-2 rounded-md hover:bg-violet-dark mt-4">Zoeken
+                </button>
+
             </form>
 {{--            <a href="{{ route('vacatures.create') }}" id="create-vacature-link"--}}
 {{--               class="mt-6 md:mt-0 md:ml-6 inline-block bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light">Maak--}}
@@ -155,7 +156,9 @@
                                         {{ implode(', ', $daysArray) }}
                                     @endif
                                 </p>
-                                <p class="text-sm"><span class="font-semibold">Omschrijving:</span> {{ $vacature->description }}</p>
+                                <div class="bg-info-gray text-sm p-4 rounded-md border-2 border-[#B9B9B9]">
+                                    {{ $vacature->description }}
+                                </div>
                             </div>
                             <div class="flex justify-between items-center mt-4">
                                 <button class="bg-violet-light text-white py-2 px-4 rounded-md hover:bg-violet-dark">
