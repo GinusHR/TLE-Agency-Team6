@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
+            $table->string('url_hashed');
             $table->bigInteger('application_id')->onDelete('cascade');
             $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
-            $table->bigInteger('time');
-            $table->string('day');
-            $table->boolean('declined');
+            $table->bigInteger('time')->nullable();
+            $table->string('day')->nullable();
+            $table->boolean('declined')->nullable();
             $table->timestamps();
         });
     }

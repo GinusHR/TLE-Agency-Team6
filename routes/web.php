@@ -7,6 +7,7 @@ use App\Http\Controllers\VacatureController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\Company\CompanyDashboardController;
+use App\Http\Controllers\InvitationController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -41,13 +42,18 @@ Route::prefix('company')->name('company.')->group(function () {
     Route::post('login', [CompanyLoginController::class, 'login']);
     Route::post('logout', [CompanyLoginController::class, 'logout'])->name('logout');
 
-    Route::middleware(['auth:company'])->group(function () {
-        Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
-        Route::get('/profile', [CompanyDashboardController::class, 'profile'])->name('profile');
-        Route::patch('/profile/{company}', [CompanyDashboardController::class, 'update'])->name('update');
-        Route::post('/{vacature}/toggle-visibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('toggleVisibility');
-    });
+    Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [CompanyDashboardController::class, 'profile'])->name('profile');
+    Route::patch('/profile/{company}', [CompanyDashboardController::class, 'update'])->name('update');
+    Route::post('/{vacature}/toggle-visibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('toggleVisibility');
+    Route::delete('/{application}/rejectApplicant', [CompanyDashboardController::class, 'rejectApplicantForDemands'])->name('rejectApplicant');
+    Route::post('/{vacature}/acceptApplicants', [CompanyDashboardController::class, 'acceptApplicants'])->name('acceptApplicants');
 });
+
+
+Route::get('/invitations/{hash}/{invitation}', [InvitationController::class, 'show'])->name('invitations.show');
+Route::post('/invitations/{hash}/{invitation}/acceptInvitation', [InvitationController::class, 'acceptInvitation'])->name('invitations.acceptInvitation');
+
 
 
 Route::resource('vacatures', VacatureController::class);
