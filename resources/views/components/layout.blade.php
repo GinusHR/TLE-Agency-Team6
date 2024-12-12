@@ -61,8 +61,8 @@
             <!-- Voor Werkzoekenden -->
             <div class="footer-links">
                 <h3 class="h3-footer">Voor werkzoekenden</h3>
-                <a class="nav-link-footer" href="/register">Vind een baan</a>
-                <a class="nav-link-footer" href="/login">Veelgestelde vragen</a>
+                <a class="nav-link-footer" href="/vacatures">Vind een baan</a>
+                <a class="nav-link-footer" href="/info">Veelgestelde vragen</a>
             </div>
 
             <div class="footer-links">
@@ -74,8 +74,8 @@
             <!-- Over Open Hiring -->
             <div class="footer-links">
                 <h3 class="h3-footer">Over open hiring</h3>
-                <a class="nav-link-footer" href="/register">Onstaan</a>
-                <a class="nav-link-footer" href="/login">Privacy beleid</a>
+                <a class="nav-link-footer" href="/info">Onstaan</a>
+                <a class="nav-link-footer" href="/contact">Privacybeleid</a>
             </div>
 
             <!-- Volg ons op -->
