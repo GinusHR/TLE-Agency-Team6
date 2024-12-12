@@ -8,10 +8,24 @@
             <p class="text-gray-600 mb-4">
                 {{ $invitation->application->vacature->company->name }} wil graag dat je voor hen komt werken.
             </p>
-            <p class="text-gray-600 mb-4">
-                Ze hebben aangegeven dat je op <span class="font-semibold">{{ $invitation->day }}</span> kan beginnen in
-                <span class="font-semibold">{{ $invitation->application->vacature->location }}</span>.
-            </p>
+            @if (!empty($invitation->day))
+                <p class="text-gray-600 mb-4">
+                    Ze hebben aangegeven dat je op <span class="font-semibold">{{ $invitation->day }}</span> kan beginnen
+                    in
+                    <span class="font-semibold">{{ $invitation->application->vacature->location }}</span>.
+                </p>
+            @else
+                <p class="text-gray-600 mb-4">
+                    Ze willen dat je zelf een dag doorgeeft zodat je kan beginnen in
+                    <span class="font-semibold">{{ $invitation->application->vacature->location }}</span>.
+                </p>
+                <div class="flex items-center space-x-1">
+                    <label for="workday" class="text-gray-600 mb-4">
+                        Dag:</label>
+                    <input type="date" id="workday" name="workday"
+                        class="p-1.5 border border-gray-300 rounded-md text-sm">
+                </div>
+            @endif
             <p class="text-gray-600 mb-6">
                 Geef via onderstaande knoppen aan of je wel of niet wilt gaan werken.
             </p>

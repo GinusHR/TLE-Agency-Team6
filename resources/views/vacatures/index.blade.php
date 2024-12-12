@@ -117,7 +117,7 @@
                                 <h3 class="text-xl font-bold">{{ $vacature->company->name }}</h3>
                                 <button
                                     class="toggle-btn text-2xl font-bold text-gray-500 hover:text-gray-700"
-                                    data-collapse="true">-
+                                    data-collapse="true">+
                                 </button>
                             </div>
                             <div class="details mt-2 space-y-2 hidden">
@@ -191,10 +191,10 @@
 
                             if (isCollapsed) {
                                 details.classList.remove('hidden');
-                                button.textContent = '+';
+                                button.textContent = '-';
                             } else {
                                 details.classList.add('hidden');
-                                button.textContent = '-';
+                                button.textContent = '+';
                             }
 
                             button.setAttribute('data-collapse', !isCollapsed);
