@@ -1,5 +1,3 @@
-@vite(['resources/js/app.js', 'resources/css/app.css'])
-
 <x-layout title="Homepage" class="max-w-full">
 
     <div class="bg-moss-light">
