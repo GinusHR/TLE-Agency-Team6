@@ -15,6 +15,7 @@ use App\Models\Company;
 use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\Types\Nullable;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 
 class CompanyDashboardController extends Controller
@@ -123,6 +124,11 @@ class CompanyDashboardController extends Controller
 
     public function acceptApplicants($id, Request $request)
     {
+        $request->validate([
+            'acceptApplicants' => 'required|integer',
+        ]);
+
+
         $applicantsAmount = $request->input('acceptApplicants');
 
         $vacature = Vacature::findOrFail($id);
@@ -142,11 +148,17 @@ class CompanyDashboardController extends Controller
 
             $invitation->url_hashed = Str::random(32);
 
-            if ($request->has('workday')) {
-                $workday = $request->input('workday');
+            if ($request->has('workday') && !empty($request->input('workday'))) {
+                //splits tijd en dag en laat het in de juiste format zien
+                Carbon::setLocale('nl');
+                $workdayTime = $request->input('workday');
+                $workday = Carbon::parse($workdayTime)->translatedFormat('l j F Y');
+                $worktime = Carbon::parse($workdayTime)->format('H:i');
                 $invitation->day = $workday;
+                $invitation->time = $worktime;
             } else {
                 $workday = '';
+                $worktime = '';
             }
 
             $invitation->save();
@@ -166,6 +178,7 @@ class CompanyDashboardController extends Controller
                 'function' => $function,
                 'location' => $location,
                 'workday' => $workday,
+                'worktime' => $worktime,
                 'link' => $link
             ];
             //stuur mail

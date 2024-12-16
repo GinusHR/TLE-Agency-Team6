@@ -113,12 +113,12 @@
             <div class="flex justify-end gap-8 mt-8">
                 <!-- Edit Button -->
                 <form action="{{ route('vacatures.edit', $vacature->id) }}" method="GET">
-                    @csrf
                     <button type="submit"
                             class="bg-violet-light text-white font-medium px-8 py-3 rounded-lg shadow hover:bg-violet-dark">
                         Wijzigen
                     </button>
                 </form>
+
 
                 <!-- Publish Button -->
                 <form action="{{ route('vacatures.publish', $vacature->id) }}" method="POST">

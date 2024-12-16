@@ -27,8 +27,8 @@
         @foreach ($vacatures as $vacature)
             <div class="pt-6">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-moss-light dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <h2 class="text-gray-600 text-2xl font-bold dark:text-white mr-4 p-4 pb-0">
+                    <div class="bg-moss-light overflow-hidden shadow-sm sm:rounded-lg">
+                        <h2 class="text-gray-600 text-2xl font-bold mr-4 p-4 pb-0">
                             @if ($vacature->status)
                                 Open:
                             @else
@@ -36,13 +36,13 @@
                             @endif{{ $vacature->function }} -
                             {{ $vacature->location }}
                         </h2>
-                        <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between content-center">
+                        <div class="p-6 text-gray-900 flex justify-between content-center">
                             <div>
                                 <p>Aantal aangenomen via vacature:
                                     {{ $vacature->applications->where('accepted', 1)->count() }}</p>
                                 <div class="flex items-start"> <!-- New wrapper to align button properly -->
                                     <button id="toggleVacature{{ $vacature->id }}Table"
-                                        class="flex items-center text-gray-600 hover:text-gray-900 dark:text-white mr-4">
+                                        class="flex items-center text-gray-600 hover:text-gray-900 mr-4">
                                         <!-- Added margin-right -->
                                         <span id="toggleVacature{{ $vacature->id }}Icon" class="mr-2">▼</span>
                                         <span>
@@ -53,39 +53,48 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="max-w-sm p-3 border border-gray-300 rounded-md bg-gray-50 shadow-sm">
-                                <span class="block text-sm font-semibold text-center mb-3">Mensen uitnodigen om te komen
-                                    werken</span>
-                                <form action="{{ route('company.acceptApplicants', $vacature->id) }}" method="POST"
-                                    class="space-y-3">
-                                    @csrf
-                                    <div class="flex items-center space-x-2">
-                                        <select name="acceptApplicants" id="acceptApplicants"
-                                            class="flex-1 border border-gray-300 rounded-md text-sm">
-                                            <option value="">Aantal mensen</option>
-                                            @php
-                                                $counter = 0;
-                                            @endphp
-                                            @foreach ($vacature->applications->where('accepted', 0) as $application)
+                            @if ($vacature->applications->where('accepted', 0)->count() > 0)
+                                <div class="max-w-sm p-3 border border-gray-300 rounded-md bg-gray-50 shadow-sm">
+                                    <span class="block text-sm font-semibold text-center mb-3">Mensen uitnodigen om te
+                                        komen
+                                        werken</span>
+                                    <form action="{{ route('company.acceptApplicants', $vacature->id) }}"
+                                        method="POST" class="space-y-3">
+                                        @csrf
+                                        <div class="flex flex-wrap items-center space-x-2">
+                                            <select name="acceptApplicants" id="acceptApplicants"
+                                                class="flex-1 border border-gray-300 rounded-md text-sm">
+                                                <option value="">Aantal mensen</option>
                                                 @php
-                                                    $counter++;
+                                                    $counter = 0;
                                                 @endphp
-                                                <option value="{{ $counter }}">{{ $counter }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="flex items-center space-x-1">
-                                            <label for="workday" class="text-xs font-medium whitespace-nowrap">
-                                                Dag:</label>
-                                            <input type="date" id="workday" name="workday"
-                                                class="p-1.5 border border-gray-300 rounded-md text-sm">
+                                                @foreach ($vacature->applications->where('accepted', 0) as $application)
+                                                    @php
+                                                        $counter++;
+                                                    @endphp
+                                                    <option value="{{ $counter }}">{{ $counter }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div
+                                                class="flex flex-wrap items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                                                <label for="workday" class="text-xs font-medium whitespace-nowrap">
+                                                    Datum en tijd: (niet verplicht)
+                                                </label>
+                                                <input type="datetime-local" id="workday" name="workday"
+                                                    class="p-2 border border-gray-300 rounded-md text-sm w-full sm:w-auto">
+                                                @error('workday')
+                                                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
                                         </div>
-                                    </div>
-                                    <button type="submit"
-                                        class="w-full bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light hover:text-white">
-                                        Verzend uitnodiging
-                                    </button>
-                                </form>
-                            </div>
+                                        <button type="submit"
+                                            class="w-full bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light hover:text-white">
+                                            Verzend uitnodiging
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
                             <div class="flex space-x-2 mt-4">
                                 <div>
                                     <button
@@ -123,25 +132,25 @@
 
                         <div class="overflow-x-auto" id="vacature{{ $vacature->id }}Table" style="display: none;">
                             <div class="bg-moss-light p-4">
-                                <table class="min-w-full bg-white dark:bg-gray-800 w-auto mx-auto sm:rounded-lg">
+                                <table class="min-w-full bg-white w-auto mx-auto sm:rounded-lg">
                                     <thead>
-                                        <tr class="border-b dark:border-gray-700">
+                                        <tr class="border-b">
                                             <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 #</th>
                                             <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 Gesolliciteerd op</th>
                                             <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 Eisen waar niet aan voldaan zijn</th>
                                             @if ($vacature->secondary_info_needed)
                                                 <th
-                                                    class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                    class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                     Extra informatie</th>
                                             @endif
                                             <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 Acties</th>
                                         </tr>
                                     <tbody>
@@ -152,7 +161,7 @@
                                             @php
                                                 $counter++;
                                             @endphp
-                                            <tr class="border-b dark:border-gray-700">
+                                            <tr class="border-b">
                                                 <td class="px-4 py-2">{{ $counter }}</td>
                                                 <td class="px-4 py-2">{{ $application->created_at }}</td>
                                                 <td class="px-4 py-2">
