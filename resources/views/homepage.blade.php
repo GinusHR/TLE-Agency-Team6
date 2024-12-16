@@ -2,7 +2,7 @@
 
     <div class="bg-moss-light">
         <!-- De header met gecentreerde tekst -->
-        <h1 class="mt-[5vw] md:mt-0">Welkom bij Open Hiring!</h1>
+        <h1 class="pt-[5vw] md:mt-0 text-3xl md:text-5xl" >Welkom bij Open Hiring!</h1>
 
         @if (session('success'))
             <script>
@@ -17,8 +17,8 @@
                 class="w-[60vw] md:w-[30vw] md:mb-0 h-auto rounded-[4vw]">
 
             <div class="text-xl text-[#2E342A] flex flex-col items-center">
-                <h2 class="text-3xl m-[5vw] md:m-[2vw] md:w-auto md:text-left font-bold">Werk voor wie wil werken</h2>
-                <p class="w-[90vw] md:w-[35vw] text-center md:text-left">
+                <h2 class=" text-2xl md:text-3xl m-[5vw] md:m-[2vw] md:w-auto md:text-left font-bold">Werk voor wie wil werken</h2>
+                <p class="w-[90vw] md:w-[35vw] text-center md:text-left text-[1rem] md:text-lg">
                     Met Open Hiring heeft iedereen een eerlijke kans op een baan. Wie wil én kan werken, kan zó aan de
                     slag. Zonder sollicitatiegesprek, zonder brief, zonder vragen. Met één druk op de knop. Open Hiring
                     draait namelijk niet om diploma’s, maar om mensen. Niet om praatjes, maar om aanpakken.
