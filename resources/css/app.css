@@ -136,7 +136,7 @@ h1 {
     }
 
     .dropdown-content .button-small {
-        @apply w-[10vw]
+        @apply w-[10vw] h-[4.3vh]
     }
 
     .header a img {
