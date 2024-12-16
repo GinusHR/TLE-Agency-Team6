@@ -148,7 +148,7 @@ class CompanyDashboardController extends Controller
 
             $invitation->url_hashed = Str::random(32);
 
-            if ($request->has('workday')) {
+            if ($request->has('workday') && !empty($request->input('workday'))) {
                 //splits tijd en dag en laat het in de juiste format zien
                 Carbon::setLocale('nl');
                 $workdayTime = $request->input('workday');
