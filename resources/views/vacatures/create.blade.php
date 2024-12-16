@@ -125,46 +125,45 @@
 
             <!-- Eisenlijst dropdown -->
             <div>
+                <label class="block text-moss-dark font-bold text-xl mb-1">Eventuele eisen waar de werknemer aan moet
+                    voldoen</label>
                 <button id="demandsButton" data-dropdown-toggle="demands"
-                    class="text-gray-100 bg-violet-light hover:bg-violet-dark focus:ring-4 focus:outline-none focus:ring-violet-light font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
-                    type="button">Eisen
+                    class="text-gray-900 bg-moss-light hover:bg-moss-dark hover:text-white focus:ring-4 focus:outline-none focus:ring-moss-light font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
+                    type="button">
+                    Eisen
                     <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const button = document.getElementById('demandsButton');
-                        const dropdown = document.getElementById('demands');
-                        const dropdownDemand = document.getElementById('dropdownDemand');
-
-                        button.addEventListener('click', function() {
-                            dropdown.classList.toggle('hidden');
-                        });
-                        dropdownDemand.addEventListener('click', function() {
-                            dropdownDemand.classList.toggle('bg-moss-light');
-                        });
-                    });
-                </script>
-                <div id="demands" class="z-10 hidden w-48 bg-violet-light rounded-lg shadow-lg">
+                <div id="demands" class="z-10 hidden w-48 bg-moss-light rounded-lg">
                     <ul class="p-3 space-y-1 text-sm text-gray-300">
                         @foreach ($demands as $demand)
                             <li>
-                                <label for="demand[{{ $demand->id }}]" id="dropdownDemand"
-                                    class="flex items-center space-x-2 p-2 rounded text-sm font-medium text-gray-100 hover:bg-violet-dark has-[:checked]:bg-moss-light has-[:checked]:text-black cursor-pointer">
-                                    <input id="demand[{{ $demand->id }}]" type="checkbox"
-                                        value="{{ $demand->id }}" name="demands[]"
-                                        class="w-4 h-4 text-violet-light bg-gray-900 border-gray-600 rounded focus:ring-violet-light">
-                                    <span>
-                                        {{ $demand->name }}
-                                    </span>
+                                <label for="demand_{{ $demand->id }}"
+                                    class="flex items-center space-x-2 p-2 rounded text-sm font-medium text-gray-900 hover:bg-moss-dark hover:text-white has-[:checked]:bg-violet-light has-[:checked]:text-white cursor-pointer">
+                                    <input id="demand_{{ $demand->id }}" name="demands[]" type="checkbox"
+                                        value="{{ $demand->id }}"
+                                        class="w-4 h-4 text-moss-light bg-gray-100 border-gray-600 rounded focus:ring-moss-light">
+                                    <span>{{ $demand->name }}</span>
                                 </label>
                             </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const button = document.getElementById('demandsButton');
+                    const dropdown = document.getElementById('demands');
+
+                    button.addEventListener('click', function() {
+                        dropdown.classList.toggle('hidden');
+                    });
+                });
+            </script>
+
 
             <!-- Bedrijf ID -->
             <div class="mb-4">

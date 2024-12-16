@@ -131,8 +131,8 @@ class VacatureController extends Controller
      */
     public function create()
     {
-        $vacatures = Vacature::all();
-        return view('vacatures.create', compact('vacatures')); // Pass both variables to the view
+        $demands = Demand::all();
+        return view('vacatures.create', compact('demands'));
     }
 
     /**
@@ -208,6 +208,8 @@ class VacatureController extends Controller
             'status' => 0, // Explicitly set status to 0
         ]));
 
+        $newVacature->demands()->sync($request->input('demands', []));
+
         // Redirect to the preview page
         return redirect()->route('vacatures.preview', $newVacature->id);
     }
@@ -238,5 +240,4 @@ class VacatureController extends Controller
         $vacature->update(['status' => 1]);
         return redirect()->route('vacatures.index')->with('success', 'Vacature gepubliceerd.');
     }
-
 }
