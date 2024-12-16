@@ -152,7 +152,7 @@ class CompanyDashboardController extends Controller
                 //splits tijd en dag en laat het in de juiste format zien
                 Carbon::setLocale('nl');
                 $workdayTime = $request->input('workday');
-                $workday = ucwords(Carbon::parse($workdayTime)->translatedFormat('l j F Y'));
+                $workday = Carbon::parse($workdayTime)->translatedFormat('l j F Y');
                 $worktime = Carbon::parse($workdayTime)->format('H:i');
                 $invitation->day = $workday;
                 $invitation->time = $worktime;
