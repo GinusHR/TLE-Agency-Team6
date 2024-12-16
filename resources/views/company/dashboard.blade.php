@@ -29,8 +29,8 @@
         @foreach ($vacatures as $vacature)
             <div class="pt-6">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-moss-light dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <h2 class="text-gray-600 text-2xl font-bold dark:text-white mr-4 p-4 pb-0">
+                    <div class="bg-moss-light overflow-hidden shadow-sm sm:rounded-lg">
+                        <h2 class="text-gray-600 text-2xl font-bold mr-4 p-4 pb-0">
                             @if ($vacature->status)
                                 Open:
                             @else
@@ -38,13 +38,13 @@
                             @endif{{ $vacature->function }} -
                             {{ $vacature->location }}
                         </h2>
-                        <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between content-center">
+                        <div class="p-6 text-gray-900 flex justify-between content-center">
                             <div>
                                 <p>Aantal aangenomen via vacature:
                                     {{ $vacature->applications->where('accepted', 1)->count() }}</p>
                                 <div class="flex items-start"> <!-- New wrapper to align button properly -->
                                     <button id="toggleVacature{{ $vacature->id }}Table"
-                                        class="flex items-center text-gray-600 hover:text-gray-900 dark:text-white mr-4">
+                                        class="flex items-center text-gray-600 hover:text-gray-900 mr-4">
                                         <!-- Added margin-right -->
                                         <span id="toggleVacature{{ $vacature->id }}Icon" class="mr-2">▼</span>
                                         <span>
@@ -125,25 +125,25 @@
 
                         <div class="overflow-x-auto" id="vacature{{ $vacature->id }}Table" style="display: none;">
                             <div class="bg-moss-light p-4">
-                                <table class="min-w-full bg-white dark:bg-gray-800 w-auto mx-auto sm:rounded-lg">
+                                <table class="min-w-full bg-white w-auto mx-auto sm:rounded-lg">
                                     <thead>
-                                        <tr class="border-b dark:border-gray-700">
+                                        <tr class="border-b">
                                             <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 #</th>
                                             <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 Gesolliciteerd op</th>
                                             <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 Eisen waar niet aan voldaan zijn</th>
                                             @if ($vacature->secondary_info_needed)
                                                 <th
-                                                    class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                    class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                     Extra informatie</th>
                                             @endif
                                             <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 Acties</th>
                                         </tr>
                                     <tbody>
@@ -154,7 +154,7 @@
                                             @php
                                                 $counter++;
                                             @endphp
-                                            <tr class="border-b dark:border-gray-700">
+                                            <tr class="border-b">
                                                 <td class="px-4 py-2">{{ $counter }}</td>
                                                 <td class="px-4 py-2">{{ $application->created_at }}</td>
                                                 <td class="px-4 py-2">
