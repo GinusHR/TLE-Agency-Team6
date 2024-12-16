@@ -39,6 +39,7 @@
 
         .content p {
             line-height: 1.6;
+            color: #1a202c;
         }
 
         .button {

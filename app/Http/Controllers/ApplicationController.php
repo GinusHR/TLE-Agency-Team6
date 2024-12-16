@@ -23,9 +23,17 @@ class ApplicationController extends Controller
             $email = Auth::user()->email;
         } else {
             $request->validate([
-                'email' => 'required|string|max:255'
+                'email' => 'required|email|max:255|unique:applications,email,NULL,id,vacature_id,' . $request->vacature_id,
+            ], [
+                'email.unique' => 'Dit e-mailadres is al in gebruik.',
             ]);
             $email = $request->input('email');
+
+            $existingUser = \App\Models\User::where('email', $email)->exists();
+
+            if ($existingUser) {
+                return redirect()->back()->withErrors(['email' => 'Dit e-mailadres is al in gebruik.']);
+            }
         }
         //maak een application aan
         $application = new Application();
