@@ -55,39 +55,48 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="max-w-sm p-3 border border-gray-300 rounded-md bg-gray-50 shadow-sm">
-                                <span class="block text-sm font-semibold text-center mb-3">Mensen uitnodigen om te komen
-                                    werken</span>
-                                <form action="{{ route('company.acceptApplicants', $vacature->id) }}" method="POST"
-                                    class="space-y-3">
-                                    @csrf
-                                    <div class="flex items-center space-x-2">
-                                        <select name="acceptApplicants" id="acceptApplicants"
-                                            class="flex-1 border border-gray-300 rounded-md text-sm">
-                                            <option value="">Aantal mensen</option>
-                                            @php
-                                                $counter = 0;
-                                            @endphp
-                                            @foreach ($vacature->applications->where('accepted', 0) as $application)
+                            @if ($vacature->applications->where('accepted', 0)->count() > 0)
+                                <div class="max-w-sm p-3 border border-gray-300 rounded-md bg-gray-50 shadow-sm">
+                                    <span class="block text-sm font-semibold text-center mb-3">Mensen uitnodigen om te
+                                        komen
+                                        werken</span>
+                                    <form action="{{ route('company.acceptApplicants', $vacature->id) }}"
+                                        method="POST" class="space-y-3">
+                                        @csrf
+                                        <div class="flex flex-wrap items-center space-x-2">
+                                            <select name="acceptApplicants" id="acceptApplicants"
+                                                class="flex-1 border border-gray-300 rounded-md text-sm">
+                                                <option value="">Aantal mensen</option>
                                                 @php
-                                                    $counter++;
+                                                    $counter = 0;
                                                 @endphp
-                                                <option value="{{ $counter }}">{{ $counter }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="flex items-center space-x-1">
-                                            <label for="workday" class="text-xs font-medium whitespace-nowrap">
-                                                Dag:</label>
-                                            <input type="date" id="workday" name="workday"
-                                                class="p-1.5 border border-gray-300 rounded-md text-sm">
+                                                @foreach ($vacature->applications->where('accepted', 0) as $application)
+                                                    @php
+                                                        $counter++;
+                                                    @endphp
+                                                    <option value="{{ $counter }}">{{ $counter }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div
+                                                class="flex flex-wrap items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                                                <label for="workday" class="text-xs font-medium whitespace-nowrap">
+                                                    Datum en tijd: (niet verplicht)
+                                                </label>
+                                                <input type="datetime-local" id="workday" name="workday"
+                                                    class="p-2 border border-gray-300 rounded-md text-sm w-full sm:w-auto">
+                                                @error('workday')
+                                                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
                                         </div>
-                                    </div>
-                                    <button type="submit"
-                                        class="w-full bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light hover:text-white">
-                                        Verzend uitnodiging
-                                    </button>
-                                </form>
-                            </div>
+                                        <button type="submit"
+                                            class="w-full bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light hover:text-white">
+                                            Verzend uitnodiging
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
                             <div class="flex space-x-2 mt-4">
                                 <div>
                                     <button
