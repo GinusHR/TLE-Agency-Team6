@@ -75,10 +75,25 @@
                             </p>
                         @endif
                     </div>
+
+
+
+
                     <div class="mt-6">
                         <h3 class="text-lg font-medium text-gray-700 mb-3">Beoordelingen</h3>
                         <!-- Beoordelingen content can be dynamically added here -->
                     </div>
+
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
 
@@ -147,6 +162,18 @@
             </div>
         </div>
     </div>
+
+    <div class="bg-white max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative mb-[5vw]">
+        <h2 class="text-lg font-semibold text-gray-700 mb-3">Over {{ $vacature->company->name }} </h2>
+        <p>{{ $vacature->company->description }}</p>
+        <div class="flex justify-end gap-[2vw] mt-[2vw]">
+        <a href="{{ $vacature->company->homepage_url}}" class="bg-violet-light text-white font-medium text-center rounded-full py-3 px-6 hover:bg-violet-dark">Website</a>
+        <a href="{{ $vacature->company->about_us_url}}" class="bg-violet-light text-white font-medium text-center rounded-full py-3 px-6 hover:bg-violet-dark">About us</a>
+        <a href="{{ $vacature->company->contact_url}}" class="bg-violet-light text-white font-medium text-center rounded-full py-3 px-6 hover:bg-violet-dark">Contact</a>
+        </div>
+
+    </div>
+
 
     <script>
         const modal = document.getElementById("solliciteerModal");
