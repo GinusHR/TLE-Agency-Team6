@@ -114,13 +114,17 @@
                        placeholder="Voer het bedrijf ID in" required>
             </div>
 
-            <input type="hidden" id="secondary_info_needed" name="secondary_info_needed" value="0"> <!-- Preset to 0 -->
-            <input type="hidden" id="status" name="status" value="1"> <!-- Preset to 1 -->
+            <input type="hidden" id="secondary_info_needed" name="secondary_info_needed" value="0">
+            <input type="hidden" id="status" name="status" value="{{ old('status', $vacature->status) }}">
 
             <!-- Submit Button -->
             <div class="flex justify-end mt-6">
                 <button type="submit" class="bg-violet-light text-white font-bold rounded-lg shadow-custom-dark hover:bg-violet-dark focus:ring-2 focus:ring-violet-dark py-3 px-8">
-                    Opslaan
+                    @if($vacature->status == 1)
+                        Opslaan
+                    @else
+                        Preview
+                    @endif
                 </button>
             </div>
         </div>
