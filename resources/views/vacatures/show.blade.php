@@ -108,11 +108,20 @@
 
             <!-- Modal -->
             <div id="solliciteerModal"
-                class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                 <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg">
                     <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right"
                         id="closeBtn">&times;</span>
                     <h2 class="text-xl font-semibold mb-4">Solliciteer voor de Vacature</h2>
+                    @if ($errors->any())
+                        <div class="bg-red-100 text-red-600 p-3 rounded mb-4">
+                            <ul class="list-disc pl-5">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form id="sollicitatieForm" action="{{ route('applications.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
