@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Open Hiring</title>
-    @vite('resources/js/app.js')
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 
 <body class="bg-cream sm:max-w-full">
@@ -35,15 +35,31 @@
                             <a class="nav-link-header" href="/info">Informatie</a>
                         </div>
 
-                        <!-- Login en Register knoppen aan de rechter kant -->
-                        <div class="dropdown-buttons">
-                            @if (Auth::user())
+                        @if (Auth::user())
+                            <!-- Login en Register knoppen aan de rechter kant -->
+                            <div class="dropdown-buttons">
                                 <a href="/profile" class="button-small md:mt-6">Profiel</a>
-                            @else
+                                <form class="flex flex-col align-center justify-center" method="POST" action="{{ route('logout') }}" onsubmit="return confirm('Weet je zeker dat je wilt uitloggen?');">
+                                    @csrf
+                                    <button type="submit" class="flex button-small mt-4 mr-[2vw] ml-[3vw]  justify-center items-center" >Uitloggen</button>
+                                </form>
+                            </div>
+                        @elseif (Auth::guard('company')->user())
+                            <!-- Login en Register knoppen aan de rechter kant -->
+                            <div class="dropdown-buttons">
+                                <a href="{{ route('company.dashboard') }}" class="button-small mt-4">Dashboard</a>
+                                <form class="flex flex-col align-center justify-center" method="POST" action="{{ route('company.logout') }}" onsubmit="return confirm('Weet je zeker dat je wilt uitloggen?');">
+                                    @csrf
+                                    <button type="submit" class="button-small mt-4 mr-[2vw] ml-[3vw] flex justify-center" >Uitloggen</button>
+                                </form>
+                            </div>
+                        @else
+                            <!-- Login en Register knoppen aan de rechter kant -->
+                            <div class="dropdown-buttons">
                                 <a href="/login" class="button-small mt-4">Log in</a>
                                 <a href="/register" class="button-small mt-4">Register</a>
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </nav>
