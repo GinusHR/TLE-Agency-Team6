@@ -1,5 +1,3 @@
-@vite(['resources/js/app.js', 'resources/css/app.css'])
-
 <x-layout>
     <div class="flex items-center justify-center min-h-screen mt-[-10rem]">
         <div class="w-full max-w-sm p-6 bg-moss-light shadow-lg rounded-lg">
