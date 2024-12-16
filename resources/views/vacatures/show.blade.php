@@ -194,4 +194,5 @@
             if (event.target === modal) modal.classList.add("hidden");
         };
     </script>
+    </div>
 </x-layout>
