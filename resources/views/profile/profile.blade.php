@@ -31,7 +31,7 @@
                 @else
                     <ul class="list-disc pl-5 space-y-2">
                         @foreach ($user->applications as $application)
-                            @if (!$application->accepted)
+                            @if ($application->accepted === 0)
                             <li class="border rounded-lg p-4 shadow bg-cream flex flex-col sm:flex-row justify-between items-start sm:items-center py-2">
                                 <p class="text-gray-800 text-lg sm:text-xl">
                                     {{ $application->vacature->function ?? 'Onbekende functie' }} bij
