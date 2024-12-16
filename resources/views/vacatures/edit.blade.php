@@ -13,7 +13,7 @@
             <!-- First Column -->
             <div class="flex flex-col">
                 <div class="mb-4">
-                    <label for="function" class="block text-moss-dark font-medium mb-1">Positie Titel *</label>
+                    <label for="function" class="block text-moss-dark font-bold text-xl mb-1">Positie Titel *</label>
                     <input type="text" id="function" name="function"
                         value="{{ old('function', $vacature->function) }}"
                         class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none"
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="workhours" class="block text-moss-dark font-medium mb-1">Uren *</label>
+                    <label for="workhours" class="block text-moss-dark font-bold text-xl mb-1">Uren *</label>
                     <input type="number" id="workhours" name="workhours"
                         value="{{ old('workhours', $vacature->workhours) }}"
                         class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none"
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="education" class="block text-moss-dark font-medium mb-1">Minimaal Opleidingsniveau
+                    <label for="education" class="block text-moss-dark font-bold text-xl mb-1">Minimaal Opleidingsniveau
                         *</label>
                     <select id="education" name="education"
                         class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none"
@@ -49,7 +49,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="location" class="block text-moss-dark font-medium mb-1">Locatie van het Werk</label>
+                    <label for="location" class="block text-moss-dark font-bold text-xl mb-1">Locatie van het
+                        Werk</label>
                     <input type="text" id="location" name="location"
                         value="{{ old('location', $vacature->location) }}"
                         class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none"
@@ -60,7 +61,8 @@
             <!-- Second Column -->
             <div class="flex flex-col">
                 <div class="mb-4">
-                    <label for="time_id" class="block text-moss-dark font-medium mb-1">Full- of Parttime *</label>
+                    <label for="time_id" class="block text-moss-dark font-bold text-xl mb-1">Full- of Parttime
+                        *</label>
                     <select id="time_id" name="time_id"
                         class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none"
                         required>
@@ -73,14 +75,14 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="salary" class=" block text-moss-dark font-medium mb-1">Maandloon *</label>
+                    <label for="salary" class=" block text-moss-dark font-bold text-xl mb-1">Maandloon *</label>
                     <input type="number" id="salary" name="salary" value="{{ old('salary', $vacature->salary) }}"
                         class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none"
                         placeholder="Voer maandloon in" required>
                 </div>
 
                 <div class="mb-4">
-                    <label for="place" class="block text-moss-dark font-medium mb-1">Op Locatie of Op Afstand
+                    <label for="place" class="block text-moss-dark font-bold text-xl mb-1">Op Locatie of Op Afstand
                         *</label>
                     <select id="place" name="place"
                         class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none"
@@ -122,26 +124,39 @@
         <!-- Single Column Layout for Remaining Fields -->
         <div class="mt-6">
             <div class="mb-4">
-                <label for="description" class="block text-moss-dark font-medium mb-1">Algemene Omschrijving *</label>
+                <label for="description" class="block text-moss-dark font-bold text-xl mb-1">Algemene Omschrijving
+                    *</label>
                 <textarea id="description" name="description"
                     class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none"
                     placeholder="Voer een omschrijving in" rows="4" required>{{ old('description', $vacature->description) }}</textarea>
             </div>
+            <div class="flex items-center space-x-2 mb-2">
+                <input type="hidden" name="secondary_info_needed" value="0">
+                <input type="checkbox" id="secondary_info_needed" name="secondary_info_needed" value="1"
+                    class="w-5 h-5 text-violet-light bg-gray-100 border-gray-300 rounded focus:ring-violet-light"
+                    @if ($vacature->secondary_info_needed) checked @endif>
+                <label for="secondary_info_needed" class="text-moss-dark font-bold text-xl">
+                    Moet de werknemer zelf nog extra informatie doorgeven?
+                </label>
+            </div>
+
 
             <!-- Eisenlijst dropdown -->
             <div class="relative">
-                <label class="block text-moss-dark font-bold text-xl mb-1">
-                    Eventuele eisen waar de werknemer aan moet voldoen
-                </label>
-                <button id="demandsButton"
-                    class="text-gray-900 bg-moss-light hover:bg-moss-dark hover:text-white focus:ring-4 focus:outline-none focus:ring-moss-light font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
-                    type="button">
-                    Eisen
-                    <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
+                <div class="flex items-center space-x-2">
+                    <button id="demandsButton"
+                        class="text-gray-900 bg-moss-light hover:bg-moss-dark hover:text-white focus:ring-4 focus:outline-none focus:ring-moss-light font-bold text-xl rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
+                        type="button">
+                        Eisen
+                        <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <label class="block text-moss-dark font-bold text-xl mb-1">
+                        Moet de werknemer nog aan eventuele eisen voldoen?
+                    </label>
+                </div>
 
                 <!-- Dropdown -->
                 <div id="demands" class="hidden left-0 right-0 bg-moss-light rounded-lg mb-2">
@@ -171,18 +186,8 @@
                 </script>
             </div>
 
-
-
-
-            <div class="mb-4">
-                <label for="company_id" class="block text-moss-dark font-medium mb-1">Bedrijf ID *</label>
-                <input type="number" id="company_id" name="company_id"
-                    value="{{ old('company_id', $vacature->company_id) }}"
-                    class="w-full p-3 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none"
-                    placeholder="Voer het bedrijf ID in" required>
-            </div>
-
-            <input type="hidden" id="secondary_info_needed" name="secondary_info_needed" value="0">
+            <input type="hidden" id="company_id" name="company_id"
+                value="{{ Auth::guard('company')->user()->id }}">
             <input type="hidden" id="status" name="status" value="{{ old('status', $vacature->status) }}">
 
             <!-- Submit Button -->

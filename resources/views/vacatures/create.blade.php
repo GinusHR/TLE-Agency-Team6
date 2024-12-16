@@ -122,21 +122,31 @@
                     class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none placeholder-black"
                     placeholder="Voer een omschrijving in" rows="4" required></textarea>
             </div>
+            <div class="flex items-center space-x-2 mb-2">
+                <input type="hidden" name="secondary_info_needed" value="0">
+                <input type="checkbox" id="secondary_info_needed" name="secondary_info_needed" value="1"
+                    class="w-5 h-5 text-violet-light bg-gray-100 border-gray-300 rounded focus:ring-violet-light">
+                <label for="secondary_info_needed" class="text-moss-dark font-bold text-xl">
+                    Moet de werknemer zelf nog extra informatie doorgeven?
+                </label>
+            </div>
 
             <!-- Eisenlijst dropdown -->
             <div class="relative">
-                <label class="block text-moss-dark font-bold text-xl mb-1">
-                    Eventuele eisen waar de werknemer aan moet voldoen
-                </label>
-                <button id="demandsButton"
-                    class="text-gray-900 bg-moss-light hover:bg-moss-dark hover:text-white focus:ring-4 focus:outline-none focus:ring-moss-light font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
-                    type="button">
-                    Eisen
-                    <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
+                <div class="flex items-center space-x-2">
+                    <button id="demandsButton"
+                        class="text-gray-900 bg-moss-light hover:bg-moss-dark hover:text-white focus:ring-4 focus:outline-none focus:ring-moss-light font-bold text-xl rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
+                        type="button">
+                        Eisen
+                        <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <label class="block text-moss-dark font-bold text-xl mb-1">
+                        Moet de werknemer nog aan eventuele eisen voldoen?
+                    </label>
+                </div>
 
                 <!-- Dropdown -->
                 <div id="demands" class="hidden left-0 right-0 bg-moss-light rounded-lg mb-2">
@@ -166,22 +176,8 @@
                 </script>
             </div>
 
-
-
-            <!-- Bedrijf ID -->
-            <div class="mb-4">
-                <label for="company_id" class="block text-moss-dark font-bold text-xl mb-1">Bedrijf ID <span
-                        class="text-red-500">*</span></label>
-                <input type="number" id="company_id" name="company_id"
-                    class="w-full p-4 bg-moss-light rounded-lg focus:ring-2 focus:ring-moss-medium focus:outline-none placeholder-black"
-                    placeholder="Voer het bedrijf ID in" required>
-            </div>
-
-            <!-- Extra Informatie Nodig (Hidden) -->
-            <input type="hidden" id="secondary_info_needed" name="secondary_info_needed" value="0">
-            <!-- Preset to 0 -->
-
-            <!-- Status (Hidden) -->
+            <input type="hidden" id="company_id" name="company_id"
+                value="{{ Auth::guard('company')->user()->id }}">
             <input type="hidden" id="status" name="status" value="0"> <!-- Preset to 0 -->
 
             <!-- Submit Button -->

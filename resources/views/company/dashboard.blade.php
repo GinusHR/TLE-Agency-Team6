@@ -33,8 +33,11 @@
                                 Open:
                             @else
                                 Closed:
-                            @endif{{ $vacature->function }} -
-                            {{ $vacature->location }}
+                            @endif
+                            {{ $vacature->function }}
+                            @if (isset($vacature->location))
+                                - {{ $vacature->location }}
+                            @endif
                         </h2>
                         <div class="p-6 text-gray-900 flex justify-between content-center">
                             <div>

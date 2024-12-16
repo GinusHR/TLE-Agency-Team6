@@ -5,8 +5,8 @@
         <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative">
             <!-- Header Section -->
             <div class="flex justify-center items-center gap-[1vw] md:gap-[1vw] bg-white p-5 rounded-md text-moss-dark">
-                <img class=" rounded-lg w-[15vw] md:w-[4.5vw]" src="{{asset('storage/'. $vacature->company->logo)}}"
-                     alt="Bedrijfslogo">
+                <img class=" rounded-lg w-[15vw] md:w-[4.5vw]" src="{{ asset('storage/' . $vacature->company->logo) }}"
+                    alt="Bedrijfslogo">
                 <h1 class="text-center text-2xl font-bold mb-4" style="font-family: Arial, sans-serif;">
                     {{ $vacature->company->name }} - {{ $vacature->function }}
                 </h1>
@@ -16,7 +16,11 @@
             <div class="mt-6">
                 <div class="mb-6">
                     <h2 class="text-lg font-semibold text-gray-700 mb-3">Algemene informatie</h2>
-                    <p class="mb-3"><strong>Locatie:</strong> {{ $vacature->location }}</p>
+                    @if (isset($vacature->location))
+                        <p class="mb-3"><strong>Locatie:</strong> {{ $vacature->location }}</p>
+                    @else
+                        <p class="mb-3"><strong>Locatie:</strong> Op afstand</p>
+                    @endif
                     <p class="mb-3"><strong>Salaris:</strong> €{{ $vacature->salary }} per maand</p>
                     <p class="mb-3"><strong>Werkuren:</strong> {{ $vacature->workhours }} uur per week</p>
                     <p class="mb-3"><strong>Contract:</strong>
@@ -55,9 +59,6 @@
                     </ul>
                 </div>
 
-
-
-
                 <!-- Description Section -->
                 <div class="mt-6">
                     <h2 class="text-lg font-semibold text-gray-700 mb-3">Beschrijving</h2>
@@ -81,25 +82,10 @@
                         @endif
                     </div>
 
-
-
-
                     <div class="mt-6">
                         <h3 class="text-lg font-medium text-gray-700 mb-3">Beoordelingen</h3>
                         <!-- Beoordelingen content can be dynamically added here -->
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
             </div>
 
@@ -182,26 +168,31 @@
         <h2 class="text-lg font-semibold text-gray-700 mb-3">Over {{ $vacature->company->name }} </h2>
         <p>{{ $vacature->company->description }}</p>
         <div class="flex justify-center items-center">
-            <img class="rounded-lg w-[70vw] md:w-[35vw] m-[6vw] md:m-[2vw]" src="{{ asset('storage/' . $vacature->company->image) }}" alt="Bedrijfsimage">
+            <img class="rounded-lg w-[70vw] md:w-[35vw] m-[6vw] md:m-[2vw]"
+                src="{{ asset('storage/' . $vacature->company->image) }}" alt="Bedrijfsimage">
         </div>
         <div class="flex justify-center  md:justify-end gap-[5vw] md:gap-[1.5vw] mt-[2vw]">
-        <a href="{{ $vacature->company->homepage_url}}" target="_blank" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Website</a>
-        <a href="{{ $vacature->company->about_us_url}}" target="_blank" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap ">About us</a>
-        <a href="{{ $vacature->company->contact_url}}" target="_blank" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Contact</a>
+            <a href="{{ $vacature->company->homepage_url }}" target="_blank"
+                class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Website</a>
+            <a href="{{ $vacature->company->about_us_url }}" target="_blank"
+                class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap ">About
+                us</a>
+            <a href="{{ $vacature->company->contact_url }}" target="_blank"
+                class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Contact</a>
         </div>
 
 
 
-    <script>
-        const modal = document.getElementById("solliciteerModal");
-        const sollicitieerBtn = document.getElementById("solliciteerBtn");
-        const closeBtn = document.getElementById("closeBtn");
+        <script>
+            const modal = document.getElementById("solliciteerModal");
+            const sollicitieerBtn = document.getElementById("solliciteerBtn");
+            const closeBtn = document.getElementById("closeBtn");
 
-        sollicitieerBtn.onclick = () => modal.classList.remove("hidden");
-        closeBtn.onclick = () => modal.classList.add("hidden");
-        window.onclick = (event) => {
-            if (event.target === modal) modal.classList.add("hidden");
-        };
-    </script>
+            sollicitieerBtn.onclick = () => modal.classList.remove("hidden");
+            closeBtn.onclick = () => modal.classList.add("hidden");
+            window.onclick = (event) => {
+                if (event.target === modal) modal.classList.add("hidden");
+            };
+        </script>
     </div>
 </x-layout>
