@@ -2,7 +2,7 @@
 
     <div class="bg-moss-light">
         <!-- De header met gecentreerde tekst -->
-        <h1 class="mt-[5vw] md:mt-0 text-3xl md:text-5xl" >Welkom bij Open Hiring!</h1>
+        <h1 class="mt-[5vw]  md:mt-0 pt-[5vw] text-3xl md:text-5xl" >Welkom bij Open Hiring!</h1>
 
         @if (session('success'))
             <script>
