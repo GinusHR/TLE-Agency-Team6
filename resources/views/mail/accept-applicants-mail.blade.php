@@ -27,10 +27,12 @@
             color: #333;
             padding: 20px;
             text-align: center;
+            font-size: 1.5rem;
         }
 
         .content {
             padding: 20px;
+            font-size: 1rem;
         }
 
         .content h1 {
@@ -39,6 +41,7 @@
 
         .content p {
             line-height: 1.6;
+            color: #1a202c;
         }
 
         .button {
@@ -58,18 +61,37 @@
             padding: 15px;
             font-size: 14px;
         }
+
+        a {
+            color: #bf0079;
+            text-decoration: none;
+            text-underline: #1a202c;
+        }
+
+        a:hover {
+            color: #d2e603;
+            text-underline: #d2e603;
+        }
+
+        a:visited {
+            color: #bf0079;
+        }
+
+        a:active {
+            color: #bf0079;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <h1>Open Hiring - Je bent aangenomen!</h1>
+            <h1>Je bent (bijna) aangenomen!</h1>
         </div>
         <div class="content">
-            <h1>Beste gebruiker,</h1>
+            <p>Beste Open-Hiring-gebruiker,</p>
             <p>Je bent aangenomen bij <strong>{{ $details['company'] }}</strong> voor de functie
-                <strong>{{ $details['function'] }}</strong>.
+                <strong>{{ $details['function'] }}</strong>. Klik op de link onderaan deze mail om het sollicitatieproces af te ronden.
             </p>
             <p>Je bent gevraagd om naar <strong>{{ $details['location'] }}</strong> te komen om te beginnen met werken.
             </p>
