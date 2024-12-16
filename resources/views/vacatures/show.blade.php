@@ -176,9 +176,9 @@
             <img class="rounded-lg w-[70vw] md:w-[35vw] m-[6vw] md:m-[2vw]" src="{{ asset('storage/' . $vacature->company->image) }}" alt="Bedrijfsimage">
         </div>
         <div class="flex justify-center  md:justify-end gap-[5vw] md:gap-[1.5vw] mt-[2vw]">
-        <a href="{{ $vacature->company->homepage_url}}" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Website</a>
-        <a href="{{ $vacature->company->about_us_url}}" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap ">About us</a>
-        <a href="{{ $vacature->company->contact_url}}" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Contact</a>
+        <a href="{{ $vacature->company->homepage_url}}" target="_blank" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Website</a>
+        <a href="{{ $vacature->company->about_us_url}}" target="_blank" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap ">About us</a>
+        <a href="{{ $vacature->company->contact_url}}" target="_blank" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Contact</a>
         </div>
 
 
