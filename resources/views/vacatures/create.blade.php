@@ -124,10 +124,11 @@
             </div>
 
             <!-- Eisenlijst dropdown -->
-            <div>
-                <label class="block text-moss-dark font-bold text-xl mb-1">Eventuele eisen waar de werknemer aan moet
-                    voldoen</label>
-                <button id="demandsButton" data-dropdown-toggle="demands"
+            <div class="relative">
+                <label class="block text-moss-dark font-bold text-xl mb-1">
+                    Eventuele eisen waar de werknemer aan moet voldoen
+                </label>
+                <button id="demandsButton"
                     class="text-gray-900 bg-moss-light hover:bg-moss-dark hover:text-white focus:ring-4 focus:outline-none focus:ring-moss-light font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
                     type="button">
                     Eisen
@@ -136,12 +137,14 @@
                             d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
-                <div id="demands" class="z-10 hidden w-48 bg-moss-light rounded-lg">
-                    <ul class="p-3 space-y-1 text-sm text-gray-300">
+
+                <!-- Dropdown -->
+                <div id="demands" class="hidden left-0 right-0 bg-moss-light rounded-lg mb-2">
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 p-3">
                         @foreach ($demands as $demand)
                             <li>
                                 <label for="demand_{{ $demand->id }}"
-                                    class="flex items-center space-x-2 p-2 rounded text-sm font-medium text-gray-900 hover:bg-moss-dark hover:text-white has-[:checked]:bg-violet-light has-[:checked]:text-white cursor-pointer">
+                                    class="flex items-center space-x-2 p-2 rounded text-sm font-medium text-gray-900 hover:bg-moss-dark hover:text-white cursor-pointer has-[:checked]:bg-violet-light has-[:checked]:text-white">
                                     <input id="demand_{{ $demand->id }}" name="demands[]" type="checkbox"
                                         value="{{ $demand->id }}"
                                         class="w-4 h-4 text-moss-light bg-gray-100 border-gray-600 rounded focus:ring-moss-light">
@@ -151,18 +154,18 @@
                         @endforeach
                     </ul>
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const button = document.getElementById('demandsButton');
+                        const dropdown = document.getElementById('demands');
+
+                        button.addEventListener('click', function() {
+                            dropdown.classList.toggle('hidden');
+                        });
+                    });
+                </script>
             </div>
 
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    const button = document.getElementById('demandsButton');
-                    const dropdown = document.getElementById('demands');
-
-                    button.addEventListener('click', function() {
-                        dropdown.classList.toggle('hidden');
-                    });
-                });
-            </script>
 
 
             <!-- Bedrijf ID -->

@@ -1,7 +1,7 @@
 <x-layout>
     <h1 class="mb-5">Welkom op het Dashboard, {{ Auth::guard('company')->user()->name }}</h1>
     @if (session('success'))
-        <p style="color: green;">{{ session('success') }}</p>
+        <p class="flex justify-center" style="color: green;">{{ session('success') }}</p>
     @endif
     <div class="flex flex-col justify-center items-center mx-auto max-w-md text-center p-6 bg-moss-light rounded-lg">
         <p class="mb-4 text-gray-700">Hier kun je je bedrijfsinformatie beheren en andere acties uitvoeren.</p>
@@ -135,22 +135,17 @@
                                 <table class="min-w-full bg-white w-auto mx-auto sm:rounded-lg">
                                     <thead>
                                         <tr class="border-b">
-                                            <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 #</th>
-                                            <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 Gesolliciteerd op</th>
-                                            <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 Eisen waar niet aan voldaan zijn</th>
                                             @if ($vacature->secondary_info_needed)
-                                                <th
-                                                    class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                     Extra informatie</th>
                                             @endif
-                                            <th
-                                                class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                 Acties</th>
                                         </tr>
                                     <tbody>
