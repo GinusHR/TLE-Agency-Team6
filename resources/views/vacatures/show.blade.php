@@ -1,10 +1,12 @@
 @vite(['resources/js/app.js', 'resources/css/app.css'])
 
 <x-layout>
-    <div class="bg-cream min-h-screen text-moss-dark">
-        <div class="bg-white max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative">
+    <div class="bg-cream md:min-h-screen text-moss-dark">
+        <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative">
             <!-- Header Section -->
-            <div class="bg-moss-light p-5 rounded-md text-moss-dark">
+            <div class="flex justify-center items-center gap-[1vw] md:gap-[1vw] bg-white p-5 rounded-md text-moss-dark">
+                <img class=" rounded-lg w-[15vw] md:w-[4.5vw]" src="{{asset('storage/'. $vacature->company->logo)}}"
+                     alt="Bedrijfslogo">
                 <h1 class="text-center text-2xl font-bold mb-4" style="font-family: Arial, sans-serif;">
                     {{ $vacature->company->name }} - {{ $vacature->function }}
                 </h1>
@@ -53,6 +55,9 @@
                     </ul>
                 </div>
 
+
+
+
                 <!-- Description Section -->
                 <div class="mt-6">
                     <h2 class="text-lg font-semibold text-gray-700 mb-3">Beschrijving</h2>
@@ -75,10 +80,26 @@
                             </p>
                         @endif
                     </div>
+
+
+
+
                     <div class="mt-6">
                         <h3 class="text-lg font-medium text-gray-700 mb-3">Beoordelingen</h3>
                         <!-- Beoordelingen content can be dynamically added here -->
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
 
@@ -108,11 +129,20 @@
 
             <!-- Modal -->
             <div id="solliciteerModal"
-                class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                 <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg">
                     <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right"
                         id="closeBtn">&times;</span>
                     <h2 class="text-xl font-semibold mb-4">Solliciteer voor de Vacature</h2>
+                    @if ($errors->any())
+                        <div class="bg-red-100 text-red-600 p-3 rounded mb-4">
+                            <ul class="list-disc pl-5">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form id="sollicitatieForm" action="{{ route('applications.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
@@ -148,6 +178,20 @@
         </div>
     </div>
 
+    <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative mb-[5vw]">
+        <h2 class="text-lg font-semibold text-gray-700 mb-3">Over {{ $vacature->company->name }} </h2>
+        <p>{{ $vacature->company->description }}</p>
+        <div class="flex justify-center items-center">
+            <img class="rounded-lg w-[70vw] md:w-[35vw] m-[6vw] md:m-[2vw]" src="{{ asset('storage/' . $vacature->company->image) }}" alt="Bedrijfsimage">
+        </div>
+        <div class="flex justify-center  md:justify-end gap-[5vw] md:gap-[1.5vw] mt-[2vw]">
+        <a href="{{ $vacature->company->homepage_url}}" target="_blank" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Website</a>
+        <a href="{{ $vacature->company->about_us_url}}" target="_blank" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap ">About us</a>
+        <a href="{{ $vacature->company->contact_url}}" target="_blank" class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Contact</a>
+        </div>
+
+
+
     <script>
         const modal = document.getElementById("solliciteerModal");
         const sollicitieerBtn = document.getElementById("solliciteerBtn");
@@ -159,4 +203,5 @@
             if (event.target === modal) modal.classList.add("hidden");
         };
     </script>
+    </div>
 </x-layout>

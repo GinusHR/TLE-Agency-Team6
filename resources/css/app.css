@@ -29,7 +29,7 @@ body{
 }
 
 body p {
-    @apply  text-moss-dark sm:text-sm
+    @apply  text-moss-dark md:text-lg
 }
 
 h1 {
@@ -53,7 +53,7 @@ h1 {
 }
 
 .h3-footer {
-    @apply font-bold text-lg text-yellow sm:text-[0.85rem]  ;
+    @apply font-bold text-lg text-yellow text-[1rem] md:text-[1.1rem]  ;
 }
 
 .header {
@@ -61,12 +61,13 @@ h1 {
 }
 
 .footer-content {
-    @apply flex justify-between sm:justify-center items-start gap-[10vw] sm:gap-[4vw]  p-[4vw] h-auto  sm:w-[90vw]  ;
+    @apply flex justify-between items-start md:gap-[10vw] gap-[5vw]  p-[4vw] h-auto  w-[90vw]  ;
 }
 
 .footer-links {
-    @apply flex flex-col items-center justify-center text-white sm:text-[0.7rem] ;
+    @apply flex flex-col items-center justify-center text-white text-[0.8rem] md:text-[0.9rem] whitespace-nowrap ;
 }
+
 
 .footer {
     @apply rounded-t-3xl ;
