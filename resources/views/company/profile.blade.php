@@ -1,4 +1,3 @@
-@vite(['resources/js/app.js', 'resources/css/app.css'])
 <x-layout>
     <div class="flex justify-start items-center w-1/2 pl-10 pt-6">
         <a href="{{route('company.dashboard') }}"
