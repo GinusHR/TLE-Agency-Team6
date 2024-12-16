@@ -1,4 +1,3 @@
-@vite(['resources/js/app.js', 'resources/css/app.css'])
 <x-layout>
     <div class="flex flex-col sm:flex-row px-6 mb-8">
         <div class="w-full md:w-1/2 p-8 text-center sm:text-left">
