@@ -118,10 +118,11 @@ class VacatureController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vacature $vacature)
+    public function edit(Request $request, Vacature $vacature)
     {
         $companies = Vacature::all();
         $selectedDays = json_decode($vacature->days, true); // Decode JSON to get selected days
+
         return view('vacatures.edit', compact('vacature', 'companies', 'selectedDays'));
     }
 
@@ -151,7 +152,6 @@ class VacatureController extends Controller
             'education' => 'required|integer',
             'description' => 'required|string|max:1024',
             'secondary_info_needed' => 'required|boolean',
-            'status' => 'required|integer|in:0,1',
             'days' => 'required|array|min:1|max:7',
             'days.*' => 'in:Maandag,Dinsdag,Woensdag,Donderdag,Vrijdag,Zaterdag,Zondag',
         ]);
@@ -164,17 +164,20 @@ class VacatureController extends Controller
             'days' => json_encode($validated['days']), // Encode days as JSON
         ]));
 
-        // Step 4: Handle redirection logic
-        if ($request->input('redirect_to_edit') == '1') { // Explicitly check for '1'
-            // Redirect to the edit page with a success message
-            return redirect()->route('vacatures.edit', $id)
-                ->with('success', 'Vacature succesvol bijgewerkt. Je kunt deze nu bewerken.');
+        // Step 4: Handle redirection logic based on the original 'status'
+        // If the status is 0 (unpublished), redirect back to the preview page
+        if ($vacature->status == 0) {
+            // Redirect to the preview page
+            return redirect()->route('vacatures.preview', $id)
+                ->with('success', 'Vacature succesvol bijgewerkt. Je kunt deze nu bewerken of bekijken.');
         }
 
-        // Default: Redirect to the index page with a success message
+        // If the status is 1 (published), redirect to the index page
         return redirect()->route('vacatures.index')
             ->with('success', 'Vacature succesvol gepubliceerd.');
     }
+
+
 
 
     /**
