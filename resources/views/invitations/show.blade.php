@@ -10,7 +10,8 @@
             </p>
             @if (!empty($invitation->day))
                 <p class="text-gray-600 mb-4">
-                    Ze hebben aangegeven dat je op <span class="font-semibold">{{ $invitation->day }}</span> kan beginnen
+                    Ze hebben aangegeven dat je op <span class="font-semibold">{{ $invitation->day }}</span> om <span
+                        class="font-semibold">{{ $invitation->time }}</span> kan beginnen
                     in
                     <span class="font-semibold">{{ $invitation->application->vacature->location }}</span>.
                 </p>
