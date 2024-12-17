@@ -1,6 +1,12 @@
 @vite(['resources/js/app.js', 'resources/css/app.css'])
 
 <x-layout>
+
+    <a href="{{route('company.dashboard') }}"
+       class="text-violet-light hover:text-violet-800 mx-[19.5vw] font-medium mb-2 mt-2 inline-block">
+        &larr; Terug naar alle vacatures
+    </a>
+
     <div class="bg-cream md:min-h-screen text-moss-dark">
         <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative">
             <!-- Header Section -->

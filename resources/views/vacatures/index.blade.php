@@ -2,6 +2,7 @@
 
 <x-layout>
 
+
     <body class="bg-cream">
     <div class="container mx-auto py-12 w-[90vw]">
         <h1 class="text-4xl font-bold text-center mb-6">Vacatures</h1>

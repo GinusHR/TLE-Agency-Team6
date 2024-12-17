@@ -1,5 +1,5 @@
 <x-layout>
-    {{--    <x-slot name="header">--}}
+
     <div class="flex justify-between items-center px-4 sm:px-6 lg:px-8 mt-2 mb-0">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Mijn profiel') }}
@@ -55,21 +55,23 @@
                                         Gesolliciteerd op:
                                         {{ $application->created_at ? $application->created_at->format('d-m-Y') : 'Onbekende datum' }}
                                     </span>
-                                    <button
-                                        class="inline-flex items-center px-6 py-3 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                        <a href="{{ route('vacatures.show', $application->vacature_id) }}"
-                                           class="no-underline">Zie vacature</a>
-                                    </button>
-
-                                    <form action="{{ route('applications.destroy', $application->id) }}" method="POST" onsubmit="return confirm('Weet je zeker dat je deze sollicitatie wilt annuleren?')">
-                                        @csrf
-                                        @method('DELETE')
+                                    <div class="flex flex-col md:flex-row gap-3">
                                         <button
-                                            type="submit"
-                                            class="inline-flex items-center px-6 py-3 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                            Sollicitatie annuleren
+                                            class="inline-flex items-center px-4 py-2 md:px-6 md:py-3 md:text-xs bg-violet-light border border-transparent rounded-md font-semibold text-[0.6rem] text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                            <a href="{{ route('vacatures.show', $application->vacature_id) }}"
+                                               class="no-underline">Zie vacature</a>
                                         </button>
-                                    </form>
+
+                                        <form action="{{ route('applications.destroy', $application->id) }}" method="POST" onsubmit="return confirm('Weet je zeker dat je deze sollicitatie wilt annuleren?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                type="submit"
+                                                class="inline-flex items-center px-4 py-2 md:px-6 md:py-3  bg-violet-light border border-transparent rounded-md font-semibold text-[0.6rem] md:text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                                Sollicitatie annuleren
+                                            </button>
+                                        </form>
+                                    </div>
 
                                 </div>
                             </li>
