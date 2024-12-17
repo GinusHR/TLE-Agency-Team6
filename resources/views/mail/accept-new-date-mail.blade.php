@@ -91,7 +91,7 @@
         <div class="content">
             <p>Beste Open-Hiring-gebruiker,</p>
             <p><strong>{{ $details['company'] }}</strong> heeft je gekozen datum geaccepteerd.</p>
-            <p>Je mag beginnen als <strong>{{ $details['function'] }}</strong> bij
+            <p>Je mag beginnen als <strong>{{ $details['function'] }}</strong> op
                 <strong>{{ $details['location'] }}</strong>.
             </p>
             <p>Ze verwachten dat je op

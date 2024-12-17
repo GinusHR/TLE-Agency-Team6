@@ -203,7 +203,7 @@
                                                     <td class="px-4 py-2"> {{ $application->invitation->time }} </td>
                                                     <td class="px-4 py-2
                                                         @if ($application->invitation->declined === 0) text-green-500">
-                                                            Accepted
+                                                            Geaccepteerd
                                                         @elseif ($application->invitation->declined === 1)
                                                         text-red-500">
                                                             Geweigerd
@@ -237,7 +237,7 @@
                                                                     @csrf
                                                                     <button type="submit"
                                                                         class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 font-semibold"
-                                                                        onclick="return confirm('De applicant verwacht dat hij op die datum verwacht wordt.');">Accepteren</button>
+                                                                        onclick="return confirm('De applicant verwacht dat hij op die datum moet komen.');">Accepteren</button>
                                                                 </form>
                                                                 <form
                                                                     action="{{ route('company.chooseNewDate', $application->invitation->id) }}"
