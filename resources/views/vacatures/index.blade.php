@@ -127,7 +127,7 @@
                             <div class="flex justify-between items-center">
                                 <h3 class="text-xl font-bold">{{ $vacature->company->name }} - {{ $vacature->function }}</h3>
                                 <button
-                                    class="toggle-btn text-2xl font-bold text-gray-500 hover:text-gray-700"
+                                    class="toggle-btn text-3xl font-bold text-gray-500 hover:text-gray-700"
                                     data-collapse="true">+
                                 </button>
                             </div>
