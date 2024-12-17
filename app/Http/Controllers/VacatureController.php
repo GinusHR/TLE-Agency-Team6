@@ -122,8 +122,9 @@ class VacatureController extends Controller
     {
         $companies = Vacature::all();
         $selectedDays = json_decode($vacature->days, true); // Decode JSON to get selected days
+        $demands = Demand::all();
 
-        return view('vacatures.edit', compact('vacature', 'companies', 'selectedDays'));
+        return view('vacatures.edit', compact('vacature', 'companies', 'selectedDays', 'demands'));
     }
 
     /**
@@ -131,8 +132,8 @@ class VacatureController extends Controller
      */
     public function create()
     {
-        $vacatures = Vacature::all();
-        return view('vacatures.create', compact('vacatures')); // Pass both variables to the view
+        $demands = Demand::all();
+        return view('vacatures.create', compact('demands'));
     }
 
     /**
@@ -164,6 +165,8 @@ class VacatureController extends Controller
             'days' => json_encode($validated['days']), // Encode days as JSON
         ]));
 
+        $vacature->demands()->sync($request->input('demands', []));
+
         // Step 4: Handle redirection logic based on the original 'status'
         // If the status is 0 (unpublished), redirect back to the preview page
         if ($vacature->status == 0) {
@@ -173,7 +176,7 @@ class VacatureController extends Controller
         }
 
         // If the status is 1 (published), redirect to the index page
-        return redirect()->route('vacatures.index')
+        return redirect()->route('company.dashboard')
             ->with('success', 'Vacature succesvol gepubliceerd.');
     }
 
@@ -208,6 +211,8 @@ class VacatureController extends Controller
             'status' => 0, // Explicitly set status to 0
         ]));
 
+        $newVacature->demands()->sync($request->input('demands', []));
+
         // Redirect to the preview page
         return redirect()->route('vacatures.preview', $newVacature->id);
     }
@@ -225,7 +230,7 @@ class VacatureController extends Controller
         $vacature->delete();
 
         // Redirect back with a success message
-        return redirect()->route('vacatures.index')->with('success', 'Vacature succesvol verwijderd.');
+        return redirect()->route('company.dashboard')->with('success', 'Vacature succesvol verwijderd.');
     }
 
     public function preview(Vacature $vacature)
@@ -236,7 +241,6 @@ class VacatureController extends Controller
     public function publish(Vacature $vacature)
     {
         $vacature->update(['status' => 1]);
-        return redirect()->route('vacatures.index')->with('success', 'Vacature gepubliceerd.');
+        return redirect()->route('company.dashboard')->with('success', 'Vacature gepubliceerd.');
     }
-
 }
