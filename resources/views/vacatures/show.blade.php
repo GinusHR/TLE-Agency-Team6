@@ -85,16 +85,29 @@
                     <div class="mt-6">
                         <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center justify-between">
                             Beoordelingen
-                            <!-- Button to Create Rating -->
-                            @auth
-                                @if ($userHasAcceptedApplication) <!-- Only show button if user has accepted application -->
-                                <a href="{{ route('ratings.create', ['vacature' => $vacature->id]) }}"
-                                   class="bg-violet-light text-white text-sm text-center rounded-full py-2 px-4 hover:bg-violet-dark whitespace-nowrap">
-                                    Voeg een beoordeling toe
-                                </a>
-                                @endif
-                            @endauth
                         </h3>
+
+                        <!-- Display Average Rating -->
+                        <div class="mb-4">
+                            <strong>Gemiddelde Beoordeling:</strong>
+                                <span class="text-yellow-500 font-medium">
+                                    @if ($averageRating)
+                                        {{ number_format($averageRating, 1) }} / 5
+                                    @else
+                                        Geen beoordelingen
+                                   @endif
+                                </span>
+                        </div>
+
+                        <!-- Button to Create Rating -->
+                        @auth
+                            @if ($userHasAcceptedApplication) <!-- Only show button if user has accepted application -->
+                            <a href="{{ route('ratings.create', ['vacature' => $vacature->id]) }}"
+                               class="bg-violet-light text-white text-sm text-center rounded-full py-2 px-4 hover:bg-violet-dark whitespace-nowrap">
+                                Voeg een beoordeling toe
+                            </a>
+                            @endif
+                        @endauth
 
                         <!-- Display Ratings -->
                         @if ($vacature->ratings->isNotEmpty())
@@ -103,7 +116,7 @@
                                     <div class="p-4 border rounded-lg shadow-md bg-white">
                                         <!-- User Name and Rating -->
                                         <div class="flex items-center space-x-2 mb-2">
-                                            <span class="font-bold">{{ $rating->user->name }}</span>
+                                            <span class="font-bold">Username</span>
                                             <span class="text-yellow-500 font-medium">Rating: {{ $rating->rating }}/5</span>
                                         </div>
                                         <!-- Review Text -->
@@ -115,6 +128,7 @@
                             <p class="text-gray-500">Er zijn nog geen beoordelingen voor deze vacature.</p>
                         @endif
                     </div>
+
 
 
 

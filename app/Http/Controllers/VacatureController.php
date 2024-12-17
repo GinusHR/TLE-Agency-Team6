@@ -102,42 +102,42 @@ class VacatureController extends Controller
     {
         try {
             $vacature = Vacature::with(['ratings.user', 'applications.invitation'])->findOrFail($id);
-
             $queue = $vacature->applications->where('accepted', 0)->count();
             $succesRating = $vacature->applications->where('accepted', 1)->count();
 
-            // Initialize $userHasAcceptedApplication to false by default
-            $userHasAcceptedApplication = false;
-            $canReview = false;
+            // Calculate average rating
+            $averageRating = $vacature->ratings->avg('rating'); // Calculate average rating
 
-            // Check if the user is logged in and has an accepted application
+            $canReview = false;
             if (Auth::check()) {
                 $user = Auth::user();
                 $application = $vacature->applications()
                     ->where('user_id', $user->id)
                     ->whereHas('invitation', function ($query) {
                         $query->where('declined', false);
-                    })
-                    ->first();
+                    })->first();
 
-                // If an application exists and is accepted, set $userHasAcceptedApplication to true
+                // Check if the user has an accepted application
                 if ($application && $application->accepted) {
                     $userHasAcceptedApplication = true;
-                    $canReview = true; // User is eligible to review
                 }
+
+                $canReview = $application !== null;
             }
 
             return view('vacatures.show', [
                 'vacature' => $vacature,
                 'queue' => $queue,
                 'succesRating' => $succesRating,
-                'userHasAcceptedApplication' => $userHasAcceptedApplication, // Pass this to the view
-                'canReview' => $canReview, // Pass this to the view (indicating if user can review)
+                'userHasAcceptedApplication' => $userHasAcceptedApplication, // Pass this variable to the view
+                'canReview' => $canReview,
+                'averageRating' => $averageRating, // Pass the average rating to the view
             ]);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Vacature not found.'], 404);
         }
     }
+
 
 
     /**
