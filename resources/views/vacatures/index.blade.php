@@ -125,7 +125,7 @@
                     @if ($vacature->status == 1)
                         <li class="bg-moss-light border-2 border-gray-300 rounded-lg shadow-md p-4">
                             <div class="flex justify-between items-center">
-                                <h3 class="text-xl font-bold">{{ $vacature->company->name }}</h3>
+                                <h3 class="text-xl font-bold">{{ $vacature->company->name }} - {{ $vacature->function }}</h3>
                                 <button
                                     class="toggle-btn text-2xl font-bold text-gray-500 hover:text-gray-700"
                                     data-collapse="true">+
@@ -134,6 +134,7 @@
                             <div class="details mt-2 space-y-2 hidden">
                                 <p class="text-sm"><span class="font-semibold">Functie:</span> {{ $vacature->function }}</p>
                                 <p class="text-sm"><span class="font-semibold">Maand Salaris:</span> &euro; {{ number_format($vacature->salary, 2, ',', '.') }}</p>
+                                <p class="text-sm"><span class="font-semibold">Werkuren:</span> {{ $vacature->workhours }} uur per week</p>
                                 <p class="text-sm"><span class="font-semibold">Locatie:</span> {{ $vacature->location }}</p>
                                 <p class="text-sm"><span class="font-semibold">Contract:</span> {{ $vacature->time_id ? 'Fulltime' : 'Parttime' }}</p>
                                 <p class="text-sm"><span class="font-semibold">Opleidings Niveau:</span>
