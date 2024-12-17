@@ -103,7 +103,7 @@ class RatingController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'rating' => 'required|integer|between:1,5',
+            'rating' => 'required|numeric|min:0|max:5',
             'review' => 'required|string|max:1000',
         ]);
 

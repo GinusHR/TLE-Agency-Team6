@@ -154,42 +154,47 @@
                         @if ($vacature->ratings->isNotEmpty())
                             <div class="space-y-4">
                                 @foreach ($vacature->ratings as $rating)
-                                    <div class="p-4 border rounded-lg shadow-md bg-white">
+                                    <div class="p-4 border rounded-lg shadow-md bg-white relative">
                                         <!-- Rating Created At -->
                                         <div class="flex items-center space-x-2 mb-2">
                                             <span class="font-bold">{{ $rating->created_at->format('d-m-Y') }}</span>
                                             <span class="text-yellow-500 font-medium">Rating: {{ $rating->rating }}/5</span>
+                                            <!-- Edit and Delete buttons for the creator of the rating -->
+                                            @auth
+                                                @if (Auth::id() === $rating->user_id) <!-- Only show buttons if the logged-in user is the creator -->
+                                                <div class="absolute top-2 right-2 flex space-x-4">
+                                                    <!-- Edit Button -->
+                                                    <form action="{{ route('ratings.edit', ['rating' => $rating->id]) }}" method="GET">
+                                                        <button type="submit"
+                                                                class="bg-violet-light text-white font-medium text-center rounded-full py-2 px-4 hover:bg-violet-dark">
+                                                            Bewerken
+                                                        </button>
+                                                    </form>
+
+                                                    <!-- Delete Button -->
+                                                    <form action="{{ route('ratings.destroy', ['rating' => $rating->id]) }}" method="POST"
+                                                          onsubmit="return confirm('Weet je zeker dat je deze beoordeling wilt verwijderen?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                                class="bg-red-500 text-white font-medium text-center rounded-full py-2 px-4 hover:bg-red-600">
+                                                            Verwijderen
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                @endif
+                                            @endauth
                                         </div>
+
                                         <!-- Review Text -->
                                         <p class="text-gray-700">{{ $rating->review }}</p>
-
-                                        <!-- Edit and Delete buttons for the creator of the rating -->
-                                        @auth
-                                            @if (Auth::id() === $rating->user_id)  <!-- Only show buttons if the logged-in user is the creator -->
-                                            <div class="mt-4 flex space-x-4">
-                                                <!-- Edit Button -->
-                                                <a href="{{ route('ratings.edit', ['rating' => $rating->id]) }}"
-                                                   class="bg-blue-500 text-white font-medium text-center rounded-full py-2 px-4 hover:bg-blue-600">
-                                                    Bewerken
-                                                </a>
-                                                <!-- Delete Button -->
-                                                <form action="{{ route('ratings.destroy', ['rating' => $rating->id]) }}" method="POST" onsubmit="return confirm('Weet je zeker dat je deze beoordeling wilt verwijderen?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                            class="bg-red-500 text-white font-medium text-center rounded-full py-2 px-4 hover:bg-red-600">
-                                                        Verwijderen
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            @endif
-                                        @endauth
                                     </div>
                                 @endforeach
                             </div>
                         @else
                             <p class="text-gray-500">Er zijn nog geen beoordelingen voor deze vacature.</p>
                         @endif
+
 
                     </div>
                 </div>
