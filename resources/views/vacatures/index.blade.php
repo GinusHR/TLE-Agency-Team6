@@ -3,18 +3,18 @@
 <x-layout>
 
     <body class="bg-cream">
-    <div class="container mx-auto py-12">
+    <div class="container mx-auto py-12 w-[90vw]">
         <h1 class="text-4xl font-bold text-center mb-6">Vacatures</h1>
         <div class="flex flex-col md:flex-row md:justify-between">
             <form action="{{ route('vacatures.filter') }}" method="post" class=" mb-6 md:mb-0">
                 @csrf
                 @method('PATCH')
 
-                <div class="container flex flex-col md:flex-row justify-center">
+                <div class="container md:flex justify-center w-[90vw]">
 
-                    <div class="md:order-1 order-5">
+                    <div>
                         <button id="demandsButton" data-dropdown-toggle="demands"
-                                class="text-gray-100 bg-violet-light hover:bg-violet-dark focus:ring-2 focus:outline-none focus:ring-indigo-500 font-medium rounded-lg text-sm px-5 py-2.5  inline-flex items-center justify-between md:mt-6 md:w-60 md:max-w-[12vw]"
+                                class="text-gray-100 bg-violet-light hover:bg-violet-dark focus:ring-2 focus:outline-none focus:ring-indigo-500 font-medium rounded-lg text-sm px-5 py-2.5  inline-flex items-center justify-between mb-3 md:mb-0 md:mt-6 w-full md:w-60 md:max-w-[12vw]"
                                 type="button">Eisen
                             <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -54,7 +54,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-4 order-1 md:w-60 md:ml-5">
+                    <div class="mb-4 md:w-60 md:ml-5">
                         <label for="uren" class="block text-sm font-medium text-gray-700">Uren</label>
                         <select name="uren" id="uren"
                                 class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
@@ -66,7 +66,7 @@
                             <option value="40">40+</option>
                         </select>
                     </div>
-                    <div class="mb-4 order-2 md:w-60 md:ml-5">
+                    <div class="mb-4 md:w-60 md:ml-5">
                         <label for="salaris" class="block text-sm font-medium text-gray-700">Salaris</label>
                         <select name="salaris" id="salaris"
                                 class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
@@ -80,7 +80,7 @@
                             <option value="7">3100+</option>
                         </select>
                     </div>
-                    <div class="mb-4 order-3 md:w-60 md:ml-5">
+                    <div class="mb-4 md:w-60 md:ml-5">
                         <label for="sort" class="block text-sm font-medium text-gray-700">Sorteren</label>
                         <select name="sort" id="sort"
                                 class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
@@ -96,7 +96,7 @@
                     </div>
 
 
-                    <div class="mb-4 order-4 md:w-60 md:ml-5">
+                    <div class="mb-4 md:w-60 md:ml-5">
                         <label for="search" class="block text-sm font-medium text-gray-700">Zoeken</label>
                         <input type="text" name="search" id="search" value="{{ $previousSearch->search }}"
                                class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
@@ -104,7 +104,7 @@
 
 
                     <button type="submit"
-                            class=" order-6 w-full md:w-60 md:ml-5 bg-violet-light text-white py-2.5 md:max-h-[2.61rem]  rounded-md hover:bg-violet-dark mt-4 md:mt-6">Zoeken
+                            class="w-full md:w-60 md:ml-5 bg-violet-light text-white py-2.5 md:max-h-[2.61rem]  rounded-md hover:bg-violet-dark mt-4 md:mt-6">Zoeken
                     </button>
                 </div>
 
