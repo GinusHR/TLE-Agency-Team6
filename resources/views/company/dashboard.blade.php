@@ -32,7 +32,7 @@
                             @if ($vacature->status)
                                 Open:
                             @else
-                                Closed:
+                                Gesloten:
                             @endif
                             {{ $vacature->function }}
                             @if (isset($vacature->location))
@@ -43,11 +43,10 @@
                             <div>
                                 <p>Aantal aangenomen via vacature:
                                     {{ $vacature->applications->where('accepted', 1)->count() }}</p>
-                                <div class="flex items-start"> <!-- New wrapper to align button properly -->
+                                <div class="flex items-start">
                                     @if ($vacature->applications->where('accepted', 0)->count() > 0)
                                         <button id="toggleVacature{{ $vacature->id }}Table"
                                             class="flex items-center text-gray-600 hover:text-gray-900 mr-4">
-                                            <!-- Added margin-right -->
                                             <span id="toggleVacature{{ $vacature->id }}Icon" class="mr-2">▼</span>
                                     @endif
                                     <span>
@@ -101,39 +100,36 @@
                                     </form>
                                 </div>
                             @endif
-                            <div class="flex space-x-2 mt-4">
+                            <div class="grid grid-cols-2 gap-2 mt-4">
                                 <div>
-                                    <button
-                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300 bg-violet-light hover:bg-violet-dark text-white">
-                                        <a href="{{ route('vacatures.show', $vacature->id) }}">Detail</a>
+                                    <button class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-violet-light hover:bg-violet-dark text-white">
+                                        <a href="{{ route('vacatures.show', $vacature->id) }}">Details</a>
                                     </button>
                                 </div>
                                 <div>
-                                    <button
-                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300 bg-yellow hover:bg-amber-400 text-black">
-                                        <a href="{{ route('vacatures.edit', $vacature->id) }}">Edit</a>
+                                    <button class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-moss-medium hover:bg-moss-dark text-white">
+                                        <a href="{{ route('vacatures.edit', $vacature->id) }}">Bewerken</a>
                                     </button>
                                 </div>
-                                <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300 bg-red-500 hover:bg-red-600 text-white"
-                                        onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">
-                                        Delete
-                                    </button>
-                                </form>
-                                <form action="{{ route('company.toggleVisibility', $vacature->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit"
-                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300
-                                        {{ $vacature->status ? 'bg-yellow hover:bg-amber-400 text-black' : 'bg-violet-light hover:bg-violet-dark text-white' }}">
-                                        {{ $vacature->status ? 'Close' : 'Open' }}
-                                    </button>
-                                </form>
+                                <div>
+                                    <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-red-500 hover:bg-red-600 text-white" onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">
+                                            Verwijderen
+                                        </button>
+                                    </form>
+                                </div>
+                                <div>
+                                    <form action="{{ route('company.toggleVisibility', $vacature->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 {{ $vacature->status ? 'bg-yellow hover:bg-amber-400 text-black' : 'bg-violet-light hover:bg-violet-dark text-white' }}">
+                                            {{ $vacature->status ? 'Sluiten' : 'Openen' }}
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
+
 
                         @if ($vacature->applications->where('accepted', 0)->count() > 0)
                             <div class="overflow-x-auto" id="vacature{{ $vacature->id }}Table" style="display: none;">
@@ -205,10 +201,10 @@
                                         toggleButton.addEventListener('click', function() {
                                             if (table.style.display === 'none' || table.style.display === '') {
                                                 table.style.display = 'block';
-                                                icon.textContent = '▼'; // Verander naar neerwaartse pijl
+                                                icon.textContent = '▼';
                                             } else {
                                                 table.style.display = 'none';
-                                                icon.textContent = '▲'; // Verander naar opwaartse pijl
+                                                icon.textContent = '▲';
                                             }
                                         });
                                     } else {

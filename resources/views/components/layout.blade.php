@@ -90,7 +90,7 @@
             <div class="footer-links">
                 <h3 class="h3-footer">Over open hiring</h3>
                 <a class="nav-link-footer" href="/info">Onstaan</a>
-                <a class="nav-link-footer" href="/contact">Privacybeleid</a>
+                <a class="nav-link-footer" href="/contact">Contact</a>
             </div>
 
             <!-- Volg ons op -->
