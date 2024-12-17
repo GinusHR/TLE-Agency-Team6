@@ -150,7 +150,8 @@
                             <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
                             <div class="flex items-center mb-2">
                                 <input type="checkbox" id="demand_{{ $demand->id }}"
-                                    name="demands[{{ $demand->id }}]" value="true" class="mr-2">
+                                    name="demands[{{ $demand->id }}]" value="true" class="mr-2"
+                                    @auth @if (Auth::user()->demands->contains($demand->id)) checked @endif @endauth>
                                 <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label>
                             </div>
                         @endforeach
