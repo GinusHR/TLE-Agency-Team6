@@ -2,7 +2,7 @@
 
 <div class="bg-cream min-h-screen flex items-center justify-center">
     <form action="{{ route('vacatures.update', $vacature->id) }}" method="POST"
-        class="bg-cream p-8-plus rounded-lg shadow-custom-light mx-auto max-w-5xl">
+        class="bg-cream p-8-plus rounded-lg shadow-custom-light mx-auto max-w-5xl sm:max-w-full">
         @csrf
         @method('PUT')
         <h1 class="text-2.5xl font-bold text-moss-dark mb-6">Bewerk Vacature voor de positie: {{ $vacature->function }}
