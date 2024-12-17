@@ -219,8 +219,7 @@
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
-                                                                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold"
-                                                                    onclick="return confirm('Weet je zeker dat je deze applicant uit de lijst wil verwijderen?');">Uit
+                                                                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold">Uit
                                                                     lijst verwijderen</button>
 
                                                             </form>
