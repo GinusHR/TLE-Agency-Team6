@@ -41,6 +41,6 @@ class CompanyLoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/company/login')->with('success', 'U bent succesvol uitgelogd.');
+        return redirect('/')->with('success', 'U bent succesvol uitgelogd.');
     }
 }
