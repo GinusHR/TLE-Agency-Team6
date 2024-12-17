@@ -87,18 +87,56 @@ class RatingController extends Controller
         // You can implement this if necessary (e.g., show ratings for a vacature)
     }
 
-    public function edit(string $id)
+    public function edit($id)
     {
-        // Implement this if editing ratings is needed
+        $rating = Rating::findOrFail($id);
+
+        // Check if the logged-in user is the creator of the rating
+        if (Auth::id() !== $rating->user_id) {
+            return redirect()->route('vacatures.show', $rating->vacature_id)
+                ->with('error', 'Je kunt deze beoordeling niet bewerken.');
+        }
+
+        return view('ratings.edit', compact('rating'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        // Implement this if updating ratings is needed
+        $request->validate([
+            'rating' => 'required|integer|between:1,5',
+            'review' => 'required|string|max:1000',
+        ]);
+
+        $rating = Rating::findOrFail($id);
+
+        // Ensure the logged-in user is the creator of the rating
+        if (Auth::id() !== $rating->user_id) {
+            return redirect()->route('vacatures.show', $rating->vacature_id)
+                ->with('error', 'Je kunt deze beoordeling niet bewerken.');
+        }
+
+        $rating->update([
+            'rating' => $request->rating,
+            'review' => $request->review,
+        ]);
+
+        return redirect()->route('vacatures.show', $rating->vacature_id)
+            ->with('success', 'Beoordeling succesvol bijgewerkt!');
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        // Implement this if deleting ratings is needed
+        $rating = Rating::findOrFail($id);
+
+        // Ensure the logged-in user is the creator of the rating
+        if (Auth::id() !== $rating->user_id) {
+            return redirect()->route('vacatures.show', $rating->vacature_id)
+                ->with('error', 'Je kunt deze beoordeling niet verwijderen.');
+        }
+
+        $rating->delete();
+
+        return redirect()->route('vacatures.show', $rating->vacature_id)
+            ->with('success', 'Beoordeling succesvol verwijderd!');
     }
 }

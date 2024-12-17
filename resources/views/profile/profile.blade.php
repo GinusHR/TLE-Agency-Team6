@@ -71,16 +71,16 @@
 
             <div class="p-4 sm:p-8 bg-moss-light shadow sm:rounded-lg">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center sm:text-left">{{ __('Mijn beoordelingen') }}</h3>
-                @if ($user->reviews && $user->reviews->isEmpty())
+                @if ($user->ratings && $user->ratings->isEmpty())
                     <p class="text-gray-600">{{ __('Je hebt nog niks beoordeeld') }}</p>
                 @else
                     <ul class="list-disc pl-5 space-y-2">
-                        @foreach ($user->reviews ?? collect() as $review)
+                        @foreach ($user->ratings ?? collect() as $rating)
                             <li>
                                 <p class="text-gray-800">
-                                    {{ $review->content ?? 'Geen inhoud' }}
+                                    {{ $rating->content ?? 'Geen inhoud' }}
                                     <span class="text-sm text-gray-500">-
-                                        {{ $review->created_at ? $review->created_at->format('d-m-Y') : 'Onbekende datum' }}</span>
+                                        {{ $rating->created_at ? $rating->created_at->format('d-m-Y') : 'Onbekende datum' }}</span>
                                 </p>
                             </li>
                         @endforeach

@@ -13,12 +13,18 @@ class VacatureController extends Controller
 {
     public function index(Request $request)
     {
-        $vacatures = Vacature::where('status', 1)->get();
+        $vacatures = Vacature::withCount('ratings') // Eager load the total number of ratings for each vacature
+        ->withAvg('ratings', 'rating') // Eager load the average rating for each vacature
+        ->where('status', 1) // Only include vacatures with status 1
+        ->get();
+
         $demands = Demand::all();
         $previousSearch = $request;
+
         // Pass the vacatures to the view
         return view('vacatures.index', compact('vacatures', 'previousSearch', 'demands'));
     }
+
 
     public function filter(Request $request)
     {
@@ -95,9 +101,6 @@ class VacatureController extends Controller
         return view('vacatures.index', compact('vacatures', 'previousSearch', 'demands'));
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         try {
@@ -107,6 +110,10 @@ class VacatureController extends Controller
 
             // Calculate average rating
             $averageRating = $vacature->ratings->avg('rating'); // Calculate average rating
+
+            $totalRatings = $vacature->ratings->count(); // Count total ratings
+
+            $userHasAcceptedApplication = false; // Initialize as false
 
             $canReview = false;
             if (Auth::check()) {
@@ -132,6 +139,7 @@ class VacatureController extends Controller
                 'userHasAcceptedApplication' => $userHasAcceptedApplication, // Pass this variable to the view
                 'canReview' => $canReview,
                 'averageRating' => $averageRating, // Pass the average rating to the view
+                'totalRatings' => $totalRatings, // Pass the total ratings to the view
             ]);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Vacature not found.'], 404);
@@ -139,10 +147,6 @@ class VacatureController extends Controller
     }
 
 
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Request $request, Vacature $vacature)
     {
         $companies = Vacature::all();
@@ -152,18 +156,12 @@ class VacatureController extends Controller
         return view('vacatures.edit', compact('vacature', 'companies', 'selectedDays', 'demands'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $demands = Demand::all();
         return view('vacatures.create', compact('demands'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         // Step 1: Validate the incoming request data
@@ -205,12 +203,6 @@ class VacatureController extends Controller
             ->with('success', 'Vacature succesvol gepubliceerd.');
     }
 
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // Validate the incoming request data
@@ -242,10 +234,6 @@ class VacatureController extends Controller
         return redirect()->route('vacatures.preview', $newVacature->id);
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         // Find the vacature by ID

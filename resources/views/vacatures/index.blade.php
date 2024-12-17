@@ -101,9 +101,6 @@
                 </button>
 
             </form>
-{{--            <a href="{{ route('vacatures.create') }}" id="create-vacature-link"--}}
-{{--               class="mt-6 md:mt-0 md:ml-6 inline-block bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light">Maak--}}
-{{--                een vacature aan</a>--}}
         </div>
         <h2 class="text-2xl font-semibold mt-8">Vacatures</h2>
         @if ($vacatures->isEmpty())
@@ -114,12 +111,18 @@
                     @if ($vacature->status == 1)
                         <li class="bg-moss-light border-2 border-gray-300 rounded-lg shadow-md p-4">
                             <div class="flex justify-between items-center">
-                                <h3 class="text-xl font-bold">{{ $vacature->company->name }}</h3>
+                                <div class="flex items-center">
+                                    <h3 class="text-xl font-bold">{{ $vacature->company->name }}</h3>
+                                    <span class="font-bold text-xl ml-6">
+                                        {{ $vacature->ratings_avg_rating == floor($vacature->ratings_avg_rating) ? intval($vacature->ratings_avg_rating) : number_format($vacature->ratings_avg_rating, 1) }}/5
+                                    </span>
+                                </div>
                                 <button
                                     class="toggle-btn text-2xl font-bold text-gray-500 hover:text-gray-700"
                                     data-collapse="true">+
                                 </button>
                             </div>
+
                             <div class="details mt-2 space-y-2 hidden">
                                 <p class="text-sm"><span class="font-semibold">Functie:</span> {{ $vacature->function }}</p>
                                 <p class="text-sm"><span class="font-semibold">Maand Salaris:</span> &euro; {{ number_format($vacature->salary, 2, ',', '.') }}</p>
@@ -159,21 +162,15 @@
                                 <div class="bg-info-gray text-sm p-4 rounded-md border-2 border-[#B9B9B9]">
                                     {{ $vacature->description }}
                                 </div>
+                                <!-- Display Total Ratings in the same format -->
+                                <div>
+                                    <p class="text-sm"><span class="font-semibold">Totaal Aantal Beoordelingen:</span> {{ $vacature->ratings_count }} beoordeling{{ $vacature->ratings_count != 1 ? 'en' : '' }}</p>
+                                </div>
                             </div>
                             <div class="flex justify-between items-center mt-4">
                                 <button class="bg-violet-light text-white py-2 px-4 rounded-md hover:bg-violet-dark">
                                     <a href="{{ route('vacatures.show', $vacature->id) }}">Details</a>
                                 </button>
-{{--                                <button class="bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light">--}}
-{{--                                    <a href="{{ route('vacatures.edit', $vacature->id) }}">Edit</a>--}}
-{{--                                </button>--}}
-{{--                                <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST" class="inline-block">--}}
-{{--                                    @csrf--}}
-{{--                                    @method('DELETE')--}}
-{{--                                    <button type="submit"--}}
-{{--                                            class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"--}}
-{{--                                            onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">Delete</button>--}}
-{{--                                </form>--}}
                             </div>
                         </li>
                     @endif

@@ -68,6 +68,10 @@ Route::patch('vacatures.filter', [VacatureController::class, 'filter'])->name('v
 Route::prefix('ratings')->name('ratings.')->group(function () {
     Route::get('/create/{vacature}', [RatingController::class, 'create'])->name('create');
     Route::post('/store/{vacature}', [RatingController::class, 'store'])->name('store');
+    Route::get('/{rating}/edit', [RatingController::class, 'edit'])->name('edit');
+    Route::put('/{rating}', [RatingController::class, 'update'])->name('update');
+    Route::delete('/{rating}', [RatingController::class, 'destroy'])->name('destroy');
 });
+
 
 require __DIR__ . '/auth.php';
