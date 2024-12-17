@@ -10,9 +10,9 @@
                 @csrf
                 @method('PATCH')
 
-                <div class="container md:flex justify-center">
+                <div class="container flex flex-col md:flex-row justify-center">
 
-                    <div>
+                    <div class="md:order-1 order-5">
                         <button id="demandsButton" data-dropdown-toggle="demands"
                                 class="text-gray-100 bg-violet-light hover:bg-violet-dark focus:ring-2 focus:outline-none focus:ring-indigo-500 font-medium rounded-lg text-sm px-5 py-2.5  inline-flex items-center justify-between md:mt-6 md:w-60 md:max-w-[12vw]"
                                 type="button">Eisen
@@ -54,7 +54,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-4 md:w-60 md:ml-5">
+                    <div class="mb-4 order-1 md:w-60 md:ml-5">
                         <label for="uren" class="block text-sm font-medium text-gray-700">Uren</label>
                         <select name="uren" id="uren"
                                 class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
@@ -66,7 +66,7 @@
                             <option value="40">40+</option>
                         </select>
                     </div>
-                    <div class="mb-4 md:w-60 md:ml-5">
+                    <div class="mb-4 order-2 md:w-60 md:ml-5">
                         <label for="salaris" class="block text-sm font-medium text-gray-700">Salaris</label>
                         <select name="salaris" id="salaris"
                                 class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
@@ -80,7 +80,7 @@
                             <option value="7">3100+</option>
                         </select>
                     </div>
-                    <div class="mb-4 md:w-60 md:ml-5">
+                    <div class="mb-4 order-3 md:w-60 md:ml-5">
                         <label for="sort" class="block text-sm font-medium text-gray-700">Sorteren</label>
                         <select name="sort" id="sort"
                                 class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
@@ -96,7 +96,7 @@
                     </div>
 
 
-                    <div class="mb-4 md:w-60 md:ml-5">
+                    <div class="mb-4 order-4 md:w-60 md:ml-5">
                         <label for="search" class="block text-sm font-medium text-gray-700">Zoeken</label>
                         <input type="text" name="search" id="search" value="{{ $previousSearch->search }}"
                                class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
@@ -104,7 +104,7 @@
 
 
                     <button type="submit"
-                            class="md:w-60 md:ml-5 bg-violet-light text-white py-2.5 md:max-h-[2.61rem]  rounded-md hover:bg-violet-dark mt-4 md:mt-6">Zoeken
+                            class=" order-6 w-full md:w-60 md:ml-5 bg-violet-light text-white py-2.5 md:max-h-[2.61rem]  rounded-md hover:bg-violet-dark mt-4 md:mt-6">Zoeken
                     </button>
                 </div>
 
