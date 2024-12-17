@@ -2,7 +2,7 @@
 
 <x-layout>
 
-    <a href="{{route('company.dashboard') }}"
+    <a href="/vacatures"
        class="text-violet-light hover:text-violet-800 mx-[19.5vw] font-medium mb-2 mt-2 inline-block">
         &larr; Terug naar alle vacatures
     </a>
