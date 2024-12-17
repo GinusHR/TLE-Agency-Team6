@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Application extends Model
 {
@@ -19,5 +20,9 @@ class Application extends Model
     public function demands(): BelongsToMany
     {
         return $this->belongsToMany(Demand::class, 'application_demands_not_met', 'application_id', 'demand_id');
+    }
+    public function invitation(): HasOne
+    {
+        return $this->hasOne(Invitation::class);
     }
 }

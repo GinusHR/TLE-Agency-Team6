@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use App\Mail\acceptApplicantsMail;
+use App\Mail\acceptNewDateMail;
 use App\Mail\AfwijzingsmailDoorEisen;
+use App\Mail\chooseNewDateMail;
 use App\Models\Application;
 use App\Models\Invitation;
 use App\Models\Vacature;
@@ -186,6 +188,81 @@ class CompanyDashboardController extends Controller
 
             $counter++;
         }
+        return redirect()->route('company.dashboard');
+    }
+
+
+
+    public function acceptNewDate($id)
+    {
+        $invitation = Invitation::findOrFail($id);
+
+        $invitation->declined = 0;
+        $invitation->save();
+
+        $application = $invitation->application;
+        //vraag gegevens op voor de mail
+        if (empty($application->user_id)) {
+            $email = $application->email;
+        } else {
+            $email = $application->user->email;
+        }
+        $company = $application->vacature->company->name;
+        $function = $application->vacature->function;
+        $location = $application->vacature->location;
+        $workday = $invitation->day;
+        $worktime = $invitation->time;
+        $details = [
+            'company' => $company,
+            'function' => $function,
+            'location' => $location,
+            'workday' => $workday,
+            'worktime' => $worktime,
+        ];
+        //stuur mail
+        Mail::to($email)->send(new acceptNewDateMail($details));
+
+        return redirect()->route('company.dashboard');
+    }
+    public function chooseNewDate($id)
+    {
+        $invitation = Invitation::findOrFail($id);
+
+        $invitation->declined = null;
+        $invitation->day = null;
+        $invitation->time = null;
+        $invitation->save();
+
+        $application = $invitation->application;
+        //vraag gegevens op voor de mail
+        if (empty($application->user_id)) {
+            $email = $application->email;
+        } else {
+            $email = $application->user->email;
+        }
+        $company = $application->vacature->company->name;
+        $function = $application->vacature->function;
+        $location = $application->vacature->location;
+        $link = url('invitations/' . $invitation->url_hashed . '/' . $invitation->id);
+        $details = [
+            'company' => $company,
+            'function' => $function,
+            'location' => $location,
+            'link' => $link,
+        ];
+        //stuur mail
+        Mail::to($email)->send(new chooseNewDateMail($details));
+
+        return redirect()->route('company.dashboard');
+    }
+    public function removeApplicantFromList($id)
+    {
+        $invitation = Invitation::findOrFail($id);
+        $application = $invitation->application;
+
+        $invitation->delete();
+        $application->delete();
+
         return redirect()->route('company.dashboard');
     }
 }
