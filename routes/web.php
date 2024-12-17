@@ -48,6 +48,9 @@ Route::prefix('company')->name('company.')->group(function () {
     Route::post('/{vacature}/toggle-visibility', [CompanyDashboardController::class, 'openCloseVacature'])->name('toggleVisibility');
     Route::delete('/{application}/rejectApplicant', [CompanyDashboardController::class, 'rejectApplicantForDemands'])->name('rejectApplicant');
     Route::post('/{vacature}/acceptApplicants', [CompanyDashboardController::class, 'acceptApplicants'])->name('acceptApplicants');
+    Route::post('/{invitation}/acceptNewDate', [CompanyDashboardController::class, 'acceptNewDate'])->name('acceptNewDate');
+    Route::post('/{invitation}/chooseNewDate', [CompanyDashboardController::class, 'chooseNewDate'])->name('chooseNewDate');
+    Route::delete('/{invitation}/removeApplicantFromList', [CompanyDashboardController::class, 'removeApplicantFromList'])->name('removeApplicantFromList');
 });
 
 
