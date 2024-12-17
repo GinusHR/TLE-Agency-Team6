@@ -115,7 +115,7 @@
 
             <!-- Modal -->
             <div id="solliciteerModal"
-                class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 bg-black bg-opacity-50 z-20 flex justify-center items-center">
                 <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg">
                     <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right"
                         id="closeBtn">&times;</span>
