@@ -101,31 +101,44 @@ class VacatureController extends Controller
     public function show(string $id)
     {
         try {
-            $vacature = Vacature::findOrFail($id); // This will throw a ModelNotFoundException if not found
+            $vacature = Vacature::with(['ratings.user', 'applications.invitation'])->findOrFail($id);
+
             $queue = $vacature->applications->where('accepted', 0)->count();
             $succesRating = $vacature->applications->where('accepted', 1)->count();
 
+            // Initialize $userHasAcceptedApplication to false by default
+            $userHasAcceptedApplication = false;
             $canReview = false;
+
+            // Check if the user is logged in and has an accepted application
             if (Auth::check()) {
                 $user = Auth::user();
                 $application = $vacature->applications()
                     ->where('user_id', $user->id)
                     ->whereHas('invitation', function ($query) {
                         $query->where('declined', false);
-                    })->first();
+                    })
+                    ->first();
 
-                $canReview = $application !== null;
+                // If an application exists and is accepted, set $userHasAcceptedApplication to true
+                if ($application && $application->accepted) {
+                    $userHasAcceptedApplication = true;
+                    $canReview = true; // User is eligible to review
+                }
             }
 
             return view('vacatures.show', [
                 'vacature' => $vacature,
                 'queue' => $queue,
                 'succesRating' => $succesRating,
+                'userHasAcceptedApplication' => $userHasAcceptedApplication, // Pass this to the view
+                'canReview' => $canReview, // Pass this to the view (indicating if user can review)
             ]);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Vacature not found.'], 404);
         }
     }
+
 
     /**
      * Show the form for editing the specified resource.

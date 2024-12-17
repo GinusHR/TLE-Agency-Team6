@@ -3,21 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vacature;
+use App\Models\Rating;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class RatingController extends Controller
 {
     public function index()
     {
-        //
+        // If you need to show a list of ratings, implement here
     }
 
-    public function create(Vacature $vacature)
+    public function create($vacatureId)
     {
-        return view('ratings.create', compact('vacature'));
+        Log::debug('Create method reached in RatingController with vacature ID: ' . $vacatureId);
+
+        // Check if the vacature exists
+        $vacature = Vacature::find($vacatureId);
+        if (!$vacature) {
+            Log::error('Vacature with ID ' . $vacatureId . ' not found.');
+            return redirect()->route('vacatures.index')->with('error', 'Vacature niet gevonden.');
+        }
+
+        // Fetch the user's application to ensure eligibility
+        $user = Auth::user();
+        $application = $vacature->applications()
+            ->where('user_id', $user->id)
+            ->whereHas('invitation', function ($query) {
+                $query->where('declined', false);
+            })->first();
+
+        if (!$application) {
+            Log::debug('User ' . $user->id . ' is not eligible to review the vacature ' . $vacatureId);
+            return redirect()->route('vacatures.show', ['vacature' => $vacatureId])
+                ->with('error', 'Je bent niet gemachtigd om deze vacature te beoordelen.');
+        }
+
+        // Show the review form
+        return view('ratings.create', ['vacature' => $vacature]);
     }
 
     public function store(Request $request, Vacature $vacature)
     {
+        Log::debug('Store method reached in RatingController for vacature ID: ' . $vacature->id);
+
         $validated = $request->validate([
             'rating' => 'required|numeric|min:0|max:5',
             'review' => 'nullable|string|max:1024',
@@ -33,7 +63,8 @@ class RatingController extends Controller
             })->first();
 
         if (!$application) {
-            return redirect()->route('vacatures.show', $vacature->id)
+            Log::debug('User ' . $user->id . ' is not eligible to rate the vacature ' . $vacature->id);
+            return redirect()->route('vacatures.show', ['vacature' => $vacature->id])
                 ->with('error', 'Je bent niet gemachtigd om deze vacature te beoordelen.');
         }
 
@@ -45,27 +76,29 @@ class RatingController extends Controller
             'review' => $validated['review'],
         ]);
 
-        return redirect()->route('vacatures.show', $vacature->id)
+        Log::debug('Rating successfully created for user ' . $user->id . ' and vacature ' . $vacature->id);
+
+        return redirect()->route('vacatures.show', ['vacature' => $vacature->id])
             ->with('success', 'Beoordeling succesvol toegevoegd.');
     }
 
     public function show(string $id)
     {
-        //
+        // You can implement this if necessary (e.g., show ratings for a vacature)
     }
 
     public function edit(string $id)
     {
-        //
+        // Implement this if editing ratings is needed
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        // Implement this if updating ratings is needed
     }
 
     public function destroy(string $id)
     {
-        //
+        // Implement this if deleting ratings is needed
     }
 }
