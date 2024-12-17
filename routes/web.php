@@ -18,14 +18,10 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/info', function () {
-   return view('info');
+    return view('info');
 });
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/vacatures', VacatureController::class);
 Route::get('/vacatures/{vacature}/preview', [VacatureController::class, 'preview'])->name('vacatures.preview');
