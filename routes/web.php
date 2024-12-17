@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\RatingController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -63,5 +64,10 @@ Route::post('/invitations/{hash}/{invitation}/declineInvitation', [InvitationCon
 Route::resource('vacatures', VacatureController::class);
 Route::resource('applications', ApplicationController::class);
 Route::patch('vacatures.filter', [VacatureController::class, 'filter'])->name('vacatures.filter');
+
+Route::prefix('ratings')->name('ratings.')->group(function () {
+    Route::get('/create/{vacature}', [RatingController::class, 'create'])->name('create');
+    Route::post('/store/{vacature}', [RatingController::class, 'store'])->name('store');
+});
 
 require __DIR__ . '/auth.php';

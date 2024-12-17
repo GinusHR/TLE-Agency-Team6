@@ -25,41 +25,31 @@ class Vacature extends Model
         'days',
     ];
 
-    /**
-     * Relationship with Company.
-     */
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class, 'company_id');
     }
 
-    /**
-     * Relationship with Demands.
-     */
     public function demands(): BelongsToMany
     {
         return $this->belongsToMany(Demand::class, 'demand_vacature', 'vacature_id', 'demand_id');
     }
 
-    /**
-     * Relationship with Reviews.
-     */
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
     }
 
-    /**
-     * Relationship with Applications.
-     */
     public function applications(): HasMany
     {
         return $this->hasMany(Application::class);
     }
 
-    /**
-     * Override delete method to cascade deletes for Eloquent relationships.
-     */
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class);
+    }
+
     public function delete(): bool
     {
         $this->reviews()->delete();

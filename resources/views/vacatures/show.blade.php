@@ -83,8 +83,9 @@
                     </div>
 
                     <div class="mt-6">
-                        <h3 class="text-lg font-medium text-gray-700 mb-3">Beoordelingen</h3>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3">Beoordelingen</h3>
                         <!-- Beoordelingen content can be dynamically added here -->
+
                     </div>
                 </div>
             </div>

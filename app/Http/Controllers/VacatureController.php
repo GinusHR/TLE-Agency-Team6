@@ -105,6 +105,18 @@ class VacatureController extends Controller
             $queue = $vacature->applications->where('accepted', 0)->count();
             $succesRating = $vacature->applications->where('accepted', 1)->count();
 
+            $canReview = false;
+            if (Auth::check()) {
+                $user = Auth::user();
+                $application = $vacature->applications()
+                    ->where('user_id', $user->id)
+                    ->whereHas('invitation', function ($query) {
+                        $query->where('declined', false);
+                    })->first();
+
+                $canReview = $application !== null;
+            }
+
             return view('vacatures.show', [
                 'vacature' => $vacature,
                 'queue' => $queue,

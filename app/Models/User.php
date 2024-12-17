@@ -22,6 +22,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Application::class);
     }
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class);
+    }
+
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
