@@ -21,12 +21,16 @@ Route::get('/info', function () {
     return view('info');
 });
 
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+
+
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::resource('/vacatures', VacatureController::class);
 Route::get('/vacatures/{vacature}/preview', [VacatureController::class, 'preview'])->name('vacatures.preview');
 Route::post('/vacatures/{vacature}/publish', [VacatureController::class, 'publish'])->name('vacatures.publish');
 
+Route::delete('/sollicitatie/{application}', [ApplicationController::class, 'destroy'])->name('applications.destroy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');

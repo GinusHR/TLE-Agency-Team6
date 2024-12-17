@@ -104,6 +104,11 @@ class ApplicationController extends Controller
      */
     public function destroy(Application $application)
     {
-        //
+        // Verwijder de sollicitatie
+        $application->delete();
+
+        // Redirect naar de pagina van sollicitaties of waar je maar wilt
+        return redirect()->route('profile.show');
+
     }
 }
