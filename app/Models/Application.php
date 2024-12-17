@@ -20,4 +20,8 @@ class Application extends Model
     {
         return $this->belongsToMany(Demand::class, 'application_demands_not_met', 'application_id', 'demand_id');
     }
+    public function invitation(): BelongsTo
+    {
+        return $this->belongsTo(Invitation::class);
+    }
 }

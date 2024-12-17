@@ -41,14 +41,28 @@
                         </h2>
                         <div class="p-6 text-gray-900 flex justify-between content-center">
                             <div>
-                                <p>Aantal aangenomen via vacature:
-                                    {{ $vacature->applications->where('accepted', 1)->count() }}</p>
+                                <div class="flex items-start"> <!-- New wrapper to align button properly -->
+                                    @if ($vacature->applications->where('accepted', 1)->count() > 0)
+                                        <button id="toggleVacatureInvitations{{ $vacature->id }}Table"
+                                            class="flex items-center text-gray-600 hover:text-gray-900 mr-4">
+                                            <!-- Added margin-right -->
+                                            <span id="toggleVacatureInvitations{{ $vacature->id }}Icon"
+                                                class="mr-2">▲</span>
+                                    @endif
+                                    <span>
+                                        Aantal aangenomen via vacature:
+                                        {{ $vacature->applications->where('accepted', 1)->count() }}
+                                    </span>
+                                    @if ($vacature->applications->where('accepted', 1)->count() > 0)
+                                        </button>
+                                    @endif
+                                </div>
                                 <div class="flex items-start"> <!-- New wrapper to align button properly -->
                                     @if ($vacature->applications->where('accepted', 0)->count() > 0)
                                         <button id="toggleVacature{{ $vacature->id }}Table"
                                             class="flex items-center text-gray-600 hover:text-gray-900 mr-4">
                                             <!-- Added margin-right -->
-                                            <span id="toggleVacature{{ $vacature->id }}Icon" class="mr-2">▼</span>
+                                            <span id="toggleVacature{{ $vacature->id }}Icon" class="mr-2">▲</span>
                                     @endif
                                     <span>
                                         Aantal applicanten:
@@ -134,7 +148,91 @@
                                 </form>
                             </div>
                         </div>
+                        @if ($vacature->applications->where('accepted', 1)->count() > 0)
+                            <div class="overflow-x-auto" id="vacatureInvitations{{ $vacature->id }}Table"
+                                style="display: none;">
+                                <div class="bg-moss-light p-4">
+                                    <table class="min-w-full bg-white w-auto mx-auto sm:rounded-lg">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    #</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Gesolliciteerd op</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Uitnodiging verzonden op</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Uitnodiging geaccepteerd op/gewijzigd op</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Dag</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Tijd</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Status</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Acties</th>
+                                            </tr>
+                                        <tbody>
+                                            @php
+                                                $counter = 0;
+                                            @endphp
+                                            @foreach ($vacature->applications->where('accepted', 1) as $application)
+                                                @php
+                                                    $invitation = $application->invitation;
+                                                @endphp
+                                                @php
+                                                    $counter++;
+                                                @endphp
+                                                <tr class="border-b">
+                                                    <td class="px-4 py-2">{{ $counter }}</td>
+                                                    <td class="px-4 py-2">{{ $application->created_at }}</td>
+                                                    <td class="px-4 py-2">{{ $invitation->created_at }}</td>
 
+
+                                                    <td class="px-4 py-2 h-full">
+                                                        <div class="flex items-center justify-center space-x-4 h-full">
+                                                            {{-- @if (count($application->demands) > 0)
+                                                                <form
+                                                                    action="{{ route('company.rejectApplicant', $application->id) }}"
+                                                                    method="POST" style="display:inline;">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                        class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold"
+                                                                        onclick="return confirm('Weet je zeker dat je deze applicant wilt afwijzen?');">Afwijzen</button>
+                                                                </form>
+                                                            @endif --}}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const toggleButton = document.getElementById('toggleVacatureInvitations{{ $vacature->id }}Table');
+                                    const table = document.getElementById('vacatureInvitations{{ $vacature->id }}Table');
+                                    const icon = document.getElementById('toggleVacatureInvitations{{ $vacature->id }}Icon');
+
+                                    if (toggleButton && table && icon) {
+                                        toggleButton.addEventListener('click', function() {
+                                            if (table.style.display === 'none' || table.style.display === '') {
+                                                table.style.display = 'block';
+                                                icon.textContent = '▼'; // Verander naar neerwaartse pijl
+                                            } else {
+                                                table.style.display = 'none';
+                                                icon.textContent = '▲'; // Verander naar opwaartse pijl
+                                            }
+                                        });
+                                    } else {
+                                        console.error('Toggle-elementen niet gevonden.');
+                                    }
+                                });
+                            </script>
+                        @endif
                         @if ($vacature->applications->where('accepted', 0)->count() > 0)
                             <div class="overflow-x-auto" id="vacature{{ $vacature->id }}Table" style="display: none;">
                                 <div class="bg-moss-light p-4">
@@ -217,6 +315,7 @@
                                 });
                             </script>
                         @endif
+
                     </div>
                 </div>
             </div>
