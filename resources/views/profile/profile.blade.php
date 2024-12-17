@@ -27,7 +27,12 @@
             <div class="p-4 sm:p-8 bg-moss-light shadow sm:rounded-lg">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center sm:text-left">{{ __('Mijn sollicitaties') }}</h3>
                 @if (optional($user->applications)->isEmpty())
-                    <p class="text-gray-600">{{ __('Je hebt nog niet gesolliciteerd') }}</p>
+                    <div class="flex justify-between">
+                        <p class="text-gray-600">{{ __('Je hebt nog niet gesolliciteerd') }}</p>
+                        <a href="/vacatures" class="inline-flex items-center px-4 py-2 md:px-6 md:py-3  bg-violet-light border border-transparent rounded-md font-semibold text-[0.6rem] md:text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                            Alle vacatures
+                        </a>
+                    </div>
                 @else
                     <ul class="list-disc space-y-2">
                         @foreach ($user->applications as $application)
