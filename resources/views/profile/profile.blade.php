@@ -1,19 +1,19 @@
 <x-layout>
 
     <div class="flex justify-between items-center px-4 sm:px-6 lg:px-8 mt-2 mb-0">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl md:text-2xl text-gray-800 leading-tight">
             {{ __('Mijn profiel') }}
         </h2>
         <div class="flex gap-4 flex-nowrap">
             <form method="POST" action="{{ route('logout') }}" class="inline">
                 @csrf
                 <button type="submit"
-                        class="inline-flex items-center px-4 py-4 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                        class="inline-flex items-center px-3 py-3 md:px-6 md:py-4 bg-violet-light border border-transparent rounded-md font-semibold text-[0.6rem] md:text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                     {{ __('Uitloggen') }}
                 </button>
 
                 <a href="{{ route('profile.edit') }}"
-                   class="inline-flex items-center px-4 py-4 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                   class="inline-flex items-center px-3 py-3 md:px-6 md:py-4 bg-violet-light border border-transparent rounded-md font-semibold text-[0.6rem] md:text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                     {{ __('Wijzig profiel') }}
                 </a>
             </form>
@@ -29,7 +29,7 @@
                 @if (optional($user->applications)->isEmpty())
                     <p class="text-gray-600">{{ __('Je hebt nog niet gesolliciteerd') }}</p>
                 @else
-                    <ul class="list-disc pl-5 space-y-2">
+                    <ul class="list-disc space-y-2">
                         @foreach ($user->applications as $application)
                             @if ($application->accepted === 0)
                             <li class="border rounded-lg p-4 shadow bg-cream flex flex-col sm:flex-row justify-between items-start sm:items-center py-2">
