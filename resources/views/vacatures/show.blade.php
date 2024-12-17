@@ -75,17 +75,19 @@
                     </p>
 
                     <!-- Wachtlijst section on its own row with correct spacing -->
-                    <div class="mb-0">
+                    <div class="mb-3">
                         <p><strong>Wachtlijst:</strong> Er wachten nog {{ $queue }} mensen op deze vacature.</p>
                     </div>
 
-                    <!-- Succesrating and Apply Button on the same row with consistent spacing -->
-                    <div class="flex items-center justify-between mb-3">
+                    <!-- Succesrating Section -->
+                    <div class="mb-3">
                         @if ($succesRating > 0)
-                            <p class="mb-0"><strong>Succesrating:</strong> Er zijn tot nu toe {{ $succesRating }} mensen aangenomen.</p>
+                            <p class="mb-3"><strong>Succesrating:</strong> Er zijn tot nu toe {{ $succesRating }} mensen aangenomen.</p>
                         @endif
+                    </div>
 
-                        <!-- Apply Button next to Succesrating -->
+                    <!-- Apply Button Section aligned to the right -->
+                    <div class="flex justify-end">
                         @auth
                             @php
                                 $hasApplied = \App\Models\Application::where('user_id', Auth::id())
@@ -109,94 +111,6 @@
                         @endif
                     </div>
 
-                    <!-- Beoordelingen Section with Rating Button next to the Header -->
-                    <div class="mt-6">
-                        <h3 class="text-lg font-semibold mb-3 flex items-center justify-between">
-                            Beoordelingen
-                            <!-- Button to Create Rating next to Beoordelingen -->
-                            @auth
-                                @if (!$userHasAcceptedApplication)
-                                    <!-- Only show button if user has accepted application -->
-                                @elseif (\App\Models\Rating::where('user_id', Auth::id())->where('vacature_id', $vacature->id)->exists())
-                                    <!-- If user already has a rating for this vacature -->
-                                    <div class="bg-gray-400 text-white text-sm text-center font-semibold rounded-full py-2 px-4 cursor-not-allowed">
-                                        Je hebt al een beoordeling geplaatst
-                                    </div>
-                                @else
-                                    <!-- If user hasn't rated yet -->
-                                    <a href="{{ route('ratings.create', ['vacature' => $vacature->id]) }}"
-                                       class="bg-violet-light text-white text-sm text-center rounded-full py-2 px-4 hover:bg-violet-dark ml-4">
-                                        Voeg een beoordeling toe
-                                    </a>
-                                @endif
-                            @endauth
-                        </h3>
-
-                        <!-- Display Total Number of Ratings -->
-                        <div class="mb-4">
-                            <strong>Totaal Aantal Beoordelingen:</strong>
-                            <span class="font-medium">{{ $totalRatings }} beoordeling{{ $totalRatings != 1 ? 'en' : '' }}</span>
-                        </div>
-
-                        <!-- Display Average Rating -->
-                        <div class="mb-4">
-                            <strong>Gemiddelde Beoordeling:</strong>
-                            <span class="text-yellow-500 font-medium">
-                                @if ($averageRating)
-                                    {{ $averageRating == floor($averageRating) ? intval($averageRating) : number_format($averageRating, 1) }} / 5
-                                @else
-                                    Geen beoordelingen
-                                @endif
-                            </span>
-                        </div>
-
-                        <!-- Display Ratings -->
-                        @if ($vacature->ratings->isNotEmpty())
-                            <div class="space-y-4">
-                                @foreach ($vacature->ratings as $rating)
-                                    <div class="p-4 border rounded-lg shadow-md bg-white relative">
-                                        <!-- Rating Created At -->
-                                        <div class="flex items-center space-x-2 mb-2">
-                                            <span class="font-bold">{{ $rating->created_at->format('d-m-Y') }}</span>
-                                            <span class="text-yellow-500 font-medium">Rating: {{ $rating->rating }}/5</span>
-                                            <!-- Edit and Delete buttons for the creator of the rating -->
-                                            @auth
-                                                @if (Auth::id() === $rating->user_id) <!-- Only show buttons if the logged-in user is the creator -->
-                                                <div class="absolute top-2 right-2 flex space-x-4">
-                                                    <!-- Edit Button -->
-                                                    <form action="{{ route('ratings.edit', ['rating' => $rating->id]) }}" method="GET">
-                                                        <button type="submit"
-                                                                class="bg-violet-light text-white font-medium text-center rounded-full py-2 px-4 hover:bg-violet-dark">
-                                                            Bewerken
-                                                        </button>
-                                                    </form>
-
-                                                    <!-- Delete Button -->
-                                                    <form action="{{ route('ratings.destroy', ['rating' => $rating->id]) }}" method="POST"
-                                                          onsubmit="return confirm('Weet je zeker dat je deze beoordeling wilt verwijderen?')">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                                class="bg-red-500 text-white font-medium text-center rounded-full py-2 px-4 hover:bg-red-600">
-                                                            Verwijderen
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                                @endif
-                                            @endauth
-                                        </div>
-
-                                        <!-- Review Text -->
-                                        <p class="text-gray-700">{{ $rating->review }}</p>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @else
-                            <p class="text-gray-500">Er zijn nog geen beoordelingen voor deze vacature.</p>
-                        @endif
-
-
-                    </div>
                 </div>
             </div>
 
@@ -249,6 +163,93 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative mb-[5vw]">
+        <!-- Beoordelingen Section with Rating Button next to the Header -->
+        <div class="mt-6">
+            <h3 class="text-lg font-semibold mb-3 flex items-center justify-between">
+                Beoordelingen
+                <!-- Button to Create Rating next to Beoordelingen -->
+                @auth
+                    @if (!$userHasAcceptedApplication)
+                        <!-- Only show button if user has accepted application -->
+                    @elseif (\App\Models\Rating::where('user_id', Auth::id())->where('vacature_id', $vacature->id)->exists())
+                        <!-- If user already has a rating for this vacature -->
+                        <div class="bg-gray-400 text-white text-sm text-center font-semibold rounded-full py-2 px-4 cursor-not-allowed">
+                            Je hebt al een beoordeling geplaatst
+                        </div>
+                    @else
+                        <!-- If user hasn't rated yet -->
+                        <a href="{{ route('ratings.create', ['vacature' => $vacature->id]) }}" class="bg-violet-light text-white text-sm text-center rounded-full py-2 px-4 hover:bg-violet-dark ml-4">Voeg een beoordeling toe
+                        </a>
+                    @endif
+                @endauth
+            </h3>
+
+            <!-- Display Total Number of Ratings -->
+            <div class="mb-4">
+                <strong>Totaal Aantal Beoordelingen:</strong>
+                <span class="font-medium">{{ $totalRatings }} beoordeling{{ $totalRatings != 1 ? 'en' : '' }}</span>
+            </div>
+
+            <!-- Display Average Rating -->
+            <div class="mb-4">
+                <strong>Gemiddelde Beoordeling:</strong>
+                <span class="text-yellow-500 font-medium">
+                    @if ($averageRating)
+                        {{ $averageRating == floor($averageRating) ? intval($averageRating) : number_format($averageRating, 1) }} / 5
+                    @else
+                        Geen beoordelingen
+                    @endif
+                </span>
+            </div>
+
+            <!-- Display Ratings -->
+            @if ($vacature->ratings->isNotEmpty())
+                <div class="space-y-4">
+                    @foreach ($vacature->ratings as $rating)
+                        <div class="p-4 border rounded-lg shadow-md bg-white relative">
+                            <!-- Rating Created At -->
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="font-bold">{{ $rating->created_at->format('d-m-Y') }}</span>
+                                <span class="text-yellow-500 font-medium">Rating: {{ $rating->rating }}/5</span>
+                                <!-- Edit and Delete buttons for the creator of the rating -->
+                                @auth
+                                    @if (Auth::id() === $rating->user_id) <!-- Only show buttons if the logged-in user is the creator -->
+                                    <div class="absolute top-2 right-2 flex space-x-4">
+                                        <!-- Edit Button -->
+                                        <form action="{{ route('ratings.edit', ['rating' => $rating->id]) }}" method="GET">
+                                            <button type="submit"
+                                                    class="bg-violet-light text-white font-medium text-center rounded-full py-2 px-4 hover:bg-violet-dark">
+                                                Bewerken
+                                            </button>
+                                        </form>
+
+                                        <!-- Delete Button -->
+                                        <form action="{{ route('ratings.destroy', ['rating' => $rating->id]) }}" method="POST"
+                                              onsubmit="return confirm('Weet je zeker dat je deze beoordeling wilt verwijderen?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                    class="bg-red-500 text-white font-medium text-center rounded-full py-2 px-4 hover:bg-red-600">
+                                                Verwijderen
+                                            </button>
+                                        </form>
+                                    </div>
+                                    @endif
+                                @endauth
+                            </div>
+
+                            <!-- Review Text -->
+                            <p class="text-gray-700">{{ $rating->review }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-gray-500">Er zijn nog geen beoordelingen voor deze vacature.</p>
+            @endif
         </div>
     </div>
 
