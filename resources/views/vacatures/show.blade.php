@@ -240,9 +240,9 @@
 
         <!-- Modal -->
         <div id="solliciteerModal"
-            class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 bg-black bg-opacity-50 z-20 flex justify-center items-center">
+             class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 bg-black bg-opacity-50 z-20 flex justify-center items-center">
             <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg">
-                <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right" id="closeBtn">&times;</span>
+                <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right" id="closeBtn" tabindex="0">&times;</span>
                 <h2 class="text-xl font-semibold mb-4">Solliciteer voor de Vacature</h2>
                 @if ($errors->any())
                     <div class="bg-red-100 text-red-600 p-3 rounded mb-4">
@@ -254,7 +254,7 @@
                     </div>
                 @endif
                 <form id="sollicitatieForm" action="{{ route('applications.store') }}" method="POST"
-                    enctype="multipart/form-data">
+                      enctype="multipart/form-data">
                     @csrf
                     @auth
                         <div>De vacature wordt automatisch op je account opgeslagen.</div>
@@ -262,26 +262,30 @@
                     @else
                         <label for="email" class="block mb-2">E-mailadres:</label>
                         <input type="email" id="email" name="email" required
-                            class="block w-full mb-4 border-gray-300 rounded-lg">
+                               class="block w-full mb-4 border-gray-300 rounded-lg">
                     @endauth
                     <input type="hidden" name="vacature_id" value="{{ $vacature->id }}">
                     <input type="hidden" name="vacature_company" value="{{ $vacature->company->name }}">
                     <input type="hidden" name="vacature_function" value="{{ $vacature->function }}">
 
-                    <label for="demands[]" class="block mb-2">Selecteer de criteria die op jou van toepassing
-                        zijn:</label>
-                    @foreach ($vacature->demands as $demand)
-                        <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
-                        <div class="flex items-center mb-2">
-                            <input type="checkbox" id="demand_{{ $demand->id }}"
-                                name="demands[{{ $demand->id }}]" value="true" class="mr-2"
-                                @auth @if (Auth::user()->demands->contains($demand->id)) checked @endif @endauth>
-                            <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label>
-                        </div>
-                    @endforeach
+                    @if ($vacature->demands->count() > 0)
+                        <label for="demands[]" class="block mb-2">Selecteer de criteria die op jou van toepassing
+                            zijn:</label>
+                        @foreach ($vacature->demands as $demand)
+                            <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
+                            <div class="flex items-center mb-2">
+                                <input type="checkbox" id="demand_{{ $demand->id }}"
+                                       name="demands[{{ $demand->id }}]" value="true" class="mr-2"
+                                       @auth @if (Auth::user()->demands->contains($demand->id)) checked @endif @endauth>
+                                <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label>
+                            </div>
+                        @endforeach
+                    @endif
+
+                    <div class="mb-4"></div>
 
                     <button type="submit"
-                        class="bg-violet-light text-white py-2 px-4 rounded-full hover:bg-violet-dark w-full">
+                            class="bg-violet-light text-white py-2 px-4 rounded-full hover:bg-violet-dark w-full">
                         Verstuur Sollicitatie
                     </button>
                 </form>
@@ -293,11 +297,50 @@
         const modal = document.getElementById("solliciteerModal");
         const sollicitieerBtn = document.getElementById("solliciteerBtn");
         const closeBtn = document.getElementById("closeBtn");
+        const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+        let firstFocusableElement, lastFocusableElement;
 
-        sollicitieerBtn.onclick = () => modal.classList.remove("hidden");
-        closeBtn.onclick = () => modal.classList.add("hidden");
-        window.onclick = (event) => {
-            if (event.target === modal) modal.classList.add("hidden");
+        // Open Modal
+        sollicitieerBtn.onclick = () => {
+            modal.classList.remove("hidden");
+            // Find all focusable elements within the modal
+            const focusableContent = modal.querySelectorAll(focusableElements);
+            firstFocusableElement = focusableContent[0]; // First focusable element
+            lastFocusableElement = focusableContent[focusableContent.length - 1]; // Last focusable element
+            firstFocusableElement.focus(); // Set initial focus to the first focusable element
         };
+
+        // Close Modal
+        closeBtn.onclick = () => closeModal();
+
+        window.onclick = (event) => {
+            if (event.target === modal) closeModal();
+        };
+
+        function closeModal() {
+            modal.classList.add("hidden");
+            sollicitieerBtn.focus(); // Return focus to the button that triggered the modal
+        }
+
+        // Trap focus within modal
+        modal.addEventListener("keydown", (event) => {
+            const isTabPressed = event.key === "Tab" || event.keyCode === 9;
+            if (!isTabPressed) return;
+
+            if (event.shiftKey) {
+                // Shift + Tab: Focus moves backward
+                if (document.activeElement === firstFocusableElement) {
+                    event.preventDefault();
+                    lastFocusableElement.focus();
+                }
+            } else {
+                // Tab: Focus moves forward
+                if (document.activeElement === lastFocusableElement) {
+                    event.preventDefault();
+                    firstFocusableElement.focus();
+                }
+            }
+        });
     </script>
+
 </x-layout>
