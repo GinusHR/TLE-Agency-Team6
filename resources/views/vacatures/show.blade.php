@@ -1,8 +1,8 @@
 @vite(['resources/js/app.js', 'resources/css/app.css'])
 
 <x-layout>
-    <div class="bg-cream md:min-h-screen text-moss-dark">
-        <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative">
+    <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative mb-[5vw]">
+        <div>
             <!-- Header Section -->
             <div class="flex justify-center items-center gap-[1vw] md:gap-[1vw] bg-white p-5 rounded-md text-moss-dark">
                 <img class=" rounded-lg w-[15vw] md:w-[4.5vw]" src="{{ asset('storage/' . $vacature->company->logo) }}"
@@ -168,7 +168,7 @@
 
     <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative mb-[5vw]">
         <!-- Beoordelingen Section with Rating Button next to the Header -->
-        <div class="mt-6">
+        <div>
             <h3 class="text-lg font-semibold mb-3 flex items-center justify-between">
                 Beoordelingen
                 <!-- Button to Create Rating next to Beoordelingen -->
@@ -254,7 +254,7 @@
     </div>
 
     <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative mb-[5vw]">
-        <h2 class="text-lg font-semibold text-gray-700 mb-3">Over {{ $vacature->company->name }} </h2>
+        <h2 class="text-lg font-semibold mb-3">Over {{ $vacature->company->name }} </h2>
         <p>{{ $vacature->company->description }}</p>
         <div class="flex justify-center items-center">
             <img class="rounded-lg w-[70vw] md:w-[35vw] m-[6vw] md:m-[2vw]"
