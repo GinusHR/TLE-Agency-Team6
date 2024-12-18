@@ -113,56 +113,6 @@
 
                 </div>
             </div>
-
-            <!-- Modal -->
-            <div id="solliciteerModal"
-                 class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg">
-                    <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right"
-                          id="closeBtn">&times;</span>
-                    <h2 class="text-xl font-semibold mb-4">Solliciteer voor de Vacature</h2>
-                    @if ($errors->any())
-                        <div class="bg-red-100 text-red-600 p-3 rounded mb-4">
-                            <ul class="list-disc pl-5">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form id="sollicitatieForm" action="{{ route('applications.store') }}" method="POST"
-                          enctype="multipart/form-data">
-                        @csrf
-                        @auth
-                            <div>De vacature wordt automatisch op je account opgeslagen.</div>
-                            <input type="hidden" name="user_id" value="true">
-                        @else
-                            <label for="email" class="block mb-2">E-mailadres:</label>
-                            <input type="email" id="email" name="email" required
-                                   class="block w-full mb-4 border-gray-300 rounded-lg">
-                        @endauth
-                        <input type="hidden" name="vacature_id" value="{{ $vacature->id }}">
-                        <input type="hidden" name="vacature_company" value="{{ $vacature->company->name }}">
-                        <input type="hidden" name="vacature_function" value="{{ $vacature->function }}">
-
-                        <label for="demands[]" class="block mb-2">Selecteer de criteria die op jou van toepassing
-                            zijn:</label>
-                        @foreach ($vacature->demands as $demand)
-                            <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
-                            <div class="flex items-center mb-2">
-                                <input type="checkbox" id="demand_{{ $demand->id }}"
-                                       name="demands[{{ $demand->id }}]" value="true" class="mr-2">
-                                <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label>
-                            </div>
-                        @endforeach
-
-                        <button type="submit"
-                                class="bg-violet-light text-white py-2 px-4 rounded-full hover:bg-violet-dark w-full">
-                            Solliciteer
-                        </button>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -271,6 +221,55 @@
         </div>
 
 
+        <!-- Modal -->
+        <div id="solliciteerModal"
+             class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg">
+                    <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right"
+                          id="closeBtn">&times;</span>
+                <h2 class="text-xl font-semibold mb-4">Solliciteer voor de Vacature</h2>
+                @if ($errors->any())
+                    <div class="bg-red-100 text-red-600 p-3 rounded mb-4">
+                        <ul class="list-disc pl-5">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form id="sollicitatieForm" action="{{ route('applications.store') }}" method="POST"
+                      enctype="multipart/form-data">
+                    @csrf
+                    @auth
+                        <div>De vacature wordt automatisch op je account opgeslagen.</div>
+                        <input type="hidden" name="user_id" value="true">
+                    @else
+                        <label for="email" class="block mb-2">E-mailadres:</label>
+                        <input type="email" id="email" name="email" required
+                               class="block w-full mb-4 border-gray-300 rounded-lg">
+                    @endauth
+                    <input type="hidden" name="vacature_id" value="{{ $vacature->id }}">
+                    <input type="hidden" name="vacature_company" value="{{ $vacature->company->name }}">
+                    <input type="hidden" name="vacature_function" value="{{ $vacature->function }}">
+
+                    <label for="demands[]" class="block mb-2">Selecteer de criteria die op jou van toepassing
+                        zijn:</label>
+                    @foreach ($vacature->demands as $demand)
+                        <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
+                        <div class="flex items-center mb-2">
+                            <input type="checkbox" id="demand_{{ $demand->id }}"
+                                   name="demands[{{ $demand->id }}]" value="true" class="mr-2">
+                            <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label>
+                        </div>
+                    @endforeach
+
+                    <button type="submit"
+                            class="bg-violet-light text-white py-2 px-4 rounded-full hover:bg-violet-dark w-full">
+                        Solliciteer
+                    </button>
+                </form>
+            </div>
+        </div>
 
         <script>
             const modal = document.getElementById("solliciteerModal");
