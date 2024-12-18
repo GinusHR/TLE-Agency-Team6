@@ -1,15 +1,18 @@
 <x-layout>
-{{--    <x-slot name="header">--}}
-        <div class="flex justify-between items-center px-4 sm:px-6 lg:px-8 mt-2 mb-0">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Profiel wijzigen') }}
-            </h2>
-            <a href="{{ route('profile.show') }}" class="inline-flex items-center px-6 py-3 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                {{ __('Terug naar mijn profiel') }}
-            </a>
-        </div>
-{{--    </x-slot>--}}
-
+    {{--    <x-slot name="header"> --}}
+    <div class="flex justify-between items-center px-4 sm:px-6 lg:px-8 mt-2 mb-0">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Profiel wijzigen') }}
+        </h2>
+        <a href="{{ route('profile.show') }}"
+            class="inline-flex items-center px-6 py-3 bg-violet-light border border-transparent rounded-md font-semibold text-xs text-cream uppercase tracking-widest hover:bg-violet-dark focus:bg-violet-dark active:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            {{ __('Terug naar mijn profiel') }}
+        </a>
+    </div>
+    {{--    </x-slot> --}}
+    @if (session('status'))
+        <p class="flex justify-center" style="color: green;">Het profiel is succesvol bijgewerkt!</p>
+    @endif
     <div class="py-12 bg-cream">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-cream shadow sm:rounded-lg">

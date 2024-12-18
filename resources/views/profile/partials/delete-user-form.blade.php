@@ -5,14 +5,12 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __('Wanneer je je account verwijderd zal alle gerelateerde data en gegevens permanent worden verwijderd.') }}
+            {{ __('Wanneer je je account verwijdert zullen alle gerelateerde data (je sollicitaties, je beoordelingen en je aanmeldingen) en gegevens permanent worden verwijderd.') }}
         </p>
     </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Verwijder account') }}</x-danger-button>
+    <x-danger-button x-data=""
+        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('Verwijder account') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
@@ -24,19 +22,14 @@
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                {{ __('Wanneer je je account verwijderd zal alle gerelateerde data en gegevens permanent worden verwijderd. Vul je wachtwoord in om te bevestigen dat je je account permanent wilt verwijderen.') }}
+                {{ __('Wanneer je je account verwijdert zullen alle gerelateerde data en gegevens permanent worden verwijderd. Vul je wachtwoord in om te bevestigen dat je je account permanent wilt verwijderen.') }}
             </p>
 
             <div class="mt-6">
                 <x-input-label for="password" value="{{ __('Wachtwoord') }}" class="sr-only" />
 
-                <x-text-input
-                    id="password"
-                    name="password"
-                    type="password"
-                    class="mt-1 block w-3/4"
-                    placeholder="{{ __('Wachtwoord') }}"
-                />
+                <x-text-input id="password" name="password" type="password" class="mt-1 block w-3/4"
+                    placeholder="{{ __('Wachtwoord') }}" />
 
                 <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
             </div>
