@@ -209,7 +209,7 @@
                             </div>
 
                             <!-- Review Text -->
-                            <p class="text-gray-700">{{ $rating->review }}</p>
+                            <p class="text-gray-700 break-words">{{ $rating->review }}</p>
                         </div>
                     @endforeach
                 </div>
