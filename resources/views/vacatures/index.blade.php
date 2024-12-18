@@ -140,15 +140,16 @@
                             <li class="bg-moss-light border-2 border-gray-300 rounded-lg shadow-md p-4">
                                 <div class="flex justify-between items-center">
                                     <div class="flex items-center">
-                                        <h3 class="text-xl font-bold">{{ $vacature->company->name }} -
+                                        <h3 class="text-xl font-bold max-w-[60vw] md:max-w-[75vw]">{{ $vacature->company->name }} -
                                             {{ $vacature->function }}</h3>
-                                        <span class="font-bold text-xl ml-6">
+                                        <span class="font-bold text-xl absolute right-16 md:relative md:right-auto md:pl-5">
                                             @if ($vacature->ratings_avg_rating <= 0 || $vacature->ratings_avg_rating === null)
                                                 {{-- Geen ratings, dus niks laten zien --}}
                                             @else
                                                 {{ $vacature->ratings_avg_rating == floor($vacature->ratings_avg_rating) ? intval($vacature->ratings_avg_rating) : number_format($vacature->ratings_avg_rating, 1) }}/5
                                             @endif
                                         </span>
+
                                     </div>
                                     <button class="toggle-btn text-3xl font-bold text-gray-500 hover:text-gray-700"
                                         data-collapse="true">+
