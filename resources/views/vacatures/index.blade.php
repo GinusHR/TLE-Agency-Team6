@@ -1,5 +1,3 @@
-@vite(['resources/js/app.js', 'resources/css/app.css'])
-
 <x-layout>
 
     <body class="bg-cream">
@@ -159,7 +157,7 @@
                                 <div class="details space-y-2 py-0 my-0 hidden transition-max-height duration-300 overflow-hidden max-h-0">
                                     <p class="text-sm pt-2"><span class="font-semibold">Functie:</span>
                                         {{ $vacature->function }}</p>
-                                    <p class="text-sm"><span class="font-semibold">Maand Salaris:</span> &euro;
+                                    <p class="text-sm"><span class="font-semibold">Maandsalaris:</span> &euro;
                                         {{ number_format($vacature->salary, 2, ',', '.') }}</p>
                                     <p class="text-sm"><span class="font-semibold">Werkuren:</span>
                                         {{ $vacature->workhours }} uur per week</p>
@@ -167,7 +165,7 @@
                                         {{ $vacature->location }}</p>
                                     <p class="text-sm"><span class="font-semibold">Contract:</span>
                                         {{ $vacature->time_id ? 'Fulltime' : 'Parttime' }}</p>
-                                    <p class="text-sm"><span class="font-semibold">Opleidings Niveau:</span>
+                                    <p class="text-sm"><span class="font-semibold">Opleidingsniveau:</span>
                                         @switch($vacature->education)
                                             @case(1)
                                                 N.V.T.

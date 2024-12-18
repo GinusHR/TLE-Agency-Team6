@@ -17,7 +17,7 @@
         </a>
             <nav class="nav-bar max-w-full">
                 <!-- Dropdown Menu voor navigatie links -->
-                <div class="navbar-dropdown">
+                <div class="navbar-dropdown" id="navbarDropdown">
                     <button class="menu-icon">
                         <span class="block w-6 h-0.5 bg-moss-dark"></span>
                         <span class="block w-6 h-0.5 bg-moss-dark"></span>
@@ -59,6 +59,29 @@
                         @endif
                     </div>
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const navbarDropdown = document.getElementById('navbarDropdown');
+                        const dropdownContent = navbarDropdown.querySelector('.dropdown-content');
+                        const menuIcon = navbarDropdown.querySelector('.menu-icon');
+
+                        navbarDropdown.addEventListener('focusout', function () {
+                            setTimeout(() => {
+                                if (!navbarDropdown.contains(document.activeElement)) {
+                                    navbarDropdown.classList.remove('active');
+                                    menuIcon.classList.remove('open');
+                                }
+                            }, 100);
+                        });
+
+                        document.addEventListener('click', function (event) {
+                            if (!navbarDropdown.contains(event.target)) {
+                                navbarDropdown.classList.remove('active');
+                                menuIcon.classList.remove('open');
+                            }
+                        });
+                    });
+                </script>
             </nav>
     </header>
 

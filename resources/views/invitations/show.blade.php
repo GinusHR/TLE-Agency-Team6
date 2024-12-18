@@ -61,10 +61,26 @@
                         @endif
                     </label>
                     <input type="datetime-local" id="workday" name="workday"
-                        class="p-2 border border-gray-300 rounded-md text-sm w-full sm:w-auto">
+                        class="p-2 border border-gray-300 rounded-md text-sm w-full sm:w-auto"
+                        min="{{ now()->addDays(2)->format('Y-m-d\TH:i') }}">
                     @error('workday')
                         <span class="text-red-500 text-xs">{{ $message }}</span>
                     @enderror
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const datetimeInput = document.getElementById('workday');
+
+                            // Event listener voor keydown om te voorkomen dat tekst wordt ingevoerd
+                            datetimeInput.addEventListener('keydown', function(event) {
+                                event.preventDefault();
+                            });
+
+                            // Evenement om de tekstinvoer te blokkeren wanneer er tekst wordt geplakt
+                            datetimeInput.addEventListener('paste', function(event) {
+                                event.preventDefault();
+                            });
+                        });
+                    </script>
                 </div>
                 <button type="submit"
                     class="w-full mt-2 px-4 py-2

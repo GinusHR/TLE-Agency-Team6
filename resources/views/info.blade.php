@@ -48,8 +48,6 @@
         });
     </script>
 
-
-
     <main class="container mx-auto px-4 py-10 w-[80vw]">
         <section class="mb-10">
             <h2 class="text-2xl font-bold mb-4">Wat is Open Hiring?</h2>
@@ -98,7 +96,6 @@
                                 <p> Maak je geen zorgen meer over vooroordelen.</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="p-6 bg-white shadow rounded">
@@ -108,21 +105,21 @@
                     </div>
 
                     <div id="toggle-companies" class="hidden mt-4">
-                        <div class="flex flex-col justify-evenly h-3/4">
-                            <div class="flex flex-row justify-start gap-1 align-center">
-                                <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
-                                <p> Neem eenvoudig nieuwe werknemers aan.</p>
-                            </div>
+                       <div class="flex flex-col justify-evenly h-3/4">
+                           <div class="flex flex-row justify-start gap-1 align-center">
+                               <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
+                               <p> Neem eenvoudig nieuwe werknemers aan.</p>
+                           </div>
 
-                            <div class="flex flex-row justify-start gap-1 align-center">
-                                <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
-                                <p> Vergroot je sociale footprint.</p>
-                            </div>
+                           <div class="flex flex-row justify-start gap-1 align-center">
+                               <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
+                               <p> Vergroot je sociale footprint.</p>
+                           </div>
 
-                            <div class="flex flex-row justify-start gap-1 align-center">
-                                <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
-                                <p> Goed alternatief voor dure sollicitatieprocedures.</p>
-                            </div>
+                           <div class="flex flex-row justify-start gap-1 align-center">
+                               <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
+                               <p> Goed alternatief voor dure sollicitatieprocedures.</p>
+                           </div>
 
                             <div class="flex flex-row justify-start gap-1 align-center">
                                 <p class="text-moss-medium align-center flex justify-center">&#10004;</p>
@@ -286,6 +283,4 @@
             </div>
         </section>
     </main>
-
-
 </x-layout>
