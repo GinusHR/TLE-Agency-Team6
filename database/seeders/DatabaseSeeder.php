@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class
         ]);
         $this->call([
-            ReviewSeeder::class
+            RatingSeeder::class
         ]);
         $this->call([
             ApplicationSeeder::class
