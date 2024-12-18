@@ -25,16 +25,30 @@
                                 document.addEventListener('DOMContentLoaded', function() {
                                     const button = document.getElementById('demandsButton');
                                     const dropdown = document.getElementById('demands');
-                                    const dropdownDemand = document.getElementById('dropdownDemand');
+                                    const dropdownItems = dropdown.querySelectorAll('input, label');
 
                                     button.addEventListener('click', function() {
                                         dropdown.classList.toggle('hidden');
+                                        if (!dropdown.classList.contains('hidden')) {
+                                            dropdown.setAttribute('tabindex', '-1');
+                                            dropdown.focus();
+                                        }
                                     });
-                                    dropdownDemand.addEventListener('click', function() {
-                                        dropdownDemand.classList.toggle('bg-moss-light');
+
+                                    dropdown.addEventListener('focusout', function(event) {
+                                        if (!dropdown.contains(event.relatedTarget) && event.relatedTarget !== button) {
+                                            dropdown.classList.add('hidden');
+                                        }
+                                    });
+
+                                    dropdownItems.forEach(item => {
+                                        item.addEventListener('click', function() {
+                                            this.closest('label').classList.toggle('bg-moss-light');
+                                        });
                                     });
                                 });
                             </script>
+
                             <div id="demands" class="z-10 hidden w-60 bg-violet-light rounded-lg shadow-lg absolute">
                                 <ul class="p-3 space-y-1 text-sm text-gray-300">
                                     @foreach ($demands as $demand)
@@ -72,7 +86,7 @@
                                 class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
                                 <option value="" disabled selected>Kies een salaris</option>
                                 <option value="1">0-500</option>
-                                <option value="2">500-1000</option>
+                                <option value="2">600-1000</option>
                                 <option value="3">1100-1500</option>
                                 <option value="4">1600-2000</option>
                                 <option value="5">2100-2500</option>
