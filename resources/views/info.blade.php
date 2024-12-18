@@ -2,15 +2,23 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const toggles = document.querySelectorAll('[data-toggle]');
+
             toggles.forEach(toggle => {
                 toggle.addEventListener('click', () => {
                     const targetId = toggle.dataset.toggle;
                     const target = document.getElementById(targetId);
 
+                    // Toggle the + or - symbol
+                    if (toggle.textContent === '+') {
+                        toggle.textContent = '-';
+                    } else {
+                        toggle.textContent = '+';
+                    }
 
                     if (!['toggle-companies', 'toggle-employees'].includes(targetId)) {
                         const parentSection = toggle.closest('section');
                         const allPanels = parentSection.querySelectorAll('[id^="toggle-"]');
+
                         allPanels.forEach(panel => {
                             if (panel !== target && panel.classList.contains('max-h-[500px]')) {
                                 panel.classList.remove('max-h-[500px]', 'opacity-100');
