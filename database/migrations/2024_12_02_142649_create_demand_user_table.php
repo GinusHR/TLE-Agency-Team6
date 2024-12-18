@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('demand_user', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('demand_id');
-            $table->foreign('demand_id')->references('id')->on('demands');
+            $table->foreign('demand_id')->references('id')->on('demands')->onDelete('cascade');
             $table->bigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
+
 
         Schema::enableForeignKeyConstraints();
     }
