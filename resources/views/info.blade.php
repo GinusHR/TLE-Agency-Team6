@@ -68,7 +68,7 @@
                 <div class="p-6 bg-white shadow rounded">
                     <div class="flex flex-row align-center justify-between">
                         <h3 class="text-xl font-bold mb-2">Voor medewerkers</h3>
-                        <button data-toggle="toggle-employees" class="text-black font-bold text-2xl">&#43;</button>
+                        <button data-toggle="toggle-employees" class="text-black font-bold text-2xl">+</button>
                     </div>
 
                     <div id="toggle-employees" class="hidden mt-4">
@@ -99,7 +99,7 @@
                 <div class="p-6 bg-white shadow rounded">
                     <div class="flex flex-row align-center justify-between">
                         <h3 class="text-xl font-bold mb-2">Voor bedrijven</h3>
-                        <button data-toggle="toggle-companies" class="text-black font-bold text-2xl ">&#43;</button>
+                        <button data-toggle="toggle-companies" class="text-black font-bold text-2xl ">+</button>
                     </div>
 
                     <div id="toggle-companies" class="hidden mt-4">
@@ -136,7 +136,7 @@
             <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl"> 1. Open deur</h3>
-                    <button data-toggle="toggle-rule-1" class="font-bold text-xl">&#43;</button>
+                    <button data-toggle="toggle-rule-1" class="font-bold text-xl">+</button>
                 </div>
                 <div id="toggle-rule-1" class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <div>
@@ -150,7 +150,7 @@
             <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">2. Geen vragen stellen</h3>
-                    <button data-toggle="toggle-rule-2" class="font-bold text-xl">&#43;</button>
+                    <button data-toggle="toggle-rule-2" class="font-bold text-xl">+</button>
                 </div>
                 <div id="toggle-rule-2"  class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <div>
@@ -164,7 +164,7 @@
             <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">3. Open armen </h3>
-                    <button data-toggle="toggle-rule-3" class="font-bold text-xl">&#43;</button>
+                    <button data-toggle="toggle-rule-3" class="font-bold text-xl">+</button>
                 </div>
                 <div id="toggle-rule-3"  class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <div>
@@ -178,7 +178,7 @@
             <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">4. De juiste volgorde</h3>
-                    <button data-toggle="toggle-rule-4" class="font-bold text-xl">&#43;</button>
+                    <button data-toggle="toggle-rule-4" class="font-bold text-xl">+</button>
                 </div>
                 <div id="toggle-rule-4"  class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <div>
@@ -192,7 +192,7 @@
             <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">5. Een 'gewoon' contract </h3>
-                    <button data-toggle="toggle-rule-5" class="font-bold text-xl">&#43;</button>
+                    <button data-toggle="toggle-rule-5" class="font-bold text-xl">+</button>
                 </div>
                 <div id="toggle-rule-5"  class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <div>
@@ -206,7 +206,7 @@
             <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">6. Iedereen dezelfde behandeling</h3>
-                    <button data-toggle="toggle-rule-6" class="font-bold text-xl">&#43;</button>
+                    <button data-toggle="toggle-rule-6" class="font-bold text-xl">+</button>
                 </div>
                 <div id="toggle-rule-6"  class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <div>
@@ -220,7 +220,7 @@
             <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">7. Aandacht voor iedereen</h3>
-                    <button data-toggle="toggle-rule-7" class="font-bold text-xl">&#43;</button>
+                    <button data-toggle="toggle-rule-7" class="font-bold text-xl">+</button>
                 </div>
                 <div id="toggle-rule-7"  class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <div>
@@ -234,7 +234,7 @@
             <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">8. Ontwikkelperspectief</h3>
-                    <button data-toggle="toggle-rule-8" class="font-bold text-xl">&#43;</button>
+                    <button data-toggle="toggle-rule-8" class="font-bold text-xl">+</button>
                 </div>
                 <div id="toggle-rule-8"  class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <div>
