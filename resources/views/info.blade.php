@@ -41,7 +41,7 @@
 
 
 
-    <main class="container mx-auto px-4 py-10">
+    <main class="container mx-auto px-4 py-10 w-[80vw]">
         <section class="mb-10">
             <h2 class="text-2xl font-bold mb-4">Wat is Open Hiring?</h2>
             <div class="mt-4">
