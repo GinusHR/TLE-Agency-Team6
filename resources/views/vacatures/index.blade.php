@@ -114,7 +114,11 @@
                                 <div class="flex items-center">
                                     <h3 class="text-xl font-bold">{{ $vacature->company->name }}</h3>
                                     <span class="font-bold text-xl ml-6">
-                                        {{ $vacature->ratings_avg_rating == floor($vacature->ratings_avg_rating) ? intval($vacature->ratings_avg_rating) : number_format($vacature->ratings_avg_rating, 1) }}/5
+                                        @if($vacature->ratings_avg_rating <= 0 || $vacature->ratings_avg_rating === null)
+                                            {{-- Geen ratings, dus niks laten zien --}}
+                                        @else
+                                            {{ $vacature->ratings_avg_rating == floor($vacature->ratings_avg_rating) ? intval($vacature->ratings_avg_rating) : number_format($vacature->ratings_avg_rating, 1) }}/5
+                                        @endif
                                     </span>
                                 </div>
                                 <button
