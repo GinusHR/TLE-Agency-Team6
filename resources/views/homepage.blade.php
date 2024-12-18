@@ -24,7 +24,7 @@
                     draait namelijk niet om diploma’s, maar om mensen. Niet om praatjes, maar om aanpakken.
                 </p>
                 <!-- Knop in het midden -->
-                <a href="/vacatures" class="button-small mt-4">
+                <a href="/vacatures" class="button-small mt-4" id="vacaturesButtonHome">
                     Bekijk vacatures
                 </a>
             </div>

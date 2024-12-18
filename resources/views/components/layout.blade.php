@@ -37,26 +37,26 @@
 
                         @if (Auth::user())
                             <div class="dropdown-buttons">
-                                <a href="/profile" class="button-small md:mt-6">Profiel</a>
+                                <a href="/profile" id="profileButton" class="flex button-small py-6 mt-4 mr-[2vw] ml-[3vw] justify-center items-center">Profiel</a>
                                 <form class="flex flex-col align-center justify-center" method="POST" action="{{ route('logout') }}" onsubmit="return confirm('Weet je zeker dat je wilt uitloggen?');">
                                     @csrf
-                                    <button type="submit" class="flex button-small mt-4 mr-[2vw] ml-[3vw]  justify-center items-center" >Uitloggen</button>
+                                    <button type="submit" class="flex button-small mt-4 mr-[2vw] ml-[3vw] justify-center items-center" >Uitloggen</button>
                                 </form>
                             </div>
                         @elseif (Auth::guard('company')->user())
                             <!-- Login en Register knoppen aan de rechter kant -->
                             <div class="dropdown-buttons">
-                                <a href="{{ route('company.dashboard') }}" class="button-small mt-4">Dashboard</a>
+                                <a id="dashboardButton" href="{{ route('company.dashboard') }}" class="flex button-small py-6 mt-4 mr-[2vw] ml-[3vw] justify-center items-center">Dashboard</a>
                                 <form class="flex flex-col align-center justify-center" method="POST" action="{{ route('company.logout') }}" onsubmit="return confirm('Weet je zeker dat je wilt uitloggen?');">
                                     @csrf
-                                    <button type="submit" class="button-small mt-4 mr-[2vw] ml-[3vw] flex justify-center" >Uitloggen</button>
+                                    <button type="submit" class="flex button-small mt-4 mr-[2vw] ml-[3vw] justify-center items-center" >Uitloggen</button>
                                 </form>
                             </div>
                         @else
                             <!-- Login en Register knoppen aan de rechter kant -->
                             <div class="dropdown-buttons">
-                                <a href="/login" class="button-small mt-4">Inloggen</a>
-                                <a href="/register" class="button-small mt-4">Registreren</a>
+                                <a href="/login" class="flex button-small py-6 mt-4 mr-[2vw] ml-[3vw] justify-center items-center" id="loginButton">Inloggen</a>
+                                <a href="/register" class="flex button-small py-6 mt-4 mr-[2vw] ml-[3vw] justify-center items-center" id="registerButton">Registreren</a>
                             </div>
                         @endif
                     </div>
