@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Demand;
 use App\Models\Application;
+use App\Models\Invitation;
 
 
 class ProfileController extends Controller
@@ -18,8 +19,18 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
+        $invitations = Invitation::whereHas('application', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })
+            ->where('declined', 0)
+            ->with(['application.vacature.ratings' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }])
+            ->get();
+
         return view('profile.profile', [
-            'user' => $user
+            'user' => $user,
+            'invitation' => $invitations
         ]);
     }
 
