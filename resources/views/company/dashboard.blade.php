@@ -99,15 +99,30 @@
                                             <div
                                                 class="flex flex-wrap items-center space-y-2 sm:space-y-0 sm:space-x-4">
                                                 <label for="workday" class="text-xs font-medium whitespace-nowrap">
-                                                    Datum en tijd: (niet verplicht)
+                                                    Datum en tijd: (niet nodig)
                                                 </label>
                                                 <input type="datetime-local" id="workday" name="workday"
-                                                    class="p-2 border border-gray-300 rounded-md text-sm w-full sm:w-auto">
+                                                    class="p-2 border border-gray-300 rounded-md text-sm w-full sm:w-auto"
+                                                    min="{{ now()->addDays(2)->format('Y-m-d\TH:i') }}">
                                                 @error('workday')
                                                     <span class="text-red-500 text-xs">{{ $message }}</span>
                                                 @enderror
-                                            </div>
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                        const datetimeInput = document.getElementById('workday');
 
+                                                        // Event listener voor keydown om te voorkomen dat tekst wordt ingevoerd
+                                                        datetimeInput.addEventListener('keydown', function(event) {
+                                                            event.preventDefault();
+                                                        });
+
+                                                        // Evenement om de tekstinvoer te blokkeren wanneer er tekst wordt geplakt
+                                                        datetimeInput.addEventListener('paste', function(event) {
+                                                            event.preventDefault();
+                                                        });
+                                                    });
+                                                </script>
+                                            </div>
                                         </div>
                                         <button type="submit"
                                             class="w-full bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light hover:text-white">

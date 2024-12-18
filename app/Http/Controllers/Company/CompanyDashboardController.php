@@ -128,6 +128,7 @@ class CompanyDashboardController extends Controller
     {
         $request->validate([
             'acceptApplicants' => 'required|integer',
+            'workday' => 'nullable|date|after_or_equal:' . now()->addDays(2)->startOfDay(),
         ]);
 
 
@@ -188,7 +189,7 @@ class CompanyDashboardController extends Controller
 
             $counter++;
         }
-        return redirect()->route('company.dashboard');
+        return redirect()->route('company.dashboard')->with('success', 'Sollicitanten zijn succesvol aangenomen');
     }
 
 

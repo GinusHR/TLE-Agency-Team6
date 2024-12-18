@@ -50,7 +50,7 @@ class InvitationController extends Controller
     public function changeInvitation($hash, $id, Request $request)
     {
         $request->validate([
-            'workday' => 'required',
+            'workday' => 'required|date|after_or_equal:' . now()->addDays(2)->startOfDay(),
         ]);
         $invitation = Invitation::findOrFail($id);
         if ($hash === $invitation->url_hashed) {
