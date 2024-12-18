@@ -93,14 +93,33 @@
                                 <input type="checkbox" id="{{ strtolower($day) }}" name="days[]"
                                        value="{{ $day }}" class="peer hidden">
                                 <label for="{{ strtolower($day) }}"
+                                       tabindex="0"
                                        class="h-14 w-20 bg-moss-light text-moss-dark font-bold rounded-lg cursor-pointer flex items-center justify-center
-                                       peer-checked:bg-violet-light peer-checked:text-white">
+                       peer-checked:bg-violet-light peer-checked:text-white focus:ring-2 focus:ring-violet-light focus:outline-none">
                                     {{ substr($day, 0, 2) }} <!-- Display only the first two letters -->
                                 </label>
                             </div>
                         @endforeach
                     </div>
                 </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Attach keyboard interaction for labels
+                        document.querySelectorAll('label[tabindex="0"]').forEach(function (label) {
+                            label.addEventListener('keydown', function (event) {
+                                if (event.key === ' ' || event.key === 'Enter') {
+                                    event.preventDefault(); // Prevent default scroll or submit
+                                    const input = document.getElementById(label.htmlFor); // Get associated input
+                                    if (input) {
+                                        input.checked = !input.checked; // Toggle checkbox state
+                                        input.dispatchEvent(new Event('change')); // Trigger change event
+                                    }
+                                }
+                            });
+                        });
+                    });
+                </script>
             </div>
         </div>
 

@@ -80,7 +80,7 @@ h1 {
 }
 
 .navbar-dropdown.active .dropdown-content {
-    @apply flex p-[1vw];
+    @apply flex p-4;
 }
 
 .dropdown-content a {
@@ -138,6 +138,10 @@ h1 {
 
 #vacaturesButtonHome {
     @apply py-4
+}
+
+#logOutButtonUser, #logOutButtonCompany {
+    @apply py-5
 }
 
 @media (min-width: 768px) {
