@@ -125,7 +125,7 @@
         <section class="flex flex-col items-center justify-center py-10 gap-4">
             <h2 class="text-2xl font-bold mb-4">Spelregels voor bedrijven</h2>
             <p>Om met Open Hiring te kunnen werken hebben we een paar 'spelregels'</p>
-            <div class="bg-moss-light w-3/4 md:w-2/4 rounded-lg p-3 shadow">
+            <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl"> 1. Open deur</h3>
                     <button data-toggle="toggle-rule-1" class="font-bold text-xl">&#43;</button>
@@ -139,7 +139,7 @@
                 </div>
             </div>
 
-            <div class="bg-moss-light w-3/4 md:w-2/4 rounded-lg p-3 shadow">
+            <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">2. Geen vragen stellen</h3>
                     <button data-toggle="toggle-rule-2" class="font-bold text-xl">&#43;</button>
@@ -153,7 +153,7 @@
                 </div>
             </div>
 
-            <div class="bg-moss-light w-3/4 md:w-2/4 rounded-lg p-3 shadow">
+            <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">3. Open armen </h3>
                     <button data-toggle="toggle-rule-3" class="font-bold text-xl">&#43;</button>
@@ -167,7 +167,7 @@
                 </div>
             </div>
 
-            <div class="bg-moss-light w-3/4 md:w-2/4 rounded-lg p-3 shadow">
+            <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">4. De juiste volgorde</h3>
                     <button data-toggle="toggle-rule-4" class="font-bold text-xl">&#43;</button>
@@ -181,7 +181,7 @@
                 </div>
             </div>
 
-            <div class="bg-moss-light w-3/4 md:w-2/4 rounded-lg p-3 shadow">
+            <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">5. Een 'gewoon' contract </h3>
                     <button data-toggle="toggle-rule-5" class="font-bold text-xl">&#43;</button>
@@ -195,7 +195,7 @@
                 </div>
             </div>
 
-            <div class="bg-moss-light w-3/4 md:w-2/4 rounded-lg p-3 shadow">
+            <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">6. Iedereen dezelfde behandeling</h3>
                     <button data-toggle="toggle-rule-6" class="font-bold text-xl">&#43;</button>
@@ -209,7 +209,7 @@
                 </div>
             </div>
 
-            <div class="bg-moss-light w-3/4 md:w-2/4 rounded-lg p-3 shadow">
+            <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">7. Aandacht voor iedereen</h3>
                     <button data-toggle="toggle-rule-7" class="font-bold text-xl">&#43;</button>
@@ -223,7 +223,7 @@
                 </div>
             </div>
 
-            <div class="bg-moss-light w-3/4 md:w-2/4 rounded-lg p-3 shadow">
+            <div class="bg-moss-light w-[80vw] md:w-2/4 rounded-lg p-3 shadow">
                 <div class="flex flex-row justify-between">
                     <h3 class="font-bold text-xl">8. Ontwikkelperspectief</h3>
                     <button data-toggle="toggle-rule-8" class="font-bold text-xl">&#43;</button>

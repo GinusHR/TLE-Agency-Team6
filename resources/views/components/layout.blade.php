@@ -15,8 +15,6 @@
         <a href="/">
             <img src="{{ asset('images/logo.png') }}" alt="Header Afbeelding" class="w-[4vw] left-[2vw]">
         </a>
-        @if (request()->is('company*'))
-        @else
             <nav class="nav-bar max-w-full">
                 <!-- Dropdown Menu voor navigatie links -->
                 <div class="navbar-dropdown">
@@ -62,7 +60,6 @@
                     </div>
                 </div>
             </nav>
-        @endif
     </header>
 
     <main class="bg-[#FBFCF6]">
