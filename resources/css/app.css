@@ -36,9 +36,7 @@ h1 {
     @apply text-4xl font-bold  text-[#2E342A] text-center pt-[2vw]
 }
 
-.button-small {
-    @apply inline-block px-6 py-3 bg-violet-light text-white rounded-lg text-sm hover:bg-violet-dark;
-}
+
 
 .nav-link-header {
     @apply inline-flex items-center justify-center bg-moss-dark m-[1.6vw];
@@ -57,7 +55,7 @@ h1 {
 }
 
 .header {
-    @apply flex justify-between items-center pr-[5vw] pl-[5vw] bg-cream ;
+    @apply flex justify-between items-center pr-[5vw] pl-[5vw] bg-cream;
 }
 
 .footer-content {
@@ -126,6 +124,21 @@ h1 {
     top: -8px;
 }
 
+.button-small {
+    @apply  px-6 py-5 bg-violet-light text-white rounded-lg text-sm hover:bg-violet-dark;
+}
+
+#profileButton, #loginButton, #dashboardButton {
+    @apply py-5 mt-0
+}
+
+#registerButton {
+    @apply py-5
+}
+
+#vacaturesButtonHome {
+    @apply py-4
+}
 
 @media (min-width: 768px) {
     .dropdown-links {
