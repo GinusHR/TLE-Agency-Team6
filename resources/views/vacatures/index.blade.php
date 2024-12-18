@@ -155,8 +155,8 @@
                                     </button>
                                 </div>
 
-                                <div class="details mt-2 space-y-2 hidden transition-max-height duration-300 overflow-hidden max-h-0">
-                                    <p class="text-sm"><span class="font-semibold">Functie:</span>
+                                <div class="details space-y-2 py-0 my-0 hidden transition-max-height duration-300 overflow-hidden max-h-0">
+                                    <p class="text-sm pt-2"><span class="font-semibold">Functie:</span>
                                         {{ $vacature->function }}</p>
                                     <p class="text-sm"><span class="font-semibold">Maand Salaris:</span> &euro;
                                         {{ number_format($vacature->salary, 2, ',', '.') }}</p>
@@ -231,13 +231,13 @@
                                 const isVisible = !details.classList.contains('hidden');
 
                                 if (isVisible) {
-                                    details.style.maxHeight = null;
-                                    setTimeout(() => details.classList.add('hidden'), 500);
+                                    details.style.maxHeight = null; // Verberg
+                                    setTimeout(() => details.classList.add('hidden'), 300); // Na de animatie
                                 } else {
                                     details.classList.remove('hidden'); // Toon direct
-                                    details.style.maxHeight = details.scrollHeight + 'px';
+                                    details.style.maxHeight = details.scrollHeight + 'px'; // Stel de hoogte in
                                 }
-                                this.textContent = isVisible ? '+' : '-';
+                                this.textContent = isVisible ? '+' : '-'; // Verander de knoptekst
                             });
                         });
                     });
