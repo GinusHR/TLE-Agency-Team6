@@ -155,7 +155,7 @@
                                     </button>
                                 </div>
 
-                                <div class="details mt-2 space-y-2 hidden">
+                                <div class="details mt-2 space-y-2 hidden transition-max-height duration-300 overflow-hidden max-h-0">
                                     <p class="text-sm"><span class="font-semibold">Functie:</span>
                                         {{ $vacature->function }}</p>
                                     <p class="text-sm"><span class="font-semibold">Maand Salaris:</span> &euro;
@@ -222,27 +222,27 @@
                 </ul>
 
                 <script>
-                    document.addEventListener('DOMContentLoaded', function() {
+                    document.addEventListener('DOMContentLoaded', function () {
                         const toggleButtons = document.querySelectorAll('.toggle-btn');
 
                         toggleButtons.forEach(button => {
-                            button.addEventListener('click', function() {
-                                const isCollapsed = button.getAttribute('data-collapse') === 'true';
-                                const details = button.closest('li').querySelector('.details');
+                            button.addEventListener('click', function () {
+                                const details = this.closest('li').querySelector('.details');
+                                const isVisible = !details.classList.contains('hidden');
 
-                                if (isCollapsed) {
-                                    details.classList.remove('hidden');
-                                    button.textContent = '-';
+                                if (isVisible) {
+                                    details.style.maxHeight = null;
+                                    setTimeout(() => details.classList.add('hidden'), 500);
                                 } else {
-                                    details.classList.add('hidden');
-                                    button.textContent = '+';
+                                    details.classList.remove('hidden'); // Toon direct
+                                    details.style.maxHeight = details.scrollHeight + 'px';
                                 }
-
-                                button.setAttribute('data-collapse', !isCollapsed);
+                                this.textContent = isVisible ? '+' : '-';
                             });
                         });
                     });
                 </script>
+
             @endif
         </div>
     </body>
