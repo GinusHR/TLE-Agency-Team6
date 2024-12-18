@@ -101,6 +101,7 @@
                         <div class="mb-4 md:w-60 md:ml-5">
                             <label for="search" class="block text-sm font-medium text-gray-700">Zoeken</label>
                             <input type="text" name="search" id="search" value="{{ $previousSearch->search }}"
+                                   placeholder="Bedrijf, functie, locatie..."
                                 class="mt-1 px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 w-full">
                         </div>
 
