@@ -1,5 +1,4 @@
 <x-layout>
-    <main class="min-h-full mb-40 md:mb-1">
         <div class="flex justify-between items-center px-4 sm:px-6 lg:px-8 mt-2 mb-0">
             <h2 class="font-semibold text-xl md:text-2xl text-gray-800 leading-tight">
                 {{ __('Mijn profiel') }}
