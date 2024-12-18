@@ -8,24 +8,22 @@
             <form class="flex-col justify-center" method="POST" action="{{ route('company.login') }}">
                 @csrf
                 <div class="mb-4">
-                    <label  class="block text-gray-700 mb-2" for="login_code">Inlogcode</label>
+                    <label class="block text-gray-700 mb-2" for="login_code">Inlogcode</label>
                     <input
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-violet-light"
                         type="text" id="login_code" name="login_code" required>
                 </div>
                 <div class="mb-6">
-                    <label  for="password">Wachtwoord</label>
+                    <label class="block text-gray-700 mb-2" for="password">Wachtwoord</label>
                     <input
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-violet-light"
                         type="password" id="password" name="password" required>
                 </div>
                 <button class="w-full px-4 py-2 bg-violet-light text-white rounded-lg hover:bg-violet-dark"
-                        type="submit">Log in</button>
+                    type="submit">Log in</button>
             </form>
         </div>
 
     </div>
 
 </x-layout>
-
-
