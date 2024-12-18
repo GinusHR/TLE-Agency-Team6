@@ -67,7 +67,7 @@ Route::post('/invitations/{hash}/{invitation}/changeInvitation', [InvitationCont
 
 Route::resource('vacatures', VacatureController::class);
 Route::resource('applications', ApplicationController::class);
-Route::patch('vacatures.filter', [VacatureController::class, 'filter'])->name('vacatures.filter');
+Route::patch('vacatures', [VacatureController::class, 'filter'])->name('vacatures.filter');
 
 Route::prefix('ratings')->name('ratings.')->group(function () {
     Route::get('/create/{vacature}', [RatingController::class, 'create'])->name('create');
