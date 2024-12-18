@@ -116,36 +116,50 @@
                                     </form>
                                 </div>
                             @endif
-                            <div class="grid grid-cols-2 gap-2 mt-4">
+                            <div class="flex flex-wrap gap-2">
                                 <div>
-                                    <a class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-violet-light hover:bg-violet-dark text-white"
-                                        href="{{ route('vacatures.show', $vacature->id) }}">Details</a>
+                                    <div class="mt-2">
+                                        <form action="{{ route('vacatures.show', $vacature->id) }}" method="GET"
+                                            style="display:inline;">
+                                            @csrf
+                                            <button type="submit"
+                                                class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-violet-light hover:bg-violet-dark text-white">Details
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="mt-2">
+                                        <form action="{{ route('vacatures.edit', $vacature->id) }}" method="GET"
+                                            style="display:inline;">
+                                            @csrf
+                                            <button type="submit"
+                                                class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-moss-medium hover:bg-moss-dark text-white">Bewerken
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <div>
-                                    <a class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-moss-medium hover:bg-moss-dark text-white"
-                                        href="{{ route('vacatures.edit', $vacature->id) }}">Bewerken</a>
-                                </div>
-                                <div>
-                                    <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST"
-                                        style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-red-500 hover:bg-red-600 text-white"
-                                            onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">
-                                            Verwijderen
-                                        </button>
-                                    </form>
-                                </div>
-                                <div>
-                                    <form action="{{ route('company.toggleVisibility', $vacature->id) }}"
-                                        method="POST">
-                                        @csrf
-                                        <button type="submit"
-                                            class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 {{ $vacature->status ? 'bg-yellow hover:bg-amber-400 text-black' : 'bg-violet-light hover:bg-violet-dark text-white' }}">
-                                            {{ $vacature->status ? 'Sluiten' : 'Openen' }}
-                                        </button>
-                                    </form>
+                                    <div class="mt-2">
+                                        <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-red-500 hover:bg-red-600 text-white"
+                                                onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">
+                                                Verwijderen
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="mt-2">
+                                        <form action="{{ route('company.toggleVisibility', $vacature->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 {{ $vacature->status ? 'bg-yellow hover:bg-amber-400 text-black' : 'bg-violet-light hover:bg-violet-dark text-white' }}">
+                                                {{ $vacature->status ? 'Sluiten' : 'Openen' }}
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
