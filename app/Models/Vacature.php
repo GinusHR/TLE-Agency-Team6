@@ -47,7 +47,7 @@ class Vacature extends Model
 
     public function delete(): bool
     {
-        $this->reviews()->delete();
+        $this->ratings()->delete();
         $this->applications()->delete();
         $this->demands()->detach(); // Detach many-to-many relationships
         return parent::delete();
