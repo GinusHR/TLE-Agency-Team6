@@ -8,17 +8,18 @@
         <a href="{{ route('vacatures.create') }}" id="create-vacature-link"
             class="bg-yellow text-black py-2 px-4 rounded-md hover:bg-violet-light hover:text-white">Maak een vacature
             aan</a>
-        <ul class="mt-4 space-y-2">
+        <ul class="mt-2 space-y-2">
             <li>
                 <a href="{{ route('company.profile') }}"
                     class="block bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Profiel beheren</a>
             </li>
             <li>
-                <form id="logout-form" action="{{ route('company.logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('company.logout') }}" method="POST"
+                    onsubmit="return confirm('Weet je zeker dat je wilt uitloggen?');" class="flex justify-center">
                     @csrf
+                    <button type="submit"
+                        class="block bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">Uitloggen</button>
                 </form>
-                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="block bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">Uitloggen</a>
             </li>
         </ul>
     </div>
@@ -117,16 +118,12 @@
                             @endif
                             <div class="grid grid-cols-2 gap-2 mt-4">
                                 <div>
-                                    <button
-                                        class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-violet-light hover:bg-violet-dark text-white">
-                                        <a href="{{ route('vacatures.show', $vacature->id) }}">Details</a>
-                                    </button>
+                                    <a class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-violet-light hover:bg-violet-dark text-white"
+                                        href="{{ route('vacatures.show', $vacature->id) }}">Details</a>
                                 </div>
                                 <div>
-                                    <button
-                                        class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-moss-medium hover:bg-moss-dark text-white">
-                                        <a href="{{ route('vacatures.edit', $vacature->id) }}">Bewerken</a>
-                                    </button>
+                                    <a class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-moss-medium hover:bg-moss-dark text-white"
+                                        href="{{ route('vacatures.edit', $vacature->id) }}">Bewerken</a>
                                 </div>
                                 <div>
                                     <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST"

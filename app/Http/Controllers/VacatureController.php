@@ -14,9 +14,9 @@ class VacatureController extends Controller
     public function index(Request $request)
     {
         $vacatures = Vacature::withCount('ratings') // Eager load the total number of ratings for each vacature
-        ->withAvg('ratings', 'rating') // Eager load the average rating for each vacature
-        ->where('status', 1) // Only include vacatures with status 1
-        ->get();
+            ->withAvg('ratings', 'rating') // Eager load the average rating for each vacature
+            ->where('status', 1) // Only include vacatures with status 1
+            ->get();
 
         $demands = Demand::all();
         $previousSearch = $request;
@@ -95,7 +95,7 @@ class VacatureController extends Controller
         }
 
 
-        $vacatures = $query->with('company')->with('demands')->get();
+        $vacatures = $query->with('company')->with('demands')->withCount('ratings')->withAvg('ratings', 'rating')->get();
         $previousSearch = $request;
         $demands = Demand::all();
         return view('vacatures.index', compact('vacatures', 'previousSearch', 'demands'));
