@@ -3,7 +3,7 @@
 <x-layout>
 
     <body class="bg-cream">
-        <div class="container mx-auto py-12 w-[90vw]">
+        <div class="container mx-auto pb-12 w-[90vw]">
             <h1 class="text-4xl font-bold text-center mb-6">Vacatures</h1>
             <div class="flex flex-col md:flex-row md:justify-between">
                 <form action="{{ route('vacatures.filter') }}" method="post" class=" mb-6 md:mb-0">
