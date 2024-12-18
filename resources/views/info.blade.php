@@ -46,10 +46,10 @@
             <h2 class="text-2xl font-bold mb-4">Wat is Open Hiring?</h2>
             <div class="mt-4">
                 <p class="leading-relaxed mb-4">
-                    Open Hiring is betekent dat voor iedereen de deur open staat. We helpen je, maakt niet uit wat voor achtergrond, een baan vinden zonder gedoe. Zet je naam op de lijst en wordt aangenomen. Je hoeft je ook geen zorgen te maken over vooroordelen, het hele pproces is anoniem. Geen account nodig.
+                    Open Hiring betekent dat de deur voor iedereen openstaat. Wij helpen je, ongeacht je achtergrond, om een baan te vinden zonder gedoe. Zet je naam op de lijst en word aangenomen – het proces is snel en eenvoudig. Je hoeft je geen zorgen te maken over vooroordelen, want het hele proces is anoniem. Er is geen account nodig.
                 </p>
                 <p class="leading-relaxed">
-                    Dit principe helpt mensen die moeite hebben om aan werk te komen aan een baan. En biedt bedrijven een eenvoudige en goedkopere manier om nieuwe medewerkers aan te trekken.
+                    Dit principe helpt mensen die moeite hebben om werk te vinden, terwijl het bedrijven een gemakkelijke en kostenefficiënte manier biedt om nieuwe medewerkers aan te trekken.
                 </p>
             </div>
         </section>

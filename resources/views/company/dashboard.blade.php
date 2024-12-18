@@ -32,7 +32,7 @@
                             @if ($vacature->status)
                                 Open:
                             @else
-                                Closed:
+                                Gesloten:
                             @endif
                             {{ $vacature->function }}
                             @if (isset($vacature->location))
@@ -41,14 +41,28 @@
                         </h2>
                         <div class="p-6 text-gray-900 flex justify-between content-center">
                             <div>
-                                <p>Aantal aangenomen via vacature:
-                                    {{ $vacature->applications->where('accepted', 1)->count() }}</p>
+                                <div class="flex items-start"> <!-- New wrapper to align button properly -->
+                                    @if ($vacature->applications->where('accepted', 1)->count() > 0)
+                                        <button id="toggleVacatureInvitations{{ $vacature->id }}Table"
+                                            class="flex items-center text-gray-600 hover:text-gray-900 mr-4">
+                                            <!-- Added margin-right -->
+                                            <span id="toggleVacatureInvitations{{ $vacature->id }}Icon"
+                                                class="mr-2">▲</span>
+                                    @endif
+                                    <span>
+                                        Aantal aangenomen via vacature:
+                                        {{ $vacature->applications->where('accepted', 1)->count() }}
+                                    </span>
+                                    @if ($vacature->applications->where('accepted', 1)->count() > 0)
+                                        </button>
+                                    @endif
+                                </div>
                                 <div class="flex items-start"> <!-- New wrapper to align button properly -->
                                     @if ($vacature->applications->where('accepted', 0)->count() > 0)
                                         <button id="toggleVacature{{ $vacature->id }}Table"
                                             class="flex items-center text-gray-600 hover:text-gray-900 mr-4">
                                             <!-- Added margin-right -->
-                                            <span id="toggleVacature{{ $vacature->id }}Icon" class="mr-2">▼</span>
+                                            <span id="toggleVacature{{ $vacature->id }}Icon" class="mr-2">▲</span>
                                     @endif
                                     <span>
                                         Aantal applicanten:
@@ -101,42 +115,173 @@
                                     </form>
                                 </div>
                             @endif
-                            <div class="flex space-x-2 mt-4">
+                            <div class="grid grid-cols-2 gap-2 mt-4">
                                 <div>
                                     <button
-                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300 bg-violet-light hover:bg-violet-dark text-white">
-                                        <a href="{{ route('vacatures.show', $vacature->id) }}">Detail</a>
+                                        class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-violet-light hover:bg-violet-dark text-white">
+                                        <a href="{{ route('vacatures.show', $vacature->id) }}">Details</a>
                                     </button>
                                 </div>
                                 <div>
                                     <button
-                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300 bg-yellow hover:bg-amber-400 text-black">
-                                        <a href="{{ route('vacatures.edit', $vacature->id) }}">Edit</a>
+                                        class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-moss-medium hover:bg-moss-dark text-white">
+                                        <a href="{{ route('vacatures.edit', $vacature->id) }}">Bewerken</a>
                                     </button>
                                 </div>
-                                <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300 bg-red-500 hover:bg-red-600 text-white"
-                                        onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">
-                                        Delete
-                                    </button>
-                                </form>
-                                <form action="{{ route('company.toggleVisibility', $vacature->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit"
-                                        class="px-4 py-2 rounded-lg font-semibold transition-colors duration-300
-                                        {{ $vacature->status ? 'bg-yellow hover:bg-amber-400 text-black' : 'bg-violet-light hover:bg-violet-dark text-white' }}">
-                                        {{ $vacature->status ? 'Close' : 'Open' }}
-                                    </button>
-                                </form>
+                                <div>
+                                    <form action="{{ route('vacatures.destroy', $vacature->id) }}" method="POST"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 bg-red-500 hover:bg-red-600 text-white"
+                                            onclick="return confirm('Weet je zeker dat je deze vacature wilt verwijderen?');">
+                                            Verwijderen
+                                        </button>
+                                    </form>
+                                </div>
+                                <div>
+                                    <form action="{{ route('company.toggleVisibility', $vacature->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="px-4 py-2 w-full rounded-lg font-semibold transition-colors duration-300 {{ $vacature->status ? 'bg-yellow hover:bg-amber-400 text-black' : 'bg-violet-light hover:bg-violet-dark text-white' }}">
+                                            {{ $vacature->status ? 'Sluiten' : 'Openen' }}
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+                        @if ($vacature->applications->where('accepted', 1)->count() > 0)
+                            <div class="overflow-x-auto" id="vacatureInvitations{{ $vacature->id }}Table"
+                                style="display: none;">
+                                <div class="bg-moss-light p-4">
+                                    <table class="min-w-full bg-white w-auto mx-auto sm:rounded-lg">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    #</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Gesolliciteerd op</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Uitnodiging verzonden op</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Uitnodiging geaccepteerd/gewijzigd op</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Dag</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Tijd</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Status</th>
+                                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    Acties</th>
+                                            </tr>
+                                        <tbody>
+                                            @php
+                                                $counter = 0;
+                                            @endphp
+                                            @foreach ($vacature->applications->where('accepted', 1) as $application)
+                                                @php
+                                                    $counter++;
+                                                @endphp
+                                                <tr class="border-b">
+                                                    <td class="px-4 py-2">{{ $counter }}</td>
+                                                    <td class="px-4 py-2">{{ $application->created_at }}</td>
+                                                    <td class="px-4 py-2"> {{ $application->invitation->created_at }}
+                                                    </td>
+                                                    <td class="px-4 py-2">
+                                                        @if (
+                                                            $application->invitation->created_at->format('Y-m-d H:i:s') !==
+                                                                $application->invitation->updated_at->format('Y-m-d H:i:s'))
+                                                            {{ $application->invitation->updated_at }}
+                                                        @else
+                                                            Nog niet gereageerd
+                                                        @endif
 
+                                                    </td>
+                                                    <td class="px-4 py-2"> {{ $application->invitation->day }} </td>
+                                                    <td class="px-4 py-2"> {{ $application->invitation->time }} </td>
+                                                    <td class="px-4 py-2
+                                                        @if ($application->invitation->declined === 0) text-green-500">
+                                                            Geaccepteerd
+                                                        @elseif ($application->invitation->declined === 1)
+                                                        text-red-500">
+                                                            Geweigerd
+                                                        @elseif ($application->invitation->declined === 2)
+                                                        text-amber-500">
+                                                        Nieuwe datum
+                                                        @else
+                                                        text-gray-500">
+                                                        Wachtend @endif
+                                                    </td>
+                                                    <td class="px-4
+                                                        py-2 h-full">
+                                                        @if ($application->invitation->declined === 1)
+                                                            <form
+                                                                action="{{ route('company.removeApplicantFromList', $application->invitation->id) }}"
+                                                                method="POST" style="display:inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold">Uit
+                                                                    lijst verwijderen</button>
+
+                                                            </form>
+                                                        @elseif ($application->invitation->declined === 2)
+                                                            Nieuwe datum:
+                                                            <div
+                                                                class="flex items-center justify-center space-x-4 h-full">
+                                                                <form
+                                                                    action="{{ route('company.acceptNewDate', $application->invitation->id) }}"
+                                                                    method="POST" style="display:inline;">
+                                                                    @csrf
+                                                                    <button type="submit"
+                                                                        class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 font-semibold"
+                                                                        onclick="return confirm('De applicant verwacht dat hij op die datum moet komen.');">Accepteren</button>
+                                                                </form>
+                                                                <form
+                                                                    action="{{ route('company.chooseNewDate', $application->invitation->id) }}"
+                                                                    method="POST" style="display:inline;">
+                                                                    @csrf
+                                                                    <button type="submit"
+                                                                        class="bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 font-semibold"
+                                                                        onclick="return confirm('De applicant zal een nieuwe datum moeten uitkiezen, weet je het zeker?');">Weigeren</button>
+                                                                </form>
+                                                            </div>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const toggleButton = document.getElementById('toggleVacatureInvitations{{ $vacature->id }}Table');
+                                    const table = document.getElementById('vacatureInvitations{{ $vacature->id }}Table');
+                                    const icon = document.getElementById('toggleVacatureInvitations{{ $vacature->id }}Icon');
+
+                                    if (toggleButton && table && icon) {
+                                        toggleButton.addEventListener('click', function() {
+                                            if (table.style.display === 'none' || table.style.display === '') {
+                                                table.style.display = 'block';
+                                                icon.textContent = '▼'; // Verander naar neerwaartse pijl
+                                            } else {
+                                                table.style.display = 'none';
+                                                icon.textContent = '▲'; // Verander naar opwaartse pijl
+                                            }
+                                        });
+                                    } else {
+                                        console.error('Toggle-elementen niet gevonden.');
+                                    }
+                                });
+                            </script>
+                        @endif
                         @if ($vacature->applications->where('accepted', 0)->count() > 0)
-                            <div class="overflow-x-auto" id="vacature{{ $vacature->id }}Table" style="display: none;">
+                            <div class="overflow-x-auto" id="vacature{{ $vacature->id }}Table"
+                                style="display: none;">
                                 <div class="bg-moss-light p-4">
                                     <table class="min-w-full bg-white w-auto mx-auto sm:rounded-lg">
                                         <thead>
@@ -148,7 +293,8 @@
                                                 <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                     Eisen waar niet aan voldaan zijn</th>
                                                 @if ($vacature->secondary_info_needed)
-                                                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                                                    <th
+                                                        class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                                                         Extra informatie</th>
                                                 @endif
                                                 <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">
@@ -205,10 +351,10 @@
                                         toggleButton.addEventListener('click', function() {
                                             if (table.style.display === 'none' || table.style.display === '') {
                                                 table.style.display = 'block';
-                                                icon.textContent = '▼'; // Verander naar neerwaartse pijl
+                                                icon.textContent = '▼';
                                             } else {
                                                 table.style.display = 'none';
-                                                icon.textContent = '▲'; // Verander naar opwaartse pijl
+                                                icon.textContent = '▲';
                                             }
                                         });
                                     } else {
@@ -217,6 +363,7 @@
                                 });
                             </script>
                         @endif
+
                     </div>
                 </div>
             </div>

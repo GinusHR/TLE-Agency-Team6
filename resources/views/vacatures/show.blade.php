@@ -1,12 +1,20 @@
 @vite(['resources/js/app.js', 'resources/css/app.css'])
 
 <x-layout>
+
+    <a href="/vacatures"
+       class="text-violet-light hover:text-violet-800 mx-[19.5vw] font-medium mb-2 mt-2 inline-block">
+        &larr; Terug naar alle vacatures
+    </a>
+
     <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative mb-[5vw]">
         <div>
             <!-- Header Section -->
             <div class="flex justify-center items-center gap-[1vw] md:gap-[1vw] bg-white p-5 rounded-md text-moss-dark">
+                @if ($vacature->company->logo)
                 <img class=" rounded-lg w-[15vw] md:w-[4.5vw]" src="{{ asset('storage/' . $vacature->company->logo) }}"
                      alt="Bedrijfslogo">
+                @endif
                 <h1 class="text-center text-2xl font-bold mb-4" style="font-family: Arial, sans-serif;">
                     {{ $vacature->company->name }} - {{ $vacature->function }}
                 </h1>
@@ -223,7 +231,7 @@
 
         <!-- Modal -->
         <div id="solliciteerModal"
-             class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+             class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 bg-black bg-opacity-50 z-20 flex justify-center items-center">
             <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg">
                     <span class="text-gray-500 font-bold text-2xl cursor-pointer float-right"
                           id="closeBtn">&times;</span>
@@ -257,18 +265,38 @@
                     @foreach ($vacature->demands as $demand)
                         <input type="hidden" name="demands[{{ $demand->id }}]" value="false">
                         <div class="flex items-center mb-2">
-                            <input type="checkbox" id="demand_{{ $demand->id }}"
-                                   name="demands[{{ $demand->id }}]" value="true" class="mr-2">
+                            <input type="checkbox" id="demand_{{ $demand->id }}" name="demands[{{ $demand->id }}]" value="true" class="mr-2">
+                                @auth @if (Auth::user()->demands->contains($demand->id)) checked @endif @endauth>
                             <label for="demand_{{ $demand->id }}">{{ $demand->name }}</label>
                         </div>
                     @endforeach
 
                     <button type="submit"
                             class="bg-violet-light text-white py-2 px-4 rounded-full hover:bg-violet-dark w-full">
-                        Solliciteer
+                        Verstuur Sollicitatie
                     </button>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <div class="bg-moss-light max-w-4xl mx-auto mt-10 p-8 rounded-lg border border-gray-300 relative mb-[5vw]">
+        <h2 class="text-lg font-semibold text-gray-700 mb-3">Over {{ $vacature->company->name }} </h2>
+        <p>{{ $vacature->company->description }}</p>
+        <div class="flex justify-center items-center">
+            @if ($vacature->company->image)
+                <img class="rounded-lg w-[70vw] md:w-[35vw] m-[6vw] md:m-[2vw]"
+                     src="{{ asset('storage/' . $vacature->company->image) }}" alt="Bedrijfsimage">
+            @endif
+        </div>
+        <div class="flex justify-center  md:justify-end gap-[5vw] md:gap-[1.5vw] mt-[2vw]">
+            <a href="{{ $vacature->company->homepage_url }}" target="_blank"
+                class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Website</a>
+            <a href="{{ $vacature->company->about_us_url }}" target="_blank"
+                class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap ">About
+                us</a>
+            <a href="{{ $vacature->company->contact_url }}" target="_blank"
+                class="bg-violet-light text-white text-sm text-center rounded-full py-3 px-6 hover:bg-violet-dark whitespace-nowrap">Contact</a>
         </div>
 
         <script>
