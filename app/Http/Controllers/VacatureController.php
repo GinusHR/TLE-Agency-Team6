@@ -16,6 +16,7 @@ class VacatureController extends Controller
         $vacatures = Vacature::withCount('ratings') // Eager load the total number of ratings for each vacature
             ->withAvg('ratings', 'rating') // Eager load the average rating for each vacature
             ->where('status', 1) // Only include vacatures with status 1
+            ->orderBy('id', 'DESC')
             ->get();
 
         $demands = Demand::all();
