@@ -138,23 +138,24 @@
                             <li class="bg-moss-light border-2 border-gray-300 rounded-lg shadow-md p-4">
                                 <div class="flex justify-between items-center">
                                     <div class="flex items-center">
-                                        <h3 class="text-xl font-bold">{{ $vacature->company->name }} -
+                                        <h3 class="text-xl font-bold max-w-[60vw] md:max-w-[75vw]">{{ $vacature->company->name }} -
                                             {{ $vacature->function }}</h3>
-                                        <span class="font-bold text-xl ml-6">
+                                        <span class="font-bold text-xl absolute right-16 md:relative md:right-auto md:pl-5">
                                             @if ($vacature->ratings_avg_rating <= 0 || $vacature->ratings_avg_rating === null)
                                                 {{-- Geen ratings, dus niks laten zien --}}
                                             @else
                                                 {{ $vacature->ratings_avg_rating == floor($vacature->ratings_avg_rating) ? intval($vacature->ratings_avg_rating) : number_format($vacature->ratings_avg_rating, 1) }}/5
                                             @endif
                                         </span>
+
                                     </div>
                                     <button class="toggle-btn text-3xl font-bold text-gray-500 hover:text-gray-700"
                                         data-collapse="true">+
                                     </button>
                                 </div>
 
-                                <div class="details mt-2 space-y-2 hidden">
-                                    <p class="text-sm"><span class="font-semibold">Functie:</span>
+                                <div class="details space-y-2 py-0 my-0 hidden transition-max-height duration-300 overflow-hidden max-h-0">
+                                    <p class="text-sm pt-2"><span class="font-semibold">Functie:</span>
                                         {{ $vacature->function }}</p>
                                     <p class="text-sm"><span class="font-semibold">Maandsalaris:</span> &euro;
                                         {{ number_format($vacature->salary, 2, ',', '.') }}</p>
@@ -220,27 +221,27 @@
                 </ul>
 
                 <script>
-                    document.addEventListener('DOMContentLoaded', function() {
+                    document.addEventListener('DOMContentLoaded', function () {
                         const toggleButtons = document.querySelectorAll('.toggle-btn');
 
                         toggleButtons.forEach(button => {
-                            button.addEventListener('click', function() {
-                                const isCollapsed = button.getAttribute('data-collapse') === 'true';
-                                const details = button.closest('li').querySelector('.details');
+                            button.addEventListener('click', function () {
+                                const details = this.closest('li').querySelector('.details');
+                                const isVisible = !details.classList.contains('hidden');
 
-                                if (isCollapsed) {
-                                    details.classList.remove('hidden');
-                                    button.textContent = '-';
+                                if (isVisible) {
+                                    details.style.maxHeight = null; // Verberg
+                                    setTimeout(() => details.classList.add('hidden'), 300); // Na de animatie
                                 } else {
-                                    details.classList.add('hidden');
-                                    button.textContent = '+';
+                                    details.classList.remove('hidden'); // Toon direct
+                                    details.style.maxHeight = details.scrollHeight + 'px'; // Stel de hoogte in
                                 }
-
-                                button.setAttribute('data-collapse', !isCollapsed);
+                                this.textContent = isVisible ? '+' : '-'; // Verander de knoptekst
                             });
                         });
                     });
                 </script>
+
             @endif
         </div>
     </body>
